@@ -10,11 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class FormPickerActivity extends AppCompatActivity {
-  private Button alarmButton;
+  @Bind(R.id.do_alarm) Button alarmButton;
   private Button pregnancyButton;
-  private Button birthButton;
-  private Button deathButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +23,10 @@ public class FormPickerActivity extends AppCompatActivity {
     setContentView(R.layout.content_form_picker);
 //    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //    setSupportActionBar(toolbar);
+    ButterKnife.setDebug(true);
+    ButterKnife.bind(this);
 
-    alarmButton = (Button) findViewById(R.id.do_alarm);
     pregnancyButton = (Button) findViewById(R.id.do_pregnancy);
-    birthButton = (Button) findViewById(R.id.do_birth);
 
     initListeners();
   }

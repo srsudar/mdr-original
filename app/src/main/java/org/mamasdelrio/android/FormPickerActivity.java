@@ -19,9 +19,9 @@ public class FormPickerActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_form_picker);
-    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
+    setContentView(R.layout.content_form_picker);
+//    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//    setSupportActionBar(toolbar);
 
     alarmButton = (Button) findViewById(R.id.do_alarm);
     pregnancyButton = (Button) findViewById(R.id.do_pregnancy);

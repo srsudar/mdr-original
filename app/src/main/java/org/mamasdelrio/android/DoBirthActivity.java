@@ -24,9 +24,9 @@ import butterknife.OnTextChanged;
 public class DoBirthActivity extends AppCompatActivity implements
     IFormActivity {
   @Bind(R.id.birth_enter_dni) EditText dni;
-  @Bind(R.id.birth_enter_year) EditText year;
-  @Bind(R.id.birth_enter_month) Spinner month;
-  @Bind(R.id.birth_enter_day) Spinner day;
+  @Bind(R.id.shared_enter_year) EditText year;
+  @Bind(R.id.shared_enter_month) Spinner month;
+  @Bind(R.id.shared_enter_day) Spinner day;
   @Bind(R.id.birth_send) Button send;
 
 
@@ -55,7 +55,7 @@ public class DoBirthActivity extends AppCompatActivity implements
   }
 
   @SuppressWarnings("unused")
-  @OnTextChanged({ R.id.birth_enter_dni, R.id.birth_enter_year })
+  @OnTextChanged({ R.id.birth_enter_dni, R.id.shared_enter_year })
   public void onTextChanged(CharSequence text) {
     send.setEnabled(isReadyToBeSent());
   }

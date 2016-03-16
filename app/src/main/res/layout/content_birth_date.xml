@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/shared_birth_date"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/birth_date"/>
+
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/year"/>
+  <EditText
+      android:id="@+id/shared_enter_year"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:maxLength="4"/>
+
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/month"/>
+  <Spinner
+      android:id="@+id/shared_enter_month"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/day"/>
+  <Spinner
+      android:id="@+id/shared_enter_day"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+</LinearLayout>

@@ -8,6 +8,8 @@ import android.widget.Spinner;
 
 import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.IntegerArrayAdapter;
+import org.mamasdelrio.android.logic.JsonHelper;
+import org.mamasdelrio.android.logic.TimeStamper;
 import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
@@ -59,11 +61,12 @@ public class DoBirthActivity extends AppCompatActivity implements
   }
 
   @Override
-  public Map<String, Object> getMapContent() {
+  public Map<String, Object> getMapContent(TimeStamper timeStamper) {
     Map<String, Object> result = new HashMap<>();
-    result.put(JsonKeys.SharedKeys.VERSION, Constants.VERSION);
-    result.put(JsonKeys.SharedKeys.FORM, JsonValues.Forms.BIRTHS);
+    JsonHelper jsonHelper = new JsonHelper(timeStamper);
+    jsonHelper.addCommonEntries(result);
 
+    result.put(JsonKeys.SharedKeys.FORM, JsonValues.Forms.BIRTHS);
     result.put(JsonKeys.Births.DNI, dni.getText().toString());
     result.put(JsonKeys.Births.BIRTH_YEAR, year.getText().toString());
     result.put(JsonKeys.Births.BIRTH_MONTH, month.getSelectedItem());

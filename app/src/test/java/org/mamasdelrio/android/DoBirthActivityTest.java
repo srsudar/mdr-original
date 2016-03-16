@@ -3,6 +3,8 @@ package org.mamasdelrio.android;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.testutil.AssertionHelper;
 import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
@@ -15,6 +17,8 @@ import java.util.Map;
 import static org.assertj.android.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Tests for {@link DoBirthActivity}.
@@ -79,6 +83,9 @@ public class DoBirthActivityTest {
     int targetMonthIndex = 11; // -1 b/c spinner is 0 indexed
     int targetDay = 31;
     int targetDayIndex = 30; // -1 b/c spinner is 0 indexed
+    String targetDateTime = "test datetime";
+    TimeStamper timeStamperMock = mock(TimeStamper.class);
+    when(timeStamperMock.getFriendlyDateTime()).thenReturn(targetDateTime);
 
     // Set up the inputs.
     activity.dni.setText(targetDni);
@@ -86,10 +93,10 @@ public class DoBirthActivityTest {
     activity.month.setSelection(targetMonthIndex);
     activity.day.setSelection(targetDayIndex);
 
-    Map<String, Object> actual = activity.getMapContent();
+    Map<String, Object> actual = activity.getMapContent(timeStamperMock);
+    AssertionHelper.assertCommonKeysPresent(actual, targetDateTime);
     assertThat(actual).contains(
         entry(JsonKeys.SharedKeys.FORM, JsonValues.Forms.BIRTHS),
-        entry(JsonKeys.SharedKeys.VERSION, Constants.VERSION),
         entry(JsonKeys.Births.DNI, targetDni),
         entry(JsonKeys.Births.BIRTH_YEAR, targetYear),
         entry(JsonKeys.Births.BIRTH_MONTH, targetMonth),

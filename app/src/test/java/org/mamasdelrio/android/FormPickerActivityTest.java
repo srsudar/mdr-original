@@ -1,5 +1,6 @@
 package org.mamasdelrio.android;
 
+import android.content.Intent;
 import android.widget.Button;
 
 import org.junit.Before;
@@ -7,13 +8,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
 
 import butterknife.ButterKnife;
 
 import static org.assertj.android.api.Assertions.assertThat;
-
-//import butterknife.ButterKnife;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class)
@@ -26,32 +26,62 @@ public class FormPickerActivityTest {
   }
 
   @Test
-  public void hasAllButtons() {
-    Button doPregnancy = ButterKnife.findById(activity, R.id.do_pregnancy);
-    Button doAlarm = ButterKnife.findById(activity, R.id.do_alarm);
-    Button doBirth = ButterKnife.findById(activity, R.id.do_birth);
-    Button doRisk = ButterKnife.findById(activity, R.id.do_risk);
-    Button doOutcome = ButterKnife.findById(activity, R.id.do_outcome);
-
-    assertThat(doPregnancy)
+  public void hasAllButtonsWithText() {
+    assertThat(activity.doPregnancy)
         .isEnabled()
         .isVisible()
         .hasText(R.string.pregnancies);
-    assertThat(doAlarm)
+    assertThat(activity.doAlarm)
         .isEnabled()
         .isVisible()
         .hasText(R.string.alarms);
-    assertThat(doBirth)
+    assertThat(activity.doBirth)
         .isEnabled()
         .isVisible()
         .hasText(R.string.births);
-    assertThat(doRisk)
+    assertThat(activity.doRisk)
         .isEnabled()
         .isVisible()
         .hasText(R.string.risks);
-    assertThat(doOutcome)
+    assertThat(activity.doOutcome)
         .isEnabled()
         .isVisible()
         .hasText(R.string.outcomes);
+  }
+
+  @Test
+  public void doPregnancyStartsActivity() {
+    activity.doPregnancy.performClick();
+    Intent intent = getNextStartedActivity();
+  }
+
+  @Test
+  public void doAlarmStartsActivity() {
+
+  }
+
+  @Test
+  public void doBirthStartsActivity() {
+
+  }
+
+  @Test
+  public void doRiskStartsActivity() {
+
+  }
+
+  @Test
+  public void doOutcomeStartsActivity() {
+
+  }
+
+  /**
+   * Returns the next started {@link Intent}. Performs an assertion to ensure
+   * that it is not null before returning.
+   */
+  private Intent getNextStartedActivity() {
+    Intent intent = Shadows.shadowOf(activity).peekNextStartedActivity();
+    assertThat(intent).isNotNull();
+    return intent;
   }
 }

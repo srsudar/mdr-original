@@ -14,16 +14,21 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class FormPickerActivity extends AppCompatActivity {
-  @Bind(R.id.do_alarm) Button alarmButton;
+  @Bind(R.id.do_pregnancy) Button doPregnancy;
+  @Bind(R.id.do_alarm) Button doAlarm;
+  @Bind(R.id.do_birth) Button doBirth;
+  @Bind(R.id.do_risk) Button doRisk;
+  @Bind(R.id.do_outcome) Button doOutcome;
+
   private Button pregnancyButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.content_form_picker);
-//    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//    setSupportActionBar(toolbar);
-    ButterKnife.setDebug(true);
+    if (BuildConfig.DEBUG) {
+      ButterKnife.setDebug(true);
+    }
     ButterKnife.bind(this);
 
     pregnancyButton = (Button) findViewById(R.id.do_pregnancy);

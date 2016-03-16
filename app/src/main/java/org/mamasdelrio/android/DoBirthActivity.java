@@ -3,6 +3,7 @@ package org.mamasdelrio.android;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -24,11 +25,8 @@ import butterknife.OnTextChanged;
 public class DoBirthActivity extends AppCompatActivity implements
     IFormActivity {
   @Bind(R.id.birth_enter_dni) EditText dni;
-  @Bind(R.id.shared_enter_year) EditText year;
-  @Bind(R.id.shared_enter_month) Spinner month;
-  @Bind(R.id.shared_enter_day) Spinner day;
   @Bind(R.id.birth_send) Button send;
-
+  @Bind(R.id.birth_date) DatePicker birthDate;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -36,26 +34,16 @@ public class DoBirthActivity extends AppCompatActivity implements
     setContentView(R.layout.activity_do_birth);
     ButterKnife.bind(this);
 
-    IntegerArrayAdapter monthAdapter = new IntegerArrayAdapter(
-        this,
-        Constants.MAX_MONTH);
-    month.setAdapter(monthAdapter);
-
-    IntegerArrayAdapter dayAdapter = new IntegerArrayAdapter(
-        this,
-        Constants.MAX_DAY);
-    day.setAdapter(dayAdapter);
-
     send.setEnabled(isReadyToBeSent());
   }
 
   @Override
   public boolean isReadyToBeSent() {
-    return dni.getText().length() > 0 && year.getText().length() > 0;
+    return dni.getText().length() > 0;
   }
 
   @SuppressWarnings("unused")
-  @OnTextChanged({ R.id.birth_enter_dni, R.id.shared_enter_year })
+  @OnTextChanged(R.id.birth_enter_dni)
   public void onTextChanged(CharSequence text) {
     send.setEnabled(isReadyToBeSent());
   }
@@ -68,9 +56,11 @@ public class DoBirthActivity extends AppCompatActivity implements
 
     result.put(JsonKeys.SharedKeys.FORM, JsonValues.Forms.BIRTHS);
     result.put(JsonKeys.Births.DNI, dni.getText().toString());
-    result.put(JsonKeys.Births.BIRTH_YEAR, year.getText().toString());
-    result.put(JsonKeys.Births.BIRTH_MONTH, month.getSelectedItem());
-    result.put(JsonKeys.Births.BIRTH_DAY, day.getSelectedItem());
+    result.put(JsonKeys.Births.BIRTH_YEAR, birthDate.getYear());
+    // +1 because months are zero indexed, but we want to give MDR a user
+    // friendly date
+    result.put(JsonKeys.Births.BIRTH_MONTH, birthDate.getMonth() + 1);
+    result.put(JsonKeys.Births.BIRTH_DAY, birthDate.getDayOfMonth());
 
     return result;
   }

@@ -8,9 +8,7 @@
       android:label="@string/app_name"
       android:supportsRtl="true"
       android:theme="@style/AppTheme">
-
     <activity android:name=".MainActivity"/>
-
     <activity
         android:name=".FormPickerActivity"
         android:label="@string/title_activity_form_picker"
@@ -20,6 +18,16 @@
 
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
+    </activity>
+    <activity android:name=".DoPregnancyActivity">
+    </activity>
+    <activity android:name=".DoAlarmActivity">
+    </activity>
+    <activity android:name=".DoBirthActivity">
+    </activity>
+    <activity android:name=".DoRiskActivity">
+    </activity>
+    <activity android:name=".DoOutcomeActivity">
     </activity>
   </application>
 

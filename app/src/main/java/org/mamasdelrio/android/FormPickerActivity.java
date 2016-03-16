@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FormPickerActivity extends AppCompatActivity {
   @Bind(R.id.do_pregnancy) Button doPregnancy;
@@ -20,50 +21,50 @@ public class FormPickerActivity extends AppCompatActivity {
   @Bind(R.id.do_risk) Button doRisk;
   @Bind(R.id.do_outcome) Button doOutcome;
 
-  private Button pregnancyButton;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.content_form_picker);
-    if (BuildConfig.DEBUG) {
-      ButterKnife.setDebug(true);
-    }
     ButterKnife.bind(this);
-
-    pregnancyButton = (Button) findViewById(R.id.do_pregnancy);
-
-    initListeners();
   }
 
-  private void initListeners() {
-    addNotImplementedListener(alarmButton);
-    addNotImplementedListener(pregnancyButton);
-//    addNotImplementedListener(deathButton);
-
-//    birthButton.setOnClickListener(new View.OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-//        Intent intent = new Intent();
-//        intent.setClass(getApplicationContext(), DoBirthActivity.class);
-//        startActivity(intent);
-//      }
-//    });
+  @SuppressWarnings("unused")
+  @OnClick(R.id.do_pregnancy)
+  protected void doPregnancy() {
+    Intent intent = new Intent();
+    intent.setClass(this, DoPregnancyActivity.class);
+    startActivity(intent);
   }
 
-  /**
-   * Attach a {@link android.view.View.OnClickListener} saying not implemented.
-   * @param view
-   */
-  private void addNotImplementedListener(View view) {
-    view.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Toast.makeText(
-            FormPickerActivity.this,
-            R.string.msg_unimplemented,
-            Toast.LENGTH_LONG).show();
-      }
-    });
+  @SuppressWarnings("unused")
+  @OnClick(R.id.do_alarm)
+  protected void doAlarm() {
+    Intent intent = new Intent();
+    intent.setClass(this, DoAlarmActivity.class);
+    startActivity(intent);
+  }
+
+  @SuppressWarnings("unused")
+  @OnClick(R.id.do_birth)
+  protected void doBirth() {
+    Intent intent = new Intent();
+    intent.setClass(this, DoBirthActivity.class);
+    startActivity(intent);
+  }
+
+  @SuppressWarnings("unused")
+  @OnClick(R.id.do_risk)
+  protected void doRisk() {
+    Intent intent = new Intent();
+    intent.setClass(this, DoRiskActivity.class);
+    startActivity(intent);
+  }
+
+  @SuppressWarnings("unused")
+  @OnClick(R.id.do_outcome)
+  protected void doOutcome() {
+    Intent intent = new Intent();
+    intent.setClass(this, DoOutcomeActivity.class);
+    startActivity(intent);
   }
 }

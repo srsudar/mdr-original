@@ -53,26 +53,35 @@ public class FormPickerActivityTest {
   public void doPregnancyStartsActivity() {
     activity.doPregnancy.performClick();
     Intent intent = getNextStartedActivity();
+    assertThat(intent).hasComponent(activity, DoPregnancyActivity.class);
   }
 
   @Test
   public void doAlarmStartsActivity() {
-
+    activity.doAlarm.performClick();
+    Intent intent = getNextStartedActivity();
+    assertThat(intent).hasComponent(activity, DoAlarmActivity.class);
   }
 
   @Test
   public void doBirthStartsActivity() {
-
+    activity.doBirth.performClick();
+    Intent intent = getNextStartedActivity();
+    assertThat(intent).hasComponent(activity, DoBirthActivity.class);
   }
 
   @Test
   public void doRiskStartsActivity() {
-
+    activity.doRisk.performClick();
+    Intent intent = getNextStartedActivity();
+    assertThat(intent).hasComponent(activity, DoRiskActivity.class);
   }
 
   @Test
   public void doOutcomeStartsActivity() {
-
+    activity.doOutcome.performClick();
+    Intent intent = getNextStartedActivity();
+    assertThat(intent).hasComponent(activity, DoOutcomeActivity.class);
   }
 
   /**

@@ -16,6 +16,14 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
+      <org.mamasdelrio.android.widget.DniOrNameView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
+      <org.mamasdelrio.android.widget.DniOrNameView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
 
     <TextView
         android:layout_width="match_parent"

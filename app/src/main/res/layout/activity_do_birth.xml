@@ -51,7 +51,7 @@
         android:text="@string/month" />
     <Spinner
         android:id="@+id/birth_enter_month"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
@@ -61,7 +61,13 @@
         android:text="@string/day"/>
     <Spinner
         android:id="@+id/birth_enter_day"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/birth_send"
+        android:text="@string/send_to_whatsapp_group"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
   </LinearLayout>

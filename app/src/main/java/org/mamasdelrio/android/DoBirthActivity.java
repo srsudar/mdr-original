@@ -9,6 +9,11 @@ import android.widget.Spinner;
 import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.IntegerArrayAdapter;
 import org.mamasdelrio.android.util.Constants;
+import org.mamasdelrio.android.util.JsonKeys;
+import org.mamasdelrio.android.util.JsonValues;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -51,5 +56,19 @@ public class DoBirthActivity extends AppCompatActivity implements
   @OnTextChanged({ R.id.birth_enter_dni, R.id.birth_enter_year })
   public void onTextChanged(CharSequence text) {
     send.setEnabled(isReadyToBeSent());
+  }
+
+  @Override
+  public Map<String, Object> getMapContent() {
+    Map<String, Object> result = new HashMap<>();
+    result.put(JsonKeys.SharedKeys.VERSION, Constants.VERSION);
+    result.put(JsonKeys.SharedKeys.FORM, JsonValues.Forms.BIRTHS);
+
+    result.put(JsonKeys.Births.DNI, dni.getText().toString());
+    result.put(JsonKeys.Births.BIRTH_YEAR, year.getText().toString());
+    result.put(JsonKeys.Births.BIRTH_MONTH, month.getSelectedItem());
+    result.put(JsonKeys.Births.BIRTH_DAY, day.getSelectedItem());
+
+    return result;
   }
 }

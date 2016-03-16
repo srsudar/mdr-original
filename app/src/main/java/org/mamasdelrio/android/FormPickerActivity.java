@@ -24,7 +24,7 @@ public class FormPickerActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.content_form_picker);
+    setContentView(R.layout.activity_form_picker);
     ButterKnife.bind(this);
   }
 

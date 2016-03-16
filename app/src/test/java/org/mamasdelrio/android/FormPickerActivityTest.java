@@ -1,8 +1,6 @@
 package org.mamasdelrio.android;
 
 import android.content.Intent;
-import android.widget.Button;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,8 +8,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
-
-import butterknife.ButterKnife;
 
 import static org.assertj.android.api.Assertions.assertThat;
 

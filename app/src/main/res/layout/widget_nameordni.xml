@@ -11,7 +11,7 @@
       android:text="@string/have_dni"/>
 
   <RadioGroup
-      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/shared_nameordni_yesno_group"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:orientation="vertical">
@@ -30,51 +30,26 @@
 
   </RadioGroup>
 
-  <!-- Either DNI or Names, so FrameLayout is ok. -->
-  <FrameLayout
-      android:id="@+id/shared_nameordni_enter_container"
+  <TextView
+      android:id="@+id/shared_nameordni_dnilabel"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:id="@+id/shared_nameordni_dni_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/enter_dni"/>
-
-      <EditText
-          android:id="@+id/shared_nameordni_enter_dni"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:hint="@string/dni"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/shared_nameordni_name_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/write_names"/>
-
-      <EditText
-          android:id="@+id/shared_nameordni_enter_names"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"/>
-    </LinearLayout>
+      android:layout_height="wrap_content"
+      android:text="@string/enter_dni"/>
+  <EditText
+      android:id="@+id/shared_nameordni_enter_dni"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/dni"/>
 
 
-  </FrameLayout>
-
+  <TextView
+      android:id="@+id/shared_nameordni_namelabel"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/write_names"/>
+  <EditText
+      android:id="@+id/shared_nameordni_enter_names"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
 
 </LinearLayout>

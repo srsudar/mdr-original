@@ -16,15 +16,11 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
-    <DatePicker
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:calendarViewShown="false"
-        android:datePickerMode="spinner"/>
+    <org.mamasdelrio.android.widget.DniOrNameView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-    <include layout="@layout/content_nameordni"/>
-
-    <include layout="@layout/content_birth_date"/>
+    <include layout="@layout/content_birth_date" />
 
 
   </LinearLayout>

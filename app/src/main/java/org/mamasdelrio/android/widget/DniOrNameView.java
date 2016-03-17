@@ -78,7 +78,6 @@ public class DniOrNameView extends LinearLayout {
             setNameEnabled(true);
             break;
           case UNCHECKED_RADIO_ID:
-            // no op
             setDniEnabled(false);
             setNameEnabled(false);
             break;

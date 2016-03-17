@@ -18,8 +18,6 @@ import butterknife.ButterKnife;
  * identifier--to be paired together.
  */
 public class SelectOneView extends LinearLayout {
-  // The int flag signifying that the resource should be read from XML.
-  private static final int FLAG_RES_ID_IN_XML = -1;
   private String[] labels;
   private String[] values;
   @Bind(R.id.widget_selectone_spinner) Spinner spinner;
@@ -42,6 +40,14 @@ public class SelectOneView extends LinearLayout {
   }
 
   /**
+   * Returns the {@link Spinner} backing the view. Most interactions should not
+   * require this method.
+   */
+  public Spinner getSpinner() {
+    return spinner;
+  }
+
+  /**
    * Initialize the view. This method only needs to be called if you have
    * inflated the view from XML and need to initialize it.
    * @param labelsResId reference to a string-array
@@ -53,6 +59,8 @@ public class SelectOneView extends LinearLayout {
     values = context.getResources().getStringArray(valuesResId);
     adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item,
         labels);
+    adapter.setDropDownViewResource(
+        android.R.layout.simple_spinner_dropdown_item);
     spinner.setAdapter(adapter);
   }
 

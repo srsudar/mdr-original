@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
-
-
+  <string-array name="yes_no_dk_na_labels">
+    <item>@string/es_yes</item>
+    <item>@string/es_no</item>
+    <item>@string/do_not_know</item>
+    <item>@string/no_response</item>
+  </string-array>
+  <string-array name="yes_no_dk_na_values">
+    <item>s</item>
+    <item>n</item>
+    <item>ns</item>
+    <item>nr</item>
+  </string-array>
 
 
   <!-- For use in testing. These should be in their own res directory, but it

@@ -19,7 +19,8 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name=".DoPregnancyActivity">
+    <activity android:name=".DoPregnancyActivity"
+        android:windowSoftInputMode="adjustResize">
     </activity>
     <activity android:name=".DoAlarmActivity">
     </activity>

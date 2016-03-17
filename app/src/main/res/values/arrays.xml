@@ -40,6 +40,48 @@
     <item>al_otr</item>
   </string-array>
 
+  <string-array name="risks_labels">
+    <item>@string/risk_pregnant_before_18</item>
+    <item>@string/risk_pregnant_after_35</item>
+    <item>@string/risk_high_bp_previously</item>
+    <item>@string/risk_cs_previously</item>
+    <item>@string/risk_first_pregnancy</item>
+    <item>@string/risk_domestic_violence</item>
+    <item>@string/risk_abandoned</item>
+    <item>@string/risk_hiv</item>
+    <item>@string/risk_dengue</item>
+    <item>@string/risk_chikunguna</item>
+    <item>@string/risk_zika</item>
+    <item>@string/risk_leptospirosis</item>
+    <item>@string/risk_malaria</item>
+    <item>@string/risk_exposure_petr</item>
+    <item>@string/risk_exposure_pest</item>
+    <item>@string/risk_anemia</item>
+    <item>@string/risk_diabetes</item>
+    <item>@string/risk_mental_health</item>
+  </string-array>
+
+  <string-array name="risks_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+    <item>11</item>
+    <item>12</item>
+    <item>13</item>
+    <item>14</item>
+    <item>15</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+  </string-array>
+
 
   <!-- For use in testing. These should be in their own res directory, but it
   doesn't look trivial to create a separate resource directory for tests, and

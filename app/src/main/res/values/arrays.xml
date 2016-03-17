@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+
+
+
+  <!-- For use in testing. These should be in their own res directory, but it
+  doesn't look trivial to create a separate resource directory for tests, and
+  this is trivial. -->
+  <string-array name="abcd">
+    <item>a</item>
+    <item>b</item>
+    <item>c</item>
+    <item>d</item>
+  </string-array>
+
+  <string-array name="a1234">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
+</resources>

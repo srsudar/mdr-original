@@ -131,12 +131,28 @@ public class DniOrNameViewTest {
   }
 
   private void assertDniEnabled(boolean enabled) {
-    assertThat(view.dniLabel).isEnabled().isEqualTo(enabled).isVisible();
-    assertThat(view.dni).isEnabled().isEqualTo(enabled).isVisible();
+    assertThat(view.dniLabel).isVisible();
+    assertThat(view.dni).isVisible();
+
+    if (enabled) {
+      assertThat(view.dniLabel).isEnabled();
+      assertThat(view.dni).isEnabled();
+    } else {
+      assertThat(view.dniLabel).isDisabled();
+      assertThat(view.dni).isDisabled();
+    }
   }
 
   private void assertNameEnabled(boolean enabled) {
-    assertThat(view.nameLabel).isEnabled().isEqualTo(enabled).isVisible();
-    assertThat(view.name).isEnabled().isEqualTo(enabled).isVisible();
+    assertThat(view.nameLabel).isVisible();
+    assertThat(view.name).isVisible();
+
+    if (enabled) {
+      assertThat(view.nameLabel).isEnabled();
+      assertThat(view.name).isEnabled();
+    } else {
+      assertThat(view.nameLabel).isDisabled();
+      assertThat(view.name).isDisabled();
+    }
   }
 }

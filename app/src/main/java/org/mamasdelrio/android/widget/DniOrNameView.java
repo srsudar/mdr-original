@@ -1,7 +1,9 @@
 package org.mamasdelrio.android.widget;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -10,15 +12,22 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import org.mamasdelrio.android.BuildConfig;
 import org.mamasdelrio.android.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 
 /**
  * A {@link android.view.View} allowing input of a DNI or a name.
  */
 public class DniOrNameView extends LinearLayout {
+  private static final String TAG = DniOrNameView.class.getSimpleName();
+  /** According to android docs, the id of no selection. */
+  private static final int UNCHECKED_RADIO_ID = -1;
+
   @Bind(R.id.shared_nameordni_yesno_group) RadioGroup dniGroup;
   @Bind(R.id.shared_nameordni_yesno_yes) RadioButton dniYes;
   @Bind(R.id.shared_nameordni_yesno_no) RadioButton dniNo;
@@ -50,6 +59,37 @@ public class DniOrNameView extends LinearLayout {
     // The edit fields should start disabled.
     setDniEnabled(false);
     setNameEnabled(false);
+
+    initRadioGroupListener();
+  }
+
+  private void initRadioGroupListener() {
+    dniGroup.setOnCheckedChangeListener(
+        new RadioGroup.OnCheckedChangeListener() {
+      @Override
+      public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
+          case R.id.shared_nameordni_yesno_yes:
+            setDniEnabled(true);
+            setNameEnabled(false);
+            break;
+          case R.id.shared_nameordni_yesno_no:
+            setDniEnabled(false);
+            setNameEnabled(true);
+            break;
+          case UNCHECKED_RADIO_ID:
+            // no op
+            setDniEnabled(false);
+            setNameEnabled(false);
+            break;
+          default:
+            if (BuildConfig.DEBUG) {
+              Log.e(TAG, "unrecognized checkedId: " + checkedId);
+            }
+        }
+      }
+    });
+
   }
 
   /**
@@ -57,6 +97,12 @@ public class DniOrNameView extends LinearLayout {
    * form.
    */
   public boolean isComplete() {
+    if (isDni()) {
+      return dni.getText().length() > 0;
+    }
+    if (isName()) {
+      return name.getText().length() > 0;
+    }
     return false;
   }
 
@@ -65,7 +111,7 @@ public class DniOrNameView extends LinearLayout {
    * @return
    */
   public boolean isDni() {
-    return false;
+    return dniYes.isChecked();
   }
 
   /**
@@ -73,7 +119,7 @@ public class DniOrNameView extends LinearLayout {
    * @return
    */
   public boolean isName() {
-    return false;
+    return dniNo.isChecked();
   }
 
   /**
@@ -81,7 +127,7 @@ public class DniOrNameView extends LinearLayout {
    * an empty string.
    */
   public String getName() {
-    return null;
+    return name.getText().toString();
   }
 
   /**
@@ -89,7 +135,7 @@ public class DniOrNameView extends LinearLayout {
    * empty string.
    */
   public String getDni() {
-    return null;
+    return dni.getText().toString();
   }
 
   /**

@@ -17,6 +17,7 @@
       android:orientation="vertical">
 
     <org.mamasdelrio.android.widget.DniOrNameView
+        android:id="@+id/preg_dniorname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

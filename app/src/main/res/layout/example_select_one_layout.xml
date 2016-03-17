@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--xmlns:custom="http://schemas.androi.com/apk/res/org.mamasdelrio.widget
+          custom:labels="@array/abcd"
+      custom:values="@array/a1234""-->
+
+
+    <org.mamasdelrio.android.widget.SelectOneView
+      android:id="@+id/example_select_one_view"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+</LinearLayout>

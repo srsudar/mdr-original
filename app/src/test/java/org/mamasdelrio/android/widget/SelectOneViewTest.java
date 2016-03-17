@@ -1,6 +1,9 @@
 package org.mamasdelrio.android.widget;
 
 import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,21 +26,44 @@ public class SelectOneViewTest {
   private static final int LABEL_RES_ID = R.array.abcd;
   private static final int VALUE_RES_ID = R.array.a1234;
   private SelectOneView view;
+  private SelectOneView inflatedView;
 
   @Before
   public void before() {
     view = new SelectOneView(RuntimeEnvironment.application, LABEL_RES_ID,
         VALUE_RES_ID);
+    View root = LayoutInflater.from(RuntimeEnvironment.application).inflate(
+        R.layout.example_select_one_layout, null);
+    inflatedView = (SelectOneView) root.findViewById(
+        R.id.example_select_one_view);
   }
 
   @Test
-  public void hasCorrectSize() {
+  public void hasCorrectSizeConstructor() {
+    helperHasCorrectSize(view);
+  }
+
+  @Test
+  public void getValueForSelectedCorrectConstructor() {
+    helperGetValueForSelectedCorrect(view);
+  }
+
+  @Test
+  public void hasCorrectSizeInflated() {
+    helperHasCorrectSize(inflatedView);
+  }
+
+  @Test
+  public void getValueForSelectedCorrectInflated() {
+    helperGetValueForSelectedCorrect(inflatedView);
+  }
+
+  private void helperHasCorrectSize(SelectOneView view) {
     String[] labels = view.getResources().getStringArray(LABEL_RES_ID);
     assertThat(view.spinner.getAdapter()).hasCount(labels.length);
   }
 
-  @Test
-  public void getValueForSelectedCorrect() {
+  private void helperGetValueForSelectedCorrect(SelectOneView view) {
     // The value array is 1, 2, 3, 4, as strings.
     assertThat(view.getValueForSelected()).isEqualTo("1");
 

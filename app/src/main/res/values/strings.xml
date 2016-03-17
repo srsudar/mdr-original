@@ -51,6 +51,7 @@
   <string name="alarm_fever">Fiebre</string>
   <string name="alarm_contractions">Contracciones antes de tiempo</string>
   <string name="alarm_liquid">Pérdida de líquido</string>
+  <string name="alarm_baby_move">El bebé no se mueve</string>
   <string name="alarm_tingling">Hinchazon de pies, manos o cara</string>
   <string name="alarm_blood">Sangrado o manchas de sangre</string>
   <string name="alarm_headache">Dolor de cabeza</string>

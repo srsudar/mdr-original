@@ -13,6 +13,32 @@
     <item>ns</item>
     <item>nr</item>
   </string-array>
+  
+  <string-array name="alarms_labels">
+    <item>@string/alarm_painful_urination</item>
+    <item>@string/alarm_fever</item>
+    <item>@string/alarm_contractions</item>
+    <item>@string/alarm_liquid</item>
+    <item>@string/alarm_baby_move</item>
+    <item>@string/alarm_tingling</item>
+    <item>@string/alarm_blood</item>
+    <item>@string/alarm_headache</item>
+    <item>@string/alarm_vomit</item>
+    <item>@string/alarm_other</item>
+  </string-array>
+
+  <string-array name="alarms_values">
+    <item>al_aao</item>
+    <item>al_f</item>
+    <item>al_cadt</item>
+    <item>al_pdl</item>
+    <item>al_bnsm</item>
+    <item>al_hdpmc</item>
+    <item>al_smds</item>
+    <item>al_ddc</item>
+    <item>al_va</item>
+    <item>al_otr</item>
+  </string-array>
 
 
   <!-- For use in testing. These should be in their own res directory, but it

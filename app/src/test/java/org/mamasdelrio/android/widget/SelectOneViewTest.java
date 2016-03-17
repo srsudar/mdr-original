@@ -36,6 +36,7 @@ public class SelectOneViewTest {
         R.layout.example_select_one_layout, null);
     inflatedView = (SelectOneView) root.findViewById(
         R.id.example_select_one_view);
+    inflatedView.initializeView(LABEL_RES_ID, VALUE_RES_ID);
   }
 
   @Test

@@ -1,7 +1,6 @@
 package org.mamasdelrio.android.widget;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
@@ -28,73 +27,53 @@ public class SelectOneView extends LinearLayout {
 
   public SelectOneView(Context context, int labelsResId, int valuesResid) {
     super(context);
-    // This should never be called...I think?
-    init(context, null, 0, labelsResId, valuesResid);
+    init(context);
+    initializeView(labelsResId, valuesResid);
   }
 
   public SelectOneView(Context context, AttributeSet attrs) {
     super(context, attrs);
-    // assuming 0 is ok?
-    init(context, attrs, 0, FLAG_RES_ID_IN_XML, FLAG_RES_ID_IN_XML);
+    init(context);
   }
 
   public SelectOneView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    init(context, attrs, defStyleAttr, FLAG_RES_ID_IN_XML, FLAG_RES_ID_IN_XML);
+    init(context);
+  }
+
+  /**
+   * Initialize the view. This method only needs to be called if you have
+   * inflated the view from XML and need to initialize it.
+   * @param labelsResId reference to a string-array
+   * @param valuesResId reference to a string-array
+   */
+  public void initializeView(int labelsResId, int valuesResId) {
+    Context context = getContext();
+    labels = context.getResources().getStringArray(labelsResId);
+    values = context.getResources().getStringArray(valuesResId);
+    adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item,
+        labels);
+    spinner.setAdapter(adapter);
   }
 
   public String getValueForSelected() {
+    if (!isInitialized()) {
+      throw new IllegalStateException("view has not been initialized");
+    }
     int selectedPosition = spinner.getSelectedItemPosition();
     return values[selectedPosition];
   }
 
-  /**
-   * Initialize the view.
-   * @param attrs can be null
-   * @param defStyleAttr can be 0
-   * @param labelsResId the ID of a string array or {@link #FLAG_RES_ID_IN_XML}
-   * @param valuesResId the ID of a string array of {@link #FLAG_RES_ID_IN_XML}
-   */
-  private void init(Context context, AttributeSet attrs, int defStyleAttr,
-      int labelsResId, int valuesResId) {
-    LayoutInflater.from(context).inflate(R.layout.widget_selectone, this,
-        true);
-
-    TypedArray typedArray = context.obtainStyledAttributes(attrs,
-        R.styleable.SelectOneView, defStyleAttr, defStyleAttr);
-    ButterKnife.bind(this);
-
-    if (labelsResId == FLAG_RES_ID_IN_XML) {
-      labels = convertToStringArray(typedArray.getTextArray(
-          R.styleable.SelectOneView_labels));
-    } else {
-      labels = context.getResources().getStringArray(labelsResId);
-    }
-
-    if (valuesResId == FLAG_RES_ID_IN_XML) {
-      values = convertToStringArray(typedArray.getTextArray(
-          R.styleable.SelectOneView_values));
-    } else {
-      values = context.getResources().getStringArray(valuesResId);
-    }
-
-    if (labels.length != values.length) {
-      throw new IllegalStateException(
-          "values and labels arrays must have same length");
-    }
-
-    adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item,
-        labels);
-    spinner.setAdapter(adapter);
-
-    typedArray.recycle();
+  private boolean isInitialized() {
+    return labels != null && values != null;
   }
 
-  private String[] convertToStringArray(CharSequence[] chars) {
-    String[] result = new String[chars.length];
-    for (int i = 0; i < chars.length; i++) {
-      result[i] = chars[i].toString();
-    }
-    return result;
+  /**
+   * Inflate the view and bind the views.
+   */
+  private void init(Context context) {
+    LayoutInflater.from(context).inflate(R.layout.widget_selectone, this,
+        true);
+    ButterKnife.bind(this);
   }
 }

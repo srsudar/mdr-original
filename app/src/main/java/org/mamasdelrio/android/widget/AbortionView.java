@@ -8,6 +8,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import org.mamasdelrio.android.R;
+import org.mamasdelrio.android.logic.DatePickerHelper;
+
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,6 +41,15 @@ public class AbortionView extends LinearLayout {
     LayoutInflater.from(getContext()).inflate(R.layout.widget_abortion, this,
         true);
     ButterKnife.bind(this);
+  }
+
+  /** Add mother dni and date to map with the provided keys. */
+  public void addValuesToMap(Map<String, Object> map,
+      DatePickerHelper datePickerHelper,
+      String motherDniKey,
+      String dateKey) {
+    map.put(motherDniKey, motherDni.getText().toString());
+    map.put(dateKey, datePickerHelper.getFriendlyString(date));
   }
 
   public EditText getMotherDni() {

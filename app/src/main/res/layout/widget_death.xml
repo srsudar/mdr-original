@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/outcome_maternaldeath_container"
     android:orientation="vertical">
 
   <TextView
@@ -11,7 +10,7 @@
       android:layout_height="wrap_content"
       android:text="@string/date_of_death"/>
   <DatePicker
-      android:id="@+id/outcome_maternaldeath_date"
+      android:id="@+id/outcome_death_date"
       android:layout_gravity="center_horizontal"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -23,7 +22,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
   <EditText
-      android:id="@+id/outcome_maternaldeath_probablecause"
+      android:id="@+id/outcome_death_probablecause"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
 
@@ -32,7 +31,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
   <EditText
-      android:id="@+id/outcome_maternaldeath_dni"
+      android:id="@+id/outcome_death_dni"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
 

@@ -17,13 +17,25 @@
 
     <include layout="@layout/content_outcome_choose_outcome" />
 
-    <include layout="@layout/widget_complications" />
+    <org.mamasdelrio.android.widget.ComplicationsView
+        android:id="@+id/outcome_complications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-    <include layout="@layout/content_outcome_abortion" />
+    <org.mamasdelrio.android.widget.AbortionView
+        android:id="@+id/outcome_abortion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-    <include layout="@layout/content_outcome_maternaldeath" />
+    <org.mamasdelrio.android.widget.DeathView
+        android:id="@+id/outcome_babydeath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-    <include layout="@layout/content_outcome_babydeath" />
+    <org.mamasdelrio.android.widget.DeathView
+        android:id="@+id/outcome_motherdeath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
   </LinearLayout>
 

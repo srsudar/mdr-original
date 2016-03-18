@@ -9,8 +9,15 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
-import static org.assertj.android.api.Assertions.assertThat;
+import java.util.HashMap;
+import java.util.Map;
 
+import static org.assertj.android.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 /**
  * Tests for {@link ComplicationsView}.
  */
@@ -39,5 +46,21 @@ public class ComplicationsViewTest {
   public void motherStateHasCorrectNumberOfOptions() {
     assertThat(view.getMotherState().getSpinner()).hasCount(
         motherOptions.length);
+  }
+
+  @Test
+  public void addValuesToMapCorrect() {
+    Map<String, Object> map = new HashMap<>();
+    String babyStateKey = "baby";
+    String motherStateKey = "mother";
+    int targetBabyIndex = 1;
+    int targetMotherIndex = 0;
+    view.babyState.getSpinner().setSelection(targetBabyIndex);
+    view.motherState.getSpinner().setSelection(targetMotherIndex);
+    view.addValuesToMap(map, babyStateKey, motherStateKey);
+
+    assertThat(map).contains(
+        entry(babyStateKey, targetBabyIndex),
+        entry(motherStateKey, targetMotherIndex));
   }
 }

@@ -7,6 +7,8 @@ import android.widget.LinearLayout;
 
 import org.mamasdelrio.android.R;
 
+import java.util.Map;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -40,6 +42,12 @@ public class ComplicationsView extends LinearLayout {
         R.array.complications_baby_values);
     motherState.initializeView(R.array.complications_mother_labels,
         R.array.complications_mother_values);
+  }
+
+  public void addValuesToMap(Map<String, Object> map, String babyStateKey,
+      String motherStateKey) {
+    map.put(babyStateKey, babyState.getSpinner().getSelectedItemPosition());
+    map.put(motherStateKey, motherState.getSpinner().getSelectedItemPosition());
   }
 
   public SelectOneView getBabyState() {

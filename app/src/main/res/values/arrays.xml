@@ -83,6 +83,28 @@
   </string-array>
 
 
+  <string-array name="complications_baby_labels">
+    <item>@string/low_weight</item>
+    <item>@string/malformed</item>
+  </string-array>
+
+  <string-array name="complications_baby_values">
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+
+  <string-array name="complications_mother_labels">
+    <item>@string/excessive_bleeding</item>
+    <item>@string/tearing</item>
+  </string-array>
+
+  <string-array name="complications_mother_values">
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+
+
+
   <!-- For use in testing. These should be in their own res directory, but it
   doesn't look trivial to create a separate resource directory for tests, and
   this is trivial. -->

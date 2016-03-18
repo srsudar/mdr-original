@@ -17,7 +17,7 @@
 
     <include layout="@layout/content_outcome_choose_outcome" />
 
-    <include layout="@layout/content_outcome_complications" />
+    <include layout="@layout/widget_complications" />
 
     <include layout="@layout/content_outcome_abortion" />
 

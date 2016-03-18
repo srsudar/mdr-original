@@ -9,6 +9,8 @@ import android.widget.Spinner;
 
 import org.mamasdelrio.android.R;
 
+import java.util.Map;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -37,6 +39,10 @@ public class SelectOneView extends LinearLayout {
   public SelectOneView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     init(context);
+  }
+
+  public void addValuesToMap(Map<String, Object> map, String valueKey) {
+    map.put(valueKey, getValueForSelected());
   }
 
   /**

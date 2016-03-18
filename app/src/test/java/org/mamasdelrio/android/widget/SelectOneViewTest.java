@@ -14,8 +14,15 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.assertj.android.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Tests for {@link SelectOneViewTest}.
@@ -57,6 +64,19 @@ public class SelectOneViewTest {
   @Test
   public void getValueForSelectedCorrectInflated() {
     helperGetValueForSelectedCorrect(inflatedView);
+  }
+
+  @Test
+  public void addValuesToMapCorrect() {
+    String[] values = RuntimeEnvironment.application.getResources()
+        .getStringArray(VALUE_RES_ID);
+    int index = 2;
+    view.getSpinner().setSelection(index);
+    String targetValue = values[index];
+    String valueKey = "valKey";
+    Map<String, Object> map = new HashMap<>();
+    view.addValuesToMap(map, valueKey);
+    assertThat(map).contains(entry(valueKey, targetValue));
   }
 
   private void helperHasCorrectSize(SelectOneView view) {

@@ -9,6 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.mamasdelrio.android.R;
+import org.mamasdelrio.android.logic.DatePickerHelper;
+
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -39,6 +42,19 @@ public class DeathView extends LinearLayout {
 
   public TextView getDniLabel() {
     return dniLabel;
+  }
+
+  /**
+   * Add the values being picked by this view to the map.
+   */
+  public void addValuesToMap(Map<String, Object> map,
+      DatePickerHelper datePickerHelper,
+      String probableCauseKey,
+      String dniKey,
+      String dateKey) {
+    map.put(probableCauseKey, probableCause.getText().toString());
+    map.put(dniKey, dni.getText().toString());
+    map.put(dateKey, datePickerHelper.getFriendlyString(deathDate));
   }
 
   private void init() {

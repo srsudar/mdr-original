@@ -12,6 +12,7 @@
     tools:context="org.mamasdelrio.android.DoOutcomeActivity">
 
   <LinearLayout
+      android:orientation="vertical"
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
@@ -34,6 +35,12 @@
 
     <org.mamasdelrio.android.widget.DeathView
         android:id="@+id/outcome_motherdeath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/outcome_send"
+        android:text="@string/send_to_whatsapp_doctor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

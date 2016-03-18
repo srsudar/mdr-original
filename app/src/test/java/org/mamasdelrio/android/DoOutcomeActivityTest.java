@@ -18,6 +18,14 @@ import static org.mockito.Mockito.when;
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class DoOutcomeActivityTest {
+  /** The view subtypes shown in the outcome activity. */
+  public enum OutcomeView {
+    COMPLICATIONS,
+    ABORTION,
+    BABY_DEATH,
+    MOTHER_DEATH
+  }
+
   DoOutcomeActivity activity;
 
   @Before
@@ -42,10 +50,64 @@ public class DoOutcomeActivityTest {
     assertThat(activity.chooseBabyDeath)
         .isVisible()
         .isEnabled();
+    assertThat(activity.send)
+        .isGone()
+        .isDisabled();
+
+    assertThat(activity.motherDeath.getDniLabel())
+        .hasText(R.string.enter_dni);
+    assertThat(activity.babyDeath.getDniLabel())
+        .hasText(R.string.enter_dni_of_mother);
 
     assertThat(activity.complications).isGone();
     assertThat(activity.abortion).isGone();
     assertThat(activity.babyDeath).isGone();
     assertThat(activity.motherDeath).isGone();
+  }
+
+  @Test
+  public void viewsUpdateVisibility() {
+    // The fact that they all start gone must be checked elsewhere.
+    activity.chooseComplications.toggle();
+    assertOnlyThisViewVisible(OutcomeView.COMPLICATIONS);
+
+    activity.chooseAbortion.toggle();
+    assertOnlyThisViewVisible(OutcomeView.ABORTION);
+
+    activity.chooseMotherDeath.toggle();
+    assertOnlyThisViewVisible(OutcomeView.MOTHER_DEATH);
+
+    activity.chooseBabyDeath.toggle();
+    assertOnlyThisViewVisible(OutcomeView.BABY_DEATH);
+  }
+
+  private void assertOnlyThisViewVisible(OutcomeView outcome) {
+    if (outcome == OutcomeView.COMPLICATIONS) {
+      assertThat(activity.complications).isVisible();
+      assertThat(activity.send).isVisible();
+    } else {
+      assertThat(activity.complications).isGone();
+    }
+
+    if (outcome == OutcomeView.ABORTION) {
+      assertThat(activity.abortion).isVisible();
+      assertThat(activity.send).isVisible();
+    } else {
+      assertThat(activity.abortion).isGone();
+    }
+
+    if (outcome == OutcomeView.BABY_DEATH) {
+      assertThat(activity.babyDeath).isVisible();
+      assertThat(activity.send).isVisible();
+    } else {
+      assertThat(activity.babyDeath).isGone();
+    }
+
+    if (outcome == OutcomeView.MOTHER_DEATH) {
+      assertThat(activity.motherDeath).isVisible();
+      assertThat(activity.send).isVisible();
+    } else {
+      assertThat(activity.motherDeath).isGone();
+    }
   }
 }

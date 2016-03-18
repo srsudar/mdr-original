@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.mamasdelrio.android.R;
 
@@ -18,6 +19,7 @@ import butterknife.ButterKnife;
 public class DeathView extends LinearLayout {
   @Bind(R.id.outcome_death_date) DatePicker deathDate;
   @Bind(R.id.outcome_death_probablecause) EditText probableCause;
+  @Bind(R.id.outcome_dni_label) TextView dniLabel;
   @Bind(R.id.outcome_death_dni) EditText dni;
 
   public DeathView(Context context) {
@@ -33,6 +35,10 @@ public class DeathView extends LinearLayout {
   public DeathView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     init();
+  }
+
+  public TextView getDniLabel() {
+    return dniLabel;
   }
 
   private void init() {

@@ -10,7 +10,7 @@
   <string name="msg_unimplemented">Only Births is implemented!</string>
   <string name="title_activity_do_birth">DoBirthActivity</string>
   <string name="label_dni">DNI:</string>
-  <string name="enter_dni">Escribir DNI de la madre</string>
+  <string name="enter_dni">Escribir DNI</string>
   <string name="label_month_of_birth">Mes de Nacimiento</string>
   <string name="enter_month_of_birth">Escribir mes del nacimiento</string>
   <string name="label_day_of_birth">Día de nacimiento</string>
@@ -91,7 +91,7 @@
   <string name="risk_mental_health">Problemas de salud mental</string>
 
   <!-- Outcomes -->
-  <string name="outcomes">Outcomes</string>
+  <string name="outcomes">Desenlaces</string>
   <string name="report_outcome">Desenlace a reportar</string>
   <string name="complications">Complicaciones</string>
   <string name="abortion">Aborto</string>

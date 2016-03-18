@@ -52,7 +52,7 @@ public class DoOutcomeActivityTest {
         .isEnabled();
     assertThat(activity.send)
         .isGone()
-        .isDisabled();
+        .isEnabled();
 
     assertThat(activity.motherDeath.getDniLabel())
         .hasText(R.string.enter_dni);

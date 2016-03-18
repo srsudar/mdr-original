@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/outcome_complications_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/pregnancy_complications"/>
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/state_of_baby"/>
+
+  <org.mamasdelrio.android.widget.SelectOneView
+      android:id="@+id/outcome_complication_baby_state"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+  <TextView
+      android:text="@string/state_of_mother"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+  <org.mamasdelrio.android.widget.SelectOneView
+      android:id="@+id/outcome_complication_mother_state"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+</LinearLayout>

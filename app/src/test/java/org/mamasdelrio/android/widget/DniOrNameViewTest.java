@@ -8,8 +8,15 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.assertj.android.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Tests for {@link DniOrNameView}.
@@ -120,6 +127,30 @@ public class DniOrNameViewTest {
     assertThat(view.getName()).isEqualTo(targetName);
     view.name.setText("");
     assertThat(view.getName()).isEqualTo("");
+  }
+
+  @Test
+  public void addValuesToMapWorks() {
+    String targetDni = "target dni";
+    String targetName = "target name";
+    String dniKey = "dni";
+    String nameKey = "name";
+    Map<String, Object> map = new HashMap<>();
+
+    // First make sure it adds empty strings.
+    view.addValuesToMap(map, dniKey, nameKey);
+    assertThat(map).contains(
+        entry(dniKey, ""),
+        entry(nameKey, ""));
+
+    map.clear();
+
+    view.dni.setText(targetDni);
+    view.name.setText(targetName);
+    view.addValuesToMap(map, dniKey, nameKey);
+    assertThat(map).contains(
+        entry(dniKey, targetDni),
+        entry(nameKey, targetName));
   }
 
   private void assertIsIncomplete() {

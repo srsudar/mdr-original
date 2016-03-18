@@ -15,6 +15,8 @@ import android.widget.TextView;
 import org.mamasdelrio.android.BuildConfig;
 import org.mamasdelrio.android.R;
 
+import java.util.Map;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
@@ -66,28 +68,28 @@ public class DniOrNameView extends LinearLayout {
   private void initRadioGroupListener() {
     dniGroup.setOnCheckedChangeListener(
         new RadioGroup.OnCheckedChangeListener() {
-      @Override
-      public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId) {
-          case R.id.shared_nameordni_yesno_yes:
-            setDniEnabled(true);
-            setNameEnabled(false);
-            break;
-          case R.id.shared_nameordni_yesno_no:
-            setDniEnabled(false);
-            setNameEnabled(true);
-            break;
-          case UNCHECKED_RADIO_ID:
-            setDniEnabled(false);
-            setNameEnabled(false);
-            break;
-          default:
-            if (BuildConfig.DEBUG) {
-              Log.e(TAG, "unrecognized checkedId: " + checkedId);
+          @Override
+          public void onCheckedChanged(RadioGroup group, int checkedId) {
+            switch (checkedId) {
+              case R.id.shared_nameordni_yesno_yes:
+                setDniEnabled(true);
+                setNameEnabled(false);
+                break;
+              case R.id.shared_nameordni_yesno_no:
+                setDniEnabled(false);
+                setNameEnabled(true);
+                break;
+              case UNCHECKED_RADIO_ID:
+                setDniEnabled(false);
+                setNameEnabled(false);
+                break;
+              default:
+                if (BuildConfig.DEBUG) {
+                  Log.e(TAG, "unrecognized checkedId: " + checkedId);
+                }
             }
-        }
-      }
-    });
+          }
+        });
 
   }
 
@@ -103,6 +105,15 @@ public class DniOrNameView extends LinearLayout {
       return name.getText().length() > 0;
     }
     return false;
+  }
+
+  /**
+   * Add the values picked in this view to map.
+   */
+  public void addValuesToMap(Map<String, Object> map, String dniKey,
+      String mapKey) {
+    map.put(dniKey, dni.getText().toString());
+    map.put(mapKey, name.getText().toString());
   }
 
   /**

@@ -11,15 +11,24 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import org.mamasdelrio.android.logic.DatePickerHelper;
+import org.mamasdelrio.android.logic.IFormActivity;
+import org.mamasdelrio.android.logic.JsonHelper;
+import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.util.JsonKeys;
+import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.AbortionView;
 import org.mamasdelrio.android.widget.ComplicationsView;
 import org.mamasdelrio.android.widget.DeathView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
+import java.util.Map;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class DoOutcomeActivity extends AppCompatActivity {
+public class DoOutcomeActivity extends AppCompatActivity implements
+    IFormActivity {
   private static final String TAG = DoOutcomeActivity.class.getSimpleName();
 
   // Choose outcome
@@ -98,5 +107,53 @@ public class DoOutcomeActivity extends AppCompatActivity {
 
   private void makeSendVisible() {
     send.setVisibility(View.VISIBLE);
+  }
+
+  @Override
+  public boolean isReadyToBeSent() {
+    return false;
+  }
+
+  @Override
+  public void addValuesToMap(Map<String, Object> map,
+      TimeStamper timeStamper) {
+    JsonHelper jsonHelper = new JsonHelper(timeStamper);
+    jsonHelper.addCommonEntries(map, JsonValues.Forms.OUTCOMES);
+    addOutcomeChoiceToMap(map);
+    DatePickerHelper datePickerHelper = new DatePickerHelper();
+
+    complications.addValuesToMap(map, JsonKeys.Outcomes.COMPLICATION_BABY_STATE,
+        JsonKeys.Outcomes.COMPLICATION_MOTHER_STATE);
+    abortion.addValuesToMap(map, datePickerHelper,
+        JsonKeys.Outcomes.ABORTION_DNI, JsonKeys.Outcomes.ABORTION_DATE);
+    babyDeath.addValuesToMap(map, datePickerHelper,
+        JsonKeys.Outcomes.BDEATH_CAUSE, JsonKeys.Outcomes.BDEATH_DNI,
+        JsonKeys.Outcomes.BDEATH_DATE);
+    motherDeath.addValuesToMap(map, datePickerHelper,
+        JsonKeys.Outcomes.MDEATH_CAUSE, JsonKeys.Outcomes.MDEATH_DNI,
+        JsonKeys.Outcomes.MDEATH_DATE);
+  }
+
+  private void addOutcomeChoiceToMap(Map<String, Object> map) {
+    int selectedId = selectOutcome.getCheckedRadioButtonId();
+    String outcomeKey = JsonKeys.Outcomes.OUTCOME_TYPE;
+    switch (selectedId) {
+      case R.id.outcome_outcome_complications:
+        map.put(outcomeKey, JsonValues.Outcomes.COMPLICATION);
+        break;
+      case R.id.outcome_outcome_abortion:
+        map.put(outcomeKey, JsonValues.Outcomes.ABORTION);
+        break;
+      case R.id.outcome_outcome_babydeath:
+        map.put(outcomeKey, JsonValues.Outcomes.BABY_DEATH);
+        break;
+      case R.id.outcome_outcome_motherdeath:
+        map.put(outcomeKey, JsonValues.Outcomes.MOTHER_DEATH);
+        break;
+      default:
+        if (BuildConfig.DEBUG) {
+          Log.d(TAG, "unrecognized radio button id: " + selectedId);
+        }
+    }
   }
 }

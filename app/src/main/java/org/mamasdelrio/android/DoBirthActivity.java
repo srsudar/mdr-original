@@ -55,9 +55,8 @@ public class DoBirthActivity extends AppCompatActivity implements
   @Override
   public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
     JsonHelper jsonHelper = new JsonHelper(timeStamper);
-    jsonHelper.addCommonEntries(map);
+    jsonHelper.addCommonEntries(map, JsonValues.Forms.BIRTHS);
 
-    map.put(JsonKeys.SharedKeys.FORM, JsonValues.Forms.BIRTHS);
     map.put(JsonKeys.Births.DNI, dni.getText().toString());
     map.put(JsonKeys.Births.BIRTH_DATE, datePickerHelper.getFriendlyString(
         birthDate));

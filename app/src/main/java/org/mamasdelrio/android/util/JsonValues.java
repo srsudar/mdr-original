@@ -11,4 +11,11 @@ public class JsonValues {
     public static final String RISKS = "r";
     public static final String OUTCOMES = "o";
   }
+
+  public static class Outcomes {
+    public static final String COMPLICATION = "o_c";
+    public static final String ABORTION = "o_a";
+    public static final String BABY_DEATH = "o_bd";
+    public static final String MOTHER_DEATH = "o_md";
+  }
 }

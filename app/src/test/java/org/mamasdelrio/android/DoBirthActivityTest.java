@@ -76,9 +76,9 @@ public class DoBirthActivityTest {
 
     Map<String, Object> map = new HashMap<>();
     activity.addValuesToMap(map, timeStamperMock);
-    AssertionHelper.assertCommonKeysPresent(map, targetDateTime);
+    AssertionHelper.assertCommonKeysPresent(map, targetDateTime,
+        JsonValues.Forms.BIRTHS);
     assertThat(map).contains(
-        entry(JsonKeys.SharedKeys.FORM, JsonValues.Forms.BIRTHS),
         entry(JsonKeys.Births.DNI, targetDni),
         entry(JsonKeys.Births.BIRTH_DATE, targetBirthDate));
   }

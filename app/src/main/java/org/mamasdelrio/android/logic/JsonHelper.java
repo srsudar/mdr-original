@@ -19,8 +19,9 @@ public class JsonHelper {
    * Adds common values shared across JSON maps, including version and the
    * current timestamp.
    */
-  public void addCommonEntries(Map<String, Object> map) {
+  public void addCommonEntries(Map<String, Object> map, String formId) {
     map.put(JsonKeys.SharedKeys.VERSION, Constants.VERSION);
     map.put(JsonKeys.SharedKeys.DATETIME, timeStamper.getFriendlyDateTime());
+    map.put(JsonKeys.SharedKeys.FORM, formId);
   }
 }

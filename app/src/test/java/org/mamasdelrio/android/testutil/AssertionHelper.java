@@ -18,9 +18,10 @@ public class AssertionHelper {
    * @param targetDateTime the date time you expect
    */
   public static void assertCommonKeysPresent(Map<String, Object> map,
-      String targetDateTime) {
+      String targetDateTime, String formId) {
     assertThat(map).contains(
         entry(JsonKeys.SharedKeys.VERSION, Constants.VERSION),
-        entry(JsonKeys.SharedKeys.DATETIME, targetDateTime));
+        entry(JsonKeys.SharedKeys.DATETIME, targetDateTime),
+        entry(JsonKeys.SharedKeys.FORM, formId));
   }
 }

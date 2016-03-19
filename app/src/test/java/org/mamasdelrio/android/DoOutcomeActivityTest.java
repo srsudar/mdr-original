@@ -3,13 +3,29 @@ package org.mamasdelrio.android;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mamasdelrio.android.logic.DatePickerHelper;
+import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.testutil.AssertionHelper;
+import org.mamasdelrio.android.util.JsonKeys;
+import org.mamasdelrio.android.util.JsonValues;
+import org.mamasdelrio.android.widget.AbortionView;
+import org.mamasdelrio.android.widget.ComplicationsView;
+import org.mamasdelrio.android.widget.DeathView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.assertj.android.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.data.MapEntry.entry;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -79,6 +95,72 @@ public class DoOutcomeActivityTest {
 
     activity.chooseBabyDeath.toggle();
     assertOnlyThisViewVisible(OutcomeView.BABY_DEATH);
+  }
+
+  @Test
+  public void addValuesToMapCorrect() {
+    String targetDateTime = "test date time";
+    TimeStamper timeStamperMock = mock(TimeStamper.class);
+    when(timeStamperMock.getFriendlyDateTime()).thenReturn(targetDateTime);
+    ComplicationsView compViewMock = mock(ComplicationsView.class);
+    AbortionView abortionViewMock = mock(AbortionView.class);
+    DeathView bDeathMock = mock(DeathView.class);
+    DeathView mDeathMock = mock(DeathView.class);
+
+    activity.complications = compViewMock;
+    activity.abortion = abortionViewMock;
+    activity.babyDeath = bDeathMock;
+    activity.motherDeath = mDeathMock;
+
+    Map<String, Object> map = new HashMap<>();
+    activity.addValuesToMap(map, timeStamperMock);
+    AssertionHelper.assertCommonKeysPresent(map, targetDateTime,
+        JsonValues.Forms.OUTCOMES);
+
+    verify(compViewMock, times(1)).addValuesToMap(eq(map),
+        eq(JsonKeys.Outcomes.COMPLICATION_BABY_STATE),
+        eq(JsonKeys.Outcomes.COMPLICATION_MOTHER_STATE));
+    verify(abortionViewMock, times(1)).addValuesToMap(eq(map),
+        any(DatePickerHelper.class),
+        eq(JsonKeys.Outcomes.ABORTION_DNI),
+        eq(JsonKeys.Outcomes.ABORTION_DATE));
+    verify(bDeathMock, times(1)).addValuesToMap(eq(map),
+        any(DatePickerHelper.class),
+        eq(JsonKeys.Outcomes.BDEATH_CAUSE),
+        eq(JsonKeys.Outcomes.BDEATH_DNI),
+        eq(JsonKeys.Outcomes.BDEATH_DATE));
+    verify(mDeathMock, times(1)).addValuesToMap(eq(map),
+        any(DatePickerHelper.class),
+        eq(JsonKeys.Outcomes.MDEATH_CAUSE),
+        eq(JsonKeys.Outcomes.MDEATH_DNI),
+        eq(JsonKeys.Outcomes.MDEATH_DATE));
+  }
+
+  @Test
+  public void addValuesToMapHandlesChoiceCorrect() {
+    // need to make sure the values for the radio button are added in all cases
+    Map<String, Object> map = new HashMap<>();
+    TimeStamper timeStamper = new TimeStamper();
+    activity.chooseComplications.toggle();
+    activity.addValuesToMap(map, timeStamper);
+    assertHasOutcome(map, JsonValues.Outcomes.COMPLICATION);
+
+    activity.chooseAbortion.toggle();
+    activity.addValuesToMap(map, timeStamper);
+    assertHasOutcome(map, JsonValues.Outcomes.ABORTION);
+
+    activity.chooseBabyDeath.toggle();
+    activity.addValuesToMap(map, timeStamper);
+    assertHasOutcome(map, JsonValues.Outcomes.BABY_DEATH);
+
+    activity.chooseMotherDeath.toggle();
+    activity.addValuesToMap(map, timeStamper);
+    assertHasOutcome(map, JsonValues.Outcomes.MOTHER_DEATH);
+  }
+
+  private void assertHasOutcome(Map<String, Object> map, String outcomeValue) {
+    assertThat(map).contains(
+        entry(JsonKeys.Outcomes.OUTCOME_TYPE, outcomeValue));
   }
 
   private void assertOnlyThisViewVisible(OutcomeView outcome) {

@@ -9,10 +9,14 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.mamasdelrio.android.logic.DatePickerHelper;
 import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.IntegerArrayAdapter;
+import org.mamasdelrio.android.logic.JsonHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
 import org.mamasdelrio.android.util.Constants;
+import org.mamasdelrio.android.util.JsonKeys;
+import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
@@ -35,12 +39,14 @@ public class DoPregnancyActivity extends AppCompatActivity implements
   @Bind(R.id.preg_last_period_date_label) TextView lastPeriodDateLabel;
   @Bind(R.id.preg_last_period_date) DatePicker lastPeriodDate;
   @Bind(R.id.preg_send) Button send;
+  private DatePickerHelper datePickerHelper;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_do_pregnancy);
     ButterKnife.bind(this);
+    datePickerHelper = new DatePickerHelper();
 
     // the last period fields should only be enabled if it is known
     lastPeriodDateLabel.setEnabled(false);
@@ -77,6 +83,31 @@ public class DoPregnancyActivity extends AppCompatActivity implements
     });
   }
 
+  @Override
+  public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
+    JsonHelper jsonHelper = new JsonHelper(timeStamper);
+    jsonHelper.addCommonEntries(map, JsonValues.Forms.PREGNANCIES);
+
+    dniOrName.addValuesToMap(map, JsonKeys.Pregnancies.DNI,
+        JsonKeys.Pregnancies.NAMES);
+    map.put(JsonKeys.Pregnancies.BIRTH_DATE,
+        datePickerHelper.getFriendlyString(birthDate));
+    lastPeriodKnown.addValuesToMap(map, JsonKeys.Pregnancies.PERIOD_KNOWN);
+    takeControl.addValuesToMap(map, JsonKeys.Pregnancies.TAKE_CONTROLS);
+    map.put(JsonKeys.Pregnancies.CONTROL_MONTH, getControlMonth());
+    map.put(JsonKeys.Pregnancies.PERIOD_DATE,
+        datePickerHelper.getFriendlyString(lastPeriodDate));
+  }
+
+  /**
+   * Get a user-friendly month of control, from 1 - 9.
+   * @return
+   */
+  public int getControlMonth() {
+    // We are just going off of position showing 1-9, but being 0 indexed.
+    return controlMonth.getSelectedItemPosition() + 1;
+  }
+
   @OnClick({ R.id.shared_nameordni_yesno_group, R.id.shared_nameordni_yesno_yes,
       R.id.shared_nameordni_yesno_no })
   public void onDniOrNameClicked(View view) {
@@ -95,7 +126,7 @@ public class DoPregnancyActivity extends AppCompatActivity implements
     return dniOrName.isComplete();
   }
 
-  @Override
-  public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
+  public void setDatePickerHelper(DatePickerHelper datePickerHelper) {
+    this.datePickerHelper = datePickerHelper;
   }
 }

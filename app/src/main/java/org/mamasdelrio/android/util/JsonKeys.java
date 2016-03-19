@@ -22,9 +22,7 @@ public class JsonKeys {
     public static final String HAS_DNI = "h";
     public static final String DNI = "d";
     public static final String NAMES = "n";
-    public static final String BIRTH_YEAR = "by";
-    public static final String BIRTH_MONTH = "bm";
-    public static final String BIRTH_DAY = "bd";
+    public static final String BIRTH_DATE = "b";
     public static final String PERIOD_KNOWN = "p";
     public static final String PERIOD_DATE = "pd";
     public static final String TAKE_CONTROLS = "c";

@@ -51,4 +51,9 @@ public class JsonKeys {
     public static final String MDEATH_DATE = "md_f";
   }
 
+  public static class Risks {
+    public static final String DNI = "d";
+    public static final String NAMES = "n";
+    public static final String RISK = "r";
+  }
 }

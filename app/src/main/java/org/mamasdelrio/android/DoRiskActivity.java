@@ -6,7 +6,10 @@ import android.view.View;
 import android.widget.Button;
 
 import org.mamasdelrio.android.logic.IFormActivity;
+import org.mamasdelrio.android.logic.JsonHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.util.JsonKeys;
+import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
@@ -40,6 +43,11 @@ public class DoRiskActivity extends AppCompatActivity implements IFormActivity {
 
   @Override
   public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
+    JsonHelper jsonHelper = new JsonHelper(timeStamper);
+    jsonHelper.addCommonEntries(map, JsonValues.Forms.RISKS);
+
+    dniOrName.addValuesToMap(map, JsonKeys.Risks.DNI, JsonKeys.Risks.NAMES);
+    risk.addValuesToMap(map, JsonKeys.Risks.RISK);
   }
 
 

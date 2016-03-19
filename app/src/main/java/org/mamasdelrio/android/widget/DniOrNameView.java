@@ -111,9 +111,9 @@ public class DniOrNameView extends LinearLayout {
    * Add the values picked in this view to map.
    */
   public void addValuesToMap(Map<String, Object> map, String dniKey,
-      String mapKey) {
+      String nameKey) {
     map.put(dniKey, dni.getText().toString());
-    map.put(mapKey, name.getText().toString());
+    map.put(nameKey, name.getText().toString());
   }
 
   /**

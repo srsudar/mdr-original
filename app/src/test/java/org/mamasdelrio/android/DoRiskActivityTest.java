@@ -1,16 +1,28 @@
 package org.mamasdelrio.android;
 
+import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.testutil.AssertionHelper;
+import org.mamasdelrio.android.util.JsonKeys;
+import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
+import org.mamasdelrio.android.widget.SelectOneView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.assertj.android.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -59,6 +71,26 @@ public class DoRiskActivityTest {
     activity.dniOrName = dniOrNameView;
     activity.onDniOrNameClicked(null);
     assertReadyToBeSent();
+  }
+
+  @Test
+  public void addValuesToMapCorrect() {
+    DniOrNameView dniOrNameMock = mock(DniOrNameView.class);
+    activity.dniOrName = dniOrNameMock;
+    SelectOneView riskMock = mock(SelectOneView.class);
+    activity.risk = riskMock;
+    String targetDateTime = "test stamp";
+    TimeStamper timeStamperMock = mock(TimeStamper.class);
+    when(timeStamperMock.getFriendlyDateTime()).thenReturn(targetDateTime);
+
+    Map<String, Object> map = new HashMap<>();
+    activity.addValuesToMap(map, timeStamperMock);
+
+    AssertionHelper.assertCommonKeysPresent(map, targetDateTime,
+        JsonValues.Forms.RISKS);
+    verify(dniOrNameMock, times(1)).addValuesToMap(map, JsonKeys.Risks.DNI,
+        JsonKeys.Risks.NAMES);
+    verify(riskMock, times(1)).addValuesToMap(map, JsonKeys.Risks.RISK);
   }
 
   private void assertReadyToBeSent() {

@@ -18,4 +18,10 @@ public class JsonValues {
     public static final String BABY_DEATH = "o_bd";
     public static final String MOTHER_DEATH = "o_md";
   }
+
+  public static class HasDni {
+    public static final String YES = "s";
+    public static final String NO = "n";
+    public static final String UNSET = "u";
+  }
 }

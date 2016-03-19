@@ -19,7 +19,7 @@ public class JsonKeys {
 
   /** Keys for the Pregnancies forms. */
   public static class Pregnancies {
-    public static final String HAS_DNI = "h";
+    public static final String HAS_DNI = "t";
     public static final String DNI = "d";
     public static final String NAMES = "n";
     public static final String BIRTH_DATE = "b";
@@ -31,6 +31,7 @@ public class JsonKeys {
 
   /** Keys for the Alarms form. */
   public static class Alarms {
+    public static final String HAS_DNI = "t";
     public static final String DNI = "d";
     public static final String NAME = "n";
     public static final String ALARM = "a";
@@ -52,6 +53,7 @@ public class JsonKeys {
   }
 
   public static class Risks {
+    public static final String HAS_DNI = "t";
     public static final String DNI = "d";
     public static final String NAMES = "n";
     public static final String RISK = "r";

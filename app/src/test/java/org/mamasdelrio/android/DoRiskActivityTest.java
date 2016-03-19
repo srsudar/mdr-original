@@ -88,8 +88,8 @@ public class DoRiskActivityTest {
 
     AssertionHelper.assertCommonKeysPresent(map, targetDateTime,
         JsonValues.Forms.RISKS);
-    verify(dniOrNameMock, times(1)).addValuesToMap(map, JsonKeys.Risks.DNI,
-        JsonKeys.Risks.NAMES);
+    verify(dniOrNameMock, times(1)).addValuesToMap(map, JsonKeys.Risks.HAS_DNI,
+        JsonKeys.Risks.DNI, JsonKeys.Risks.NAMES);
     verify(riskMock, times(1)).addValuesToMap(map, JsonKeys.Risks.RISK);
   }
 

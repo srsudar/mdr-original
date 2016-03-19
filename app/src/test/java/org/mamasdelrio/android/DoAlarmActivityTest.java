@@ -106,7 +106,8 @@ public class DoAlarmActivityTest {
 
     // 4
     verify(dniOrNameViewMock, times(1)).addValuesToMap(eq(map),
-        eq(JsonKeys.Alarms.DNI), eq(JsonKeys.Alarms.NAME));
+        eq(JsonKeys.Alarms.HAS_DNI), eq(JsonKeys.Alarms.DNI),
+        eq(JsonKeys.Alarms.NAME));
 
     // 5
     verify(selectOneViewMock, times(1)).addValuesToMap(eq(map),

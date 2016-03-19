@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import org.mamasdelrio.android.BuildConfig;
 import org.mamasdelrio.android.R;
+import org.mamasdelrio.android.util.JsonKeys;
+import org.mamasdelrio.android.util.JsonValues;
 
 import java.util.Map;
 
@@ -110,8 +112,18 @@ public class DniOrNameView extends LinearLayout {
   /**
    * Add the values picked in this view to map.
    */
-  public void addValuesToMap(Map<String, Object> map, String dniKey,
-      String nameKey) {
+  public void addValuesToMap(Map<String, Object> map, String hasDniKey,
+      String dniKey, String nameKey) {
+    String hasDniValue;
+    int selectedId = dniGroup.getCheckedRadioButtonId();
+    if (selectedId == R.id.shared_nameordni_yesno_yes) {
+      hasDniValue = JsonValues.HasDni.YES;
+    } else if (selectedId == R.id.shared_nameordni_yesno_no) {
+      hasDniValue = JsonValues.HasDni.NO;
+    } else {
+      hasDniValue = JsonValues.HasDni.UNSET;
+    }
+    map.put(hasDniKey, hasDniValue);
     map.put(dniKey, dni.getText().toString());
     map.put(nameKey, name.getText().toString());
   }

@@ -153,7 +153,8 @@ public class DoPregnancyActivityTest {
     AssertionHelper.assertCommonKeysPresent(map, targetDateTime,
         JsonValues.Forms.PREGNANCIES);
     verify(dniOrNameMock, times(1)).addValuesToMap(map,
-        JsonKeys.Pregnancies.DNI, JsonKeys.Pregnancies.NAMES);
+        JsonKeys.Pregnancies.HAS_DNI, JsonKeys.Pregnancies.DNI,
+        JsonKeys.Pregnancies.NAMES);
     verify(lastPeriodMock, times(1)).addValuesToMap(map,
         JsonKeys.Pregnancies.PERIOD_KNOWN);
     verify(takeControlMock, times(1)).addValuesToMap(map,

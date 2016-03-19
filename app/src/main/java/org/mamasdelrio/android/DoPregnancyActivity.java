@@ -88,8 +88,8 @@ public class DoPregnancyActivity extends AppCompatActivity implements
     JsonHelper jsonHelper = new JsonHelper(timeStamper);
     jsonHelper.addCommonEntries(map, JsonValues.Forms.PREGNANCIES);
 
-    dniOrName.addValuesToMap(map, JsonKeys.Pregnancies.DNI,
-        JsonKeys.Pregnancies.NAMES);
+    dniOrName.addValuesToMap(map, JsonKeys.Pregnancies.HAS_DNI,
+        JsonKeys.Pregnancies.DNI, JsonKeys.Pregnancies.NAMES);
     map.put(JsonKeys.Pregnancies.BIRTH_DATE,
         datePickerHelper.getFriendlyString(birthDate));
     lastPeriodKnown.addValuesToMap(map, JsonKeys.Pregnancies.PERIOD_KNOWN);

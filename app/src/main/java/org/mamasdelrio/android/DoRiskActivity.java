@@ -46,7 +46,8 @@ public class DoRiskActivity extends AppCompatActivity implements IFormActivity {
     JsonHelper jsonHelper = new JsonHelper(timeStamper);
     jsonHelper.addCommonEntries(map, JsonValues.Forms.RISKS);
 
-    dniOrName.addValuesToMap(map, JsonKeys.Risks.DNI, JsonKeys.Risks.NAMES);
+    dniOrName.addValuesToMap(map, JsonKeys.Risks.HAS_DNI, JsonKeys.Risks.DNI,
+        JsonKeys.Risks.NAMES);
     risk.addValuesToMap(map, JsonKeys.Risks.RISK);
   }
 

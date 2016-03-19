@@ -60,7 +60,8 @@ public class DoAlarmActivity extends AppCompatActivity implements
     map.put(JsonKeys.SharedKeys.DATETIME, timeStamper.getFriendlyDateTime());
     map.put(JsonKeys.SharedKeys.VERSION, Constants.VERSION);
 
-    dniOrName.addValuesToMap(map, JsonKeys.Alarms.DNI, JsonKeys.Alarms.NAME);
+    dniOrName.addValuesToMap(map, JsonKeys.Alarms.HAS_DNI, JsonKeys.Alarms.DNI,
+        JsonKeys.Alarms.NAME);
     alarm.addValuesToMap(map, JsonKeys.Alarms.ALARM);
   }
 }

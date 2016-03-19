@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mamasdelrio.android.BuildConfig;
+import org.mamasdelrio.android.util.JsonValues;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
@@ -135,10 +136,11 @@ public class DniOrNameViewTest {
     String targetName = "target name";
     String dniKey = "dni";
     String nameKey = "name";
+    String hasDniKey = "hasDni";
     Map<String, Object> map = new HashMap<>();
 
     // First make sure it adds empty strings.
-    view.addValuesToMap(map, dniKey, nameKey);
+    view.addValuesToMap(map, hasDniKey, dniKey, nameKey);
     assertThat(map).contains(
         entry(dniKey, ""),
         entry(nameKey, ""));
@@ -147,10 +149,29 @@ public class DniOrNameViewTest {
 
     view.dni.setText(targetDni);
     view.name.setText(targetName);
-    view.addValuesToMap(map, dniKey, nameKey);
+    view.addValuesToMap(map, hasDniKey, dniKey, nameKey);
     assertThat(map).contains(
         entry(dniKey, targetDni),
         entry(nameKey, targetName));
+  }
+
+  @Test
+  public void addValuesToMapHandlesRadioButtons() {
+    // should start as unset
+    Map<String, Object> map = new HashMap<>();
+    String dniKey = "foo";
+    String nameKey = "bar";
+    String hasDniKey = "hasDni";
+    view.addValuesToMap(map, hasDniKey, dniKey, nameKey);
+    assertThat(map).contains(entry(hasDniKey, JsonValues.HasDni.UNSET));
+
+    view.dniYes.toggle();
+    view.addValuesToMap(map, hasDniKey, dniKey, nameKey);
+    assertThat(map).contains(entry(hasDniKey, JsonValues.HasDni.YES));
+
+    view.dniNo.toggle();
+    view.addValuesToMap(map, hasDniKey, dniKey, nameKey);
+    assertThat(map).contains(entry(hasDniKey, JsonValues.HasDni.NO));
   }
 
   private void assertIsIncomplete() {

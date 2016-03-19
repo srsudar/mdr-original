@@ -110,4 +110,14 @@
 
   <string name="date_of_death">Fecha de la muerte</string>
   <string name="probable_cause">Probable causa</string>
+
+  <!-- for geopoints -->
+  <string name="get_location">Get Location</string>
+  <string name="provider_disabled_error">Error: Provider Disabled</string>
+  <string name="getting_location">Getting Location</string>
+  <string name="please_wait_long">Please Wait</string>
+  <string name="accept_location">Accept</string>
+  <string name="cancel_location">Cancel</string>
+  <string name="location_provider_accuracy">Location Provider Accuracy</string>
+  <string name="location_accuracy">Location Accuracy</string>
 </resources>

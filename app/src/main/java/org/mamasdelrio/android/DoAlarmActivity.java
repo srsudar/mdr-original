@@ -1,5 +1,6 @@
 package org.mamasdelrio.android;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,6 +41,12 @@ public class DoAlarmActivity extends AppCompatActivity implements
       R.id.shared_nameordni_yesno_no })
   public void onDniOrNameClicked(View view) {
     send.setEnabled(isReadyToBeSent());
+  }
+
+  @OnClick(R.id.alarm_send)
+  public void launchGeopoint() {
+    Intent i = new Intent(this, LocationFetcherActivity.class);
+    startActivity(i);
   }
 
   @SuppressWarnings("unused")

@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import org.mamasdelrio.android.logic.DatePickerHelper;
 import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.JsonHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
@@ -24,14 +25,20 @@ public class DoBirthActivity extends AppCompatActivity implements
   @Bind(R.id.birth_enter_dni) EditText dni;
   @Bind(R.id.birth_send) Button send;
   @Bind(R.id.birth_date) DatePicker birthDate;
+  private DatePickerHelper datePickerHelper;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_do_birth);
     ButterKnife.bind(this);
+    datePickerHelper = new DatePickerHelper();
 
     send.setEnabled(isReadyToBeSent());
+  }
+
+  public void setDatePickerHelper(DatePickerHelper datePickerHelper) {
+    this.datePickerHelper = datePickerHelper;
   }
 
   @Override
@@ -47,16 +54,12 @@ public class DoBirthActivity extends AppCompatActivity implements
 
   @Override
   public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
-    Map<String, Object> result = new HashMap<>();
     JsonHelper jsonHelper = new JsonHelper(timeStamper);
-    jsonHelper.addCommonEntries(result);
+    jsonHelper.addCommonEntries(map);
 
-    result.put(JsonKeys.SharedKeys.FORM, JsonValues.Forms.BIRTHS);
-    result.put(JsonKeys.Births.DNI, dni.getText().toString());
-    result.put(JsonKeys.Births.BIRTH_YEAR, birthDate.getYear());
-    // +1 because months are zero indexed, but we want to give MDR a user
-    // friendly date
-    result.put(JsonKeys.Births.BIRTH_MONTH, birthDate.getMonth() + 1);
-    result.put(JsonKeys.Births.BIRTH_DAY, birthDate.getDayOfMonth());
+    map.put(JsonKeys.SharedKeys.FORM, JsonValues.Forms.BIRTHS);
+    map.put(JsonKeys.Births.DNI, dni.getText().toString());
+    map.put(JsonKeys.Births.BIRTH_DATE, datePickerHelper.getFriendlyString(
+        birthDate));
   }
 }

@@ -14,9 +14,7 @@ public class JsonKeys {
   /** Keys for the Births forms. */
   public static class Births {
     public static final String DNI = "d";
-    public static final String BIRTH_YEAR = "by";
-    public static final String BIRTH_MONTH = "bm";
-    public static final String BIRTH_DAY = "bd";
+    public static final String BIRTH_DATE = "by";
   }
 
   /** Keys for the Pregnancies forms. */

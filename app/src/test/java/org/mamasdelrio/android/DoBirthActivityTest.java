@@ -1,8 +1,11 @@
 package org.mamasdelrio.android;
 
+import android.widget.DatePicker;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mamasdelrio.android.logic.DatePickerHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
 import org.mamasdelrio.android.testutil.AssertionHelper;
 import org.mamasdelrio.android.util.JsonKeys;
@@ -11,6 +14,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.android.api.Assertions.assertThat;
@@ -58,28 +62,25 @@ public class DoBirthActivityTest {
   }
 
   @Test
-  public void getMapContentCorrect() {
-//    String targetDni = "8173613";
-//    int targetYear = 2005;
-//    int targetMonth = 12;
-//    int targetMonthIndex = 11; // updateDate months start from 0
-//    int targetDay = 31;
-//    String targetDateTime = "test datetime";
-//    TimeStamper timeStamperMock = mock(TimeStamper.class);
-//    when(timeStamperMock.getFriendlyDateTime()).thenReturn(targetDateTime);
-//
-//    // Set up the inputs.
-//    activity.dni.setText(targetDni);
-//    activity.birthDate.updateDate(targetYear, targetMonthIndex, targetDay);
-//
-//    Map<String, Object> actual = activity.addValuesToMap(, timeStamperMock);
-//    AssertionHelper.assertCommonKeysPresent(actual, targetDateTime);
-//    assertThat(actual).contains(
-//        entry(JsonKeys.SharedKeys.FORM, JsonValues.Forms.BIRTHS),
-//        entry(JsonKeys.Births.DNI, targetDni),
-//        entry(JsonKeys.Births.BIRTH_YEAR, targetYear),
-//        entry(JsonKeys.Births.BIRTH_MONTH, targetMonth),
-//        entry(JsonKeys.Births.BIRTH_DAY, targetDay));
+  public void addValuesToMapCorrect() {
+    String targetDni = "8173613";
+    String targetDateTime = "test datetime";
+    String targetBirthDate = "happy birthdate";
+    TimeStamper timeStamperMock = mock(TimeStamper.class);
+    when(timeStamperMock.getFriendlyDateTime()).thenReturn(targetDateTime);
+    DatePickerHelper dphMock = mock(DatePickerHelper.class);
+    when(dphMock.getFriendlyString(activity.birthDate)).thenReturn(
+        targetBirthDate);
+    activity.setDatePickerHelper(dphMock);
+    activity.dni.setText(targetDni);
+
+    Map<String, Object> map = new HashMap<>();
+    activity.addValuesToMap(map, timeStamperMock);
+    AssertionHelper.assertCommonKeysPresent(map, targetDateTime);
+    assertThat(map).contains(
+        entry(JsonKeys.SharedKeys.FORM, JsonValues.Forms.BIRTHS),
+        entry(JsonKeys.Births.DNI, targetDni),
+        entry(JsonKeys.Births.BIRTH_DATE, targetBirthDate));
   }
 
   private void assertSendButtonIsDisabled() {

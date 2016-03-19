@@ -6,5 +6,9 @@ package org.mamasdelrio.android.util;
 public class JsonValues {
   public static class Forms {
     public static final String BIRTHS = "b";
+    public static final String ALARMS = "a";
+    public static final String PREGNANCIES = "p";
+    public static final String RISKS = "r";
+    public static final String OUTCOMES = "o";
   }
 }

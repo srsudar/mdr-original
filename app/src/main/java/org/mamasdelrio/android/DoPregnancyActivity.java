@@ -96,7 +96,6 @@ public class DoPregnancyActivity extends AppCompatActivity implements
   }
 
   @Override
-  public Map<String, Object> getMapContent(TimeStamper timeStamper) {
-    return null;
+  public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
   }
 }

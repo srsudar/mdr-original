@@ -14,7 +14,8 @@ public interface IFormActivity {
   /**
    * Returns a {@link java.util.Map} with the values of the form being
    * completed.
+   * @param map
    * @param timeStamper the object to generate date times
    */
-  Map<String, Object> getMapContent(TimeStamper timeStamper);
+  void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper);
 }

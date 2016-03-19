@@ -5,13 +5,10 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import org.mamasdelrio.android.logic.IFormActivity;
-import org.mamasdelrio.android.logic.IntegerArrayAdapter;
 import org.mamasdelrio.android.logic.JsonHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
-import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 
@@ -49,7 +46,7 @@ public class DoBirthActivity extends AppCompatActivity implements
   }
 
   @Override
-  public Map<String, Object> getMapContent(TimeStamper timeStamper) {
+  public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
     Map<String, Object> result = new HashMap<>();
     JsonHelper jsonHelper = new JsonHelper(timeStamper);
     jsonHelper.addCommonEntries(result);
@@ -61,7 +58,5 @@ public class DoBirthActivity extends AppCompatActivity implements
     // friendly date
     result.put(JsonKeys.Births.BIRTH_MONTH, birthDate.getMonth() + 1);
     result.put(JsonKeys.Births.BIRTH_DAY, birthDate.getDayOfMonth());
-
-    return result;
   }
 }

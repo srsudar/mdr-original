@@ -33,4 +33,10 @@ public class JsonKeys {
     public static final String CONTROL_MONTH = "cm";
   }
 
+  public static class Alarms {
+    public static final String DNI = "d";
+    public static final String NAME = "n";
+    public static final String ALARM = "a";
+  }
+
 }

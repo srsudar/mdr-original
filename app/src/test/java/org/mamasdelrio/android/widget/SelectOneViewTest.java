@@ -1,9 +1,7 @@
 package org.mamasdelrio.android.widget;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,9 +18,6 @@ import java.util.Map;
 import static org.assertj.android.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * Tests for {@link SelectOneViewTest}.

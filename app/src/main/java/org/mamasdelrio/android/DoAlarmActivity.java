@@ -7,6 +7,9 @@ import android.widget.Button;
 
 import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.util.Constants;
+import org.mamasdelrio.android.util.JsonKeys;
+import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
@@ -52,7 +55,12 @@ public class DoAlarmActivity extends AppCompatActivity implements
   }
 
   @Override
-  public Map<String, Object> getMapContent(TimeStamper timeStamper) {
-    return null;
+  public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
+    map.put(JsonKeys.SharedKeys.FORM, JsonValues.Forms.ALARMS);
+    map.put(JsonKeys.SharedKeys.DATETIME, timeStamper.getFriendlyDateTime());
+    map.put(JsonKeys.SharedKeys.VERSION, Constants.VERSION);
+
+    dniOrName.addValuesToMap(map, JsonKeys.Alarms.DNI, JsonKeys.Alarms.NAME);
+    alarm.addValuesToMap(map, JsonKeys.Alarms.ALARM);
   }
 }

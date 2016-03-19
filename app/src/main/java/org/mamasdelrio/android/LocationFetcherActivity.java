@@ -34,6 +34,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.mamasdelrio.android.logic.BundleHelper;
+import org.mamasdelrio.android.util.LocationStruct;
+
 /**
  * This is taken and lightly modified from ODK Collect's GeoPointActivity. It is
  * essentially an Activity that immediately throws up a dialog, gets the GPS
@@ -57,6 +60,7 @@ public class LocationFetcherActivity extends Activity implements
   private boolean mNetworkOn = false;
   private double mLocationAccuracy;
   private int mLocationCount = 0;
+  private BundleHelper bundleHelper;
 
 
   @Override
@@ -206,14 +210,20 @@ public class LocationFetcherActivity extends Activity implements
 
   private void returnLocation() {
     if (mLocation != null) {
-//      Intent i = new Intent();
-//      i.putExtra(
-//          FormEntryActivity.LOCATION_RESULT,
-//          mLocation.getLatitude() + " " + mLocation.getLongitude() + " "
-//              + mLocation.getAltitude() + " " + mLocation.getAccuracy());
-//      setResult(RESULT_OK, i);
+      LocationStruct locationStruct = new LocationStruct(
+          mLocation.getLatitude(), mLocation.getLongitude(),
+          mLocation.getAltitude(), mLocation.getAccuracy());
+      Bundle bundle = new Bundle();
+      bundleHelper.addLocationStructToBundle(bundle, locationStruct);
+      Intent intent = new Intent();
+      intent.getExtras().putAll(bundle);
+      setResult(RESULT_OK, intent);
     }
     finish();
+  }
+
+  public void setBundleHelper(BundleHelper bundleHelper) {
+    this.bundleHelper = bundleHelper;
   }
 
 

@@ -10,6 +10,7 @@ import org.mamasdelrio.android.logic.BundleHelper;
 import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.JsonHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.logic.WhatsappSender;
 import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
@@ -85,5 +86,13 @@ public class DoRiskActivity extends AppCompatActivity implements IFormActivity {
       R.id.shared_nameordni_enter_names })
   public void onTextChanged(CharSequence text) {
     send.setEnabled(isReadyToBeSent());
+  }
+
+
+  @SuppressWarnings("unused")
+  @OnClick(R.id.risk_send)
+  public void onSendClick(View view) {
+    WhatsappSender sender = new WhatsappSender();
+    sender.sendMessage(this, this, WhatsappSender.MessageRecipient.DOCTORS);
   }
 }

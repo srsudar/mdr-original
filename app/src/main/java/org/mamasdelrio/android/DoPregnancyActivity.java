@@ -16,6 +16,7 @@ import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.IntegerArrayAdapter;
 import org.mamasdelrio.android.logic.JsonHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.logic.WhatsappSender;
 import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
@@ -149,5 +150,12 @@ public class DoPregnancyActivity extends AppCompatActivity implements
 
   public void setDatePickerHelper(DatePickerHelper datePickerHelper) {
     this.datePickerHelper = datePickerHelper;
+  }
+
+  @SuppressWarnings("unused")
+  @OnClick(R.id.preg_send)
+  public void onSendClick(View view) {
+    WhatsappSender sender = new WhatsappSender();
+    sender.sendMessage(this, this, WhatsappSender.MessageRecipient.GROUP);
   }
 }

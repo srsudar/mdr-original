@@ -3,6 +3,7 @@ package org.mamasdelrio.android;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import org.mamasdelrio.android.logic.DatePickerHelper;
 import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.JsonHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.logic.WhatsappSender;
 import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
@@ -22,6 +24,7 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
 public class DoBirthActivity extends AppCompatActivity implements
@@ -82,5 +85,13 @@ public class DoBirthActivity extends AppCompatActivity implements
     map.put(JsonKeys.Births.DNI, dni.getText().toString());
     map.put(JsonKeys.Births.BIRTH_DATE, datePickerHelper.getFriendlyString(
         birthDate));
+  }
+
+
+  @SuppressWarnings("unused")
+  @OnClick(R.id.birth_send)
+  public void onSendClick(View view) {
+    WhatsappSender sender = new WhatsappSender();
+    sender.sendMessage(this, this, WhatsappSender.MessageRecipient.GROUP);
   }
 }

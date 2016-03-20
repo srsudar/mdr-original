@@ -17,6 +17,7 @@ import org.mamasdelrio.android.logic.DatePickerHelper;
 import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.JsonHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.logic.WhatsappSender;
 import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
@@ -30,6 +31,7 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DoOutcomeActivity extends AppCompatActivity implements
     IFormActivity {
@@ -177,5 +179,13 @@ public class DoOutcomeActivity extends AppCompatActivity implements
           Log.d(TAG, "unrecognized radio button id: " + selectedId);
         }
     }
+  }
+
+
+  @SuppressWarnings("unused")
+  @OnClick(R.id.outcome_send)
+  public void onSendClick(View view) {
+    WhatsappSender sender = new WhatsappSender();
+    sender.sendMessage(this, this, WhatsappSender.MessageRecipient.DOCTORS);
   }
 }

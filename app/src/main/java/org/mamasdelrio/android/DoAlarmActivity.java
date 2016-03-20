@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.gson.Gson;
+
 import org.mamasdelrio.android.logic.BundleHelper;
 import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.JsonHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.logic.WhatsappSender;
 import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
@@ -17,6 +20,7 @@ import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -84,5 +88,12 @@ public class DoAlarmActivity extends AppCompatActivity implements
     dniOrName.addValuesToMap(map, JsonKeys.Alarms.HAS_DNI, JsonKeys.Alarms.DNI,
         JsonKeys.Alarms.NAME);
     alarm.addValuesToMap(map, JsonKeys.Alarms.ALARM);
+  }
+
+  @SuppressWarnings("unused")
+  @OnClick(R.id.alarm_send)
+  public void onSendClick(View view) {
+    WhatsappSender sender = new WhatsappSender();
+    sender.sendMessage(this, this, WhatsappSender.MessageRecipient.GROUP);
   }
 }

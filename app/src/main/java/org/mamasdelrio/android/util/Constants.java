@@ -13,4 +13,8 @@ public class Constants {
 
   /** The version identifying the app. */
   public static final int VERSION = BuildConfig.VERSION_CODE;
+
+  public static class RequestCodes {
+    public static final int GET_LOCATION = 100;
+  }
 }

@@ -30,6 +30,11 @@
   <string name="register_location">Registrar localización</string>
   <string name="send_to_whatsapp_group">Enviar a Grupo de Whastapp  de Mamas del Río</string>
   <string name="send_to_whatsapp_doctor">Enviar a Teléfono con Whastapp  de Mamas del Río</string>
+  <string name="location">Localización</string>
+  <string name="lat_label">Lat: </string>
+  <string name="lng_label">Lng: </string>
+  <string name="alt_label">Alt: </string>
+  <string name="acc_label">Pre: </string>
 
   <!-- Pregnancies -->
   <string name="pregnancy">Embarazo</string>

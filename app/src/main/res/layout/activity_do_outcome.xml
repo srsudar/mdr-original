@@ -17,7 +17,7 @@
       android:layout_height="wrap_content">
 
     <include layout="@layout/content_outcome_choose_outcome" />
-    
+
     <org.mamasdelrio.android.widget.LocationView
         android:id="@+id/outcome_location"
         android:layout_width="match_parent"

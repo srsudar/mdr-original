@@ -51,7 +51,7 @@ public class LocationFetcherActivity extends Activity implements
   private static final String TAG =
       LocationFetcherActivity.class.getSimpleName();
   private static final String LOCATION_COUNT = "locationCount";
-  private static final double DEFAULT_LOCATION_ACCURACY = 5.0;
+  private static final double DEFAULT_LOCATION_ACCURACY = 10.0;
 
   private ProgressDialog mLocationDialog;
   private LocationManager mLocationManager;

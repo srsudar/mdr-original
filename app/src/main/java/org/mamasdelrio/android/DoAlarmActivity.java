@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import org.mamasdelrio.android.logic.BundleHelper;
 import org.mamasdelrio.android.logic.IFormActivity;
+import org.mamasdelrio.android.logic.JsonHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
 import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
+import org.mamasdelrio.android.widget.LocationView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
 import java.util.Map;
@@ -26,6 +29,7 @@ public class DoAlarmActivity extends AppCompatActivity implements
   @Bind(R.id.alarm_dniorname) DniOrNameView dniOrName;
   @Bind(R.id.alarm_alarm) SelectOneView alarm;
   @Bind(R.id.alarm_send) Button send;
+  @Bind(R.id.alarm_location) LocationView location;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +41,26 @@ public class DoAlarmActivity extends AppCompatActivity implements
     send.setEnabled(isReadyToBeSent());
   }
 
+  @Override
+  public void onResume() {
+    super.onResume();
+    location.setLaunchingActivity(this);
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode,
+        Intent data) {
+    if (requestCode == Constants.RequestCodes.GET_LOCATION) {
+      location.handleResultIntent(data.getExtras(), new BundleHelper());
+    } else {
+      super.onActivityResult(requestCode, resultCode, data);
+    }
+  }
+
   @OnClick({ R.id.shared_nameordni_yesno_group, R.id.shared_nameordni_yesno_yes,
       R.id.shared_nameordni_yesno_no })
   public void onDniOrNameClicked(View view) {
     send.setEnabled(isReadyToBeSent());
-  }
-
-  @OnClick(R.id.alarm_send)
-  public void launchGeopoint() {
-    Intent i = new Intent(this, LocationFetcherActivity.class);
-    startActivity(i);
   }
 
   @SuppressWarnings("unused")
@@ -63,9 +77,9 @@ public class DoAlarmActivity extends AppCompatActivity implements
 
   @Override
   public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
-    map.put(JsonKeys.SharedKeys.FORM, JsonValues.Forms.ALARMS);
-    map.put(JsonKeys.SharedKeys.DATETIME, timeStamper.getFriendlyDateTime());
-    map.put(JsonKeys.SharedKeys.VERSION, Constants.VERSION);
+    JsonHelper jsonHelper = new JsonHelper(timeStamper);
+    jsonHelper.addCommonEntries(map, JsonValues.Forms.ALARMS);
+    jsonHelper.callAddValuesOnLocationView(map, location);
 
     dniOrName.addValuesToMap(map, JsonKeys.Alarms.HAS_DNI, JsonKeys.Alarms.DNI,
         JsonKeys.Alarms.NAME);

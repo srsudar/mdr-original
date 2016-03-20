@@ -1,5 +1,6 @@
 package org.mamasdelrio.android;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,15 +12,18 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import org.mamasdelrio.android.logic.BundleHelper;
 import org.mamasdelrio.android.logic.DatePickerHelper;
 import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.JsonHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.AbortionView;
 import org.mamasdelrio.android.widget.ComplicationsView;
 import org.mamasdelrio.android.widget.DeathView;
+import org.mamasdelrio.android.widget.LocationView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
 import java.util.Map;
@@ -43,6 +47,7 @@ public class DoOutcomeActivity extends AppCompatActivity implements
   @Bind(R.id.outcome_babydeath) DeathView babyDeath;
   @Bind(R.id.outcome_motherdeath) DeathView motherDeath;
 
+  @Bind(R.id.outcome_location) LocationView location;
   @Bind(R.id.outcome_send) Button send;
 
   @Override
@@ -61,6 +66,22 @@ public class DoOutcomeActivity extends AppCompatActivity implements
     motherDeath.getDniLabel().setText(R.string.enter_dni);
 
     initRadioGroupListener();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    location.setLaunchingActivity(this);
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode,
+        Intent data) {
+    if (requestCode == Constants.RequestCodes.GET_LOCATION) {
+      location.handleResultIntent(data.getExtras(), new BundleHelper());
+    } else {
+      super.onActivityResult(requestCode, resultCode, data);
+    }
   }
 
   private void initRadioGroupListener() {
@@ -119,6 +140,7 @@ public class DoOutcomeActivity extends AppCompatActivity implements
       TimeStamper timeStamper) {
     JsonHelper jsonHelper = new JsonHelper(timeStamper);
     jsonHelper.addCommonEntries(map, JsonValues.Forms.OUTCOMES);
+    jsonHelper.callAddValuesOnLocationView(map, location);
     addOutcomeChoiceToMap(map);
     DatePickerHelper datePickerHelper = new DatePickerHelper();
 

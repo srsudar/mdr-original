@@ -72,6 +72,7 @@ public class LocationFetcherActivity extends Activity implements
     }
 
     mLocationAccuracy = DEFAULT_LOCATION_ACCURACY;
+    bundleHelper = new BundleHelper();
 
     setTitle(getString(R.string.app_name)
         + " > "
@@ -216,7 +217,7 @@ public class LocationFetcherActivity extends Activity implements
       Bundle bundle = new Bundle();
       bundleHelper.addLocationStructToBundle(bundle, locationStruct);
       Intent intent = new Intent();
-      intent.getExtras().putAll(bundle);
+      intent.putExtras(bundle);
       setResult(RESULT_OK, intent);
     }
     finish();

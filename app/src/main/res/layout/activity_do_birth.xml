@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/enter_dni_of_mother"/>
+
     <EditText
         android:id="@+id/birth_enter_dni"
         android:layout_width="match_parent"
@@ -31,13 +32,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/birth_date"/>
+
     <DatePicker
         android:id="@+id/birth_date"
-        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"/>
+
+
+    <org.mamasdelrio.android.widget.LocationView
+        android:id="@+id/birth_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
     <Button

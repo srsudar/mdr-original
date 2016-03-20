@@ -1,17 +1,21 @@
 package org.mamasdelrio.android;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import org.mamasdelrio.android.logic.BundleHelper;
 import org.mamasdelrio.android.logic.DatePickerHelper;
 import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.JsonHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
+import org.mamasdelrio.android.widget.LocationView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +29,7 @@ public class DoBirthActivity extends AppCompatActivity implements
   @Bind(R.id.birth_enter_dni) EditText dni;
   @Bind(R.id.birth_send) Button send;
   @Bind(R.id.birth_date) DatePicker birthDate;
+  @Bind(R.id.birth_location) LocationView location;
   private DatePickerHelper datePickerHelper;
 
   @Override
@@ -35,6 +40,22 @@ public class DoBirthActivity extends AppCompatActivity implements
     datePickerHelper = new DatePickerHelper();
 
     send.setEnabled(isReadyToBeSent());
+  }
+
+  @Override
+  protected void onPostResume() {
+    super.onPostResume();
+    location.setLaunchingActivity(this);
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode,
+        Intent data) {
+    if (requestCode == Constants.RequestCodes.GET_LOCATION) {
+      location.handleResultIntent(data.getExtras(), new BundleHelper());
+    } else {
+      super.onActivityResult(requestCode, resultCode, data);
+    }
   }
 
   public void setDatePickerHelper(DatePickerHelper datePickerHelper) {
@@ -56,6 +77,7 @@ public class DoBirthActivity extends AppCompatActivity implements
   public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
     JsonHelper jsonHelper = new JsonHelper(timeStamper);
     jsonHelper.addCommonEntries(map, JsonValues.Forms.BIRTHS);
+    jsonHelper.callAddValuesOnLocationView(map, location);
 
     map.put(JsonKeys.Births.DNI, dni.getText().toString());
     map.put(JsonKeys.Births.BIRTH_DATE, datePickerHelper.getFriendlyString(

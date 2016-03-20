@@ -1,5 +1,6 @@
 package org.mamasdelrio.android;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.mamasdelrio.android.logic.BundleHelper;
 import org.mamasdelrio.android.logic.DatePickerHelper;
 import org.mamasdelrio.android.logic.IFormActivity;
 import org.mamasdelrio.android.logic.IntegerArrayAdapter;
@@ -18,6 +20,7 @@ import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
+import org.mamasdelrio.android.widget.LocationView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
 import java.util.Map;
@@ -38,6 +41,7 @@ public class DoPregnancyActivity extends AppCompatActivity implements
   @Bind(R.id.preg_control_month) Spinner controlMonth;
   @Bind(R.id.preg_last_period_date_label) TextView lastPeriodDateLabel;
   @Bind(R.id.preg_last_period_date) DatePicker lastPeriodDate;
+  @Bind(R.id.preg_location) LocationView location;
   @Bind(R.id.preg_send) Button send;
   private DatePickerHelper datePickerHelper;
 
@@ -84,9 +88,26 @@ public class DoPregnancyActivity extends AppCompatActivity implements
   }
 
   @Override
+  protected void onResume() {
+    super.onResume();
+    location.setLaunchingActivity(this);
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode,
+        Intent data) {
+    if (requestCode == Constants.RequestCodes.GET_LOCATION) {
+      location.handleResultIntent(data.getExtras(), new BundleHelper());
+    } else {
+      super.onActivityResult(requestCode, resultCode, data);
+    }
+  }
+
+  @Override
   public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
     JsonHelper jsonHelper = new JsonHelper(timeStamper);
     jsonHelper.addCommonEntries(map, JsonValues.Forms.PREGNANCIES);
+    jsonHelper.callAddValuesOnLocationView(map, location);
 
     dniOrName.addValuesToMap(map, JsonKeys.Pregnancies.HAS_DNI,
         JsonKeys.Pregnancies.DNI, JsonKeys.Pregnancies.NAMES);

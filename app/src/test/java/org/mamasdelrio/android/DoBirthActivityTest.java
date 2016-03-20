@@ -10,6 +10,7 @@ import org.mamasdelrio.android.logic.TimeStamper;
 import org.mamasdelrio.android.testutil.AssertionHelper;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
+import org.mamasdelrio.android.widget.LocationView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
@@ -48,6 +49,7 @@ public class DoBirthActivityTest {
     assertThat(activity.send)
         .hasText(R.string.send_to_whatsapp_group)
         .isDisabled();
+    assertThat(activity.location).isVisible();
   }
 
   @Test
@@ -73,6 +75,8 @@ public class DoBirthActivityTest {
         targetBirthDate);
     activity.setDatePickerHelper(dphMock);
     activity.dni.setText(targetDni);
+    LocationView locationViewMock = mock(LocationView.class);
+    activity.location = locationViewMock;
 
     Map<String, Object> map = new HashMap<>();
     activity.addValuesToMap(map, timeStamperMock);
@@ -81,6 +85,7 @@ public class DoBirthActivityTest {
     assertThat(map).contains(
         entry(JsonKeys.Births.DNI, targetDni),
         entry(JsonKeys.Births.BIRTH_DATE, targetBirthDate));
+    AssertionHelper.assertAddValuesCalledOnLocationView(locationViewMock, map);
   }
 
   private void assertSendButtonIsDisabled() {

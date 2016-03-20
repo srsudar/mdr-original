@@ -11,6 +11,7 @@ import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.AbortionView;
 import org.mamasdelrio.android.widget.ComplicationsView;
 import org.mamasdelrio.android.widget.DeathView;
+import org.mamasdelrio.android.widget.LocationView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
@@ -106,11 +107,13 @@ public class DoOutcomeActivityTest {
     AbortionView abortionViewMock = mock(AbortionView.class);
     DeathView bDeathMock = mock(DeathView.class);
     DeathView mDeathMock = mock(DeathView.class);
+    LocationView locationViewMock = mock(LocationView.class);
 
     activity.complications = compViewMock;
     activity.abortion = abortionViewMock;
     activity.babyDeath = bDeathMock;
     activity.motherDeath = mDeathMock;
+    activity.location = locationViewMock;
 
     Map<String, Object> map = new HashMap<>();
     activity.addValuesToMap(map, timeStamperMock);
@@ -134,6 +137,7 @@ public class DoOutcomeActivityTest {
         eq(JsonKeys.Outcomes.MDEATH_CAUSE),
         eq(JsonKeys.Outcomes.MDEATH_DNI),
         eq(JsonKeys.Outcomes.MDEATH_DATE));
+    AssertionHelper.assertAddValuesCalledOnLocationView(locationViewMock, map);
   }
 
   @Test

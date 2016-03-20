@@ -9,6 +9,13 @@ public class JsonKeys {
     public static final String VERSION = "s_v";
     public static final String FORM = "s_f";
     public static final String DATETIME = "s_d";
+
+    public static class Location {
+      public static final String LAT = "l_lat";
+      public static final String LNG = "l_lng";
+      public static final String ALT = "l_alt";
+      public static final String ACC = "l_acc";
+    }
   }
 
   /** Keys for the Births forms. */

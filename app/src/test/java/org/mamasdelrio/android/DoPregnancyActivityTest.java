@@ -8,10 +8,12 @@ import org.junit.runner.RunWith;
 import org.mamasdelrio.android.logic.DatePickerHelper;
 import org.mamasdelrio.android.logic.TimeStamper;
 import org.mamasdelrio.android.testutil.AssertionHelper;
+import org.mamasdelrio.android.util.BundleKeys;
 import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
+import org.mamasdelrio.android.widget.LocationView;
 import org.mamasdelrio.android.widget.SelectOneView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
@@ -68,6 +70,7 @@ public class DoPregnancyActivityTest {
     assertThat(activity.send)
         .isVisible()
         .isDisabled();
+    assertThat(activity.location).isVisible();
   }
 
   @Test
@@ -117,6 +120,8 @@ public class DoPregnancyActivityTest {
     when(timeStamperMock.getFriendlyDateTime()).thenReturn(targetDateTime);
     DatePickerHelper dphMock = mock(DatePickerHelper.class);
     activity.setDatePickerHelper(dphMock);
+    LocationView locationViewMock = mock(LocationView.class);
+    activity.location = locationViewMock;
 
     // Dni or name
     DniOrNameView dniOrNameMock = mock(DniOrNameView.class);
@@ -164,6 +169,8 @@ public class DoPregnancyActivityTest {
         entry(JsonKeys.Pregnancies.BIRTH_DATE, targetBirthDate),
         entry(JsonKeys.Pregnancies.PERIOD_DATE, targetPeriodDate),
         entry(JsonKeys.Pregnancies.CONTROL_MONTH, targetControlMonth));
+
+    AssertionHelper.assertAddValuesCalledOnLocationView(locationViewMock, map);
   }
 
   @Test

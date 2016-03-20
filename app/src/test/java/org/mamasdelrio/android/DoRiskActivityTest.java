@@ -7,9 +7,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mamasdelrio.android.logic.TimeStamper;
 import org.mamasdelrio.android.testutil.AssertionHelper;
+import org.mamasdelrio.android.util.BundleKeys;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
+import org.mamasdelrio.android.widget.LocationView;
 import org.mamasdelrio.android.widget.SelectOneView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
@@ -51,6 +53,7 @@ public class DoRiskActivityTest {
     assertThat(activity.send)
         .isVisible()
         .isDisabled();
+    assertThat(activity.location).isVisible();
   }
   @Test
   public void riskSelectOneCorrectSize() {
@@ -82,6 +85,8 @@ public class DoRiskActivityTest {
     String targetDateTime = "test stamp";
     TimeStamper timeStamperMock = mock(TimeStamper.class);
     when(timeStamperMock.getFriendlyDateTime()).thenReturn(targetDateTime);
+    LocationView locationViewMock = mock(LocationView.class);
+    activity.location = locationViewMock;
 
     Map<String, Object> map = new HashMap<>();
     activity.addValuesToMap(map, timeStamperMock);
@@ -91,6 +96,7 @@ public class DoRiskActivityTest {
     verify(dniOrNameMock, times(1)).addValuesToMap(map, JsonKeys.Risks.HAS_DNI,
         JsonKeys.Risks.DNI, JsonKeys.Risks.NAMES);
     verify(riskMock, times(1)).addValuesToMap(map, JsonKeys.Risks.RISK);
+    AssertionHelper.assertAddValuesCalledOnLocationView(locationViewMock, map);
   }
 
   private void assertReadyToBeSent() {

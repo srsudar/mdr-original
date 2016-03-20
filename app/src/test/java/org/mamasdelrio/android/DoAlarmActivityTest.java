@@ -6,10 +6,12 @@ import org.junit.runner.RunWith;
 import org.mamasdelrio.android.BuildConfig;
 import org.mamasdelrio.android.DoPregnancyActivity;
 import org.mamasdelrio.android.logic.TimeStamper;
+import org.mamasdelrio.android.testutil.AssertionHelper;
 import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
+import org.mamasdelrio.android.widget.LocationView;
 import org.mamasdelrio.android.widget.SelectOneView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
@@ -88,6 +90,8 @@ public class DoAlarmActivityTest {
     activity.alarm = selectOneViewMock;
     String targetTime = "target time";
     when(tsMock.getFriendlyDateTime()).thenReturn(targetTime);
+    LocationView locationViewMock = mock(LocationView.class);
+    activity.location = locationViewMock;
 
     activity.addValuesToMap(map, tsMock);
 
@@ -97,6 +101,7 @@ public class DoAlarmActivityTest {
     // 3. add the version
     // 4. call values on dniOrName
     // 5. call values on alarm
+    // 6. call values on location
 
     // 1, 2, and 3
     assertThat(map).contains(
@@ -112,6 +117,9 @@ public class DoAlarmActivityTest {
     // 5
     verify(selectOneViewMock, times(1)).addValuesToMap(eq(map),
         eq(JsonKeys.Alarms.ALARM));
+
+    // 6
+    AssertionHelper.assertAddValuesCalledOnLocationView(locationViewMock, map);
   }
 
   private void assertReadyToBeSent() {

@@ -38,6 +38,7 @@
   <EditText
       android:id="@+id/shared_nameordni_enter_dni"
       android:layout_width="match_parent"
+      android:maxLength="8"
       android:layout_height="wrap_content"/>
 
 

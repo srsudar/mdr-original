@@ -101,7 +101,7 @@ public class DniOrNameView extends LinearLayout {
    */
   public boolean isComplete() {
     if (isDni()) {
-      return dni.getText().length() > 0;
+      return dni.getText().length() == 8;
     }
     if (isName()) {
       return name.getText().length() > 0;

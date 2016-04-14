@@ -67,7 +67,7 @@ public class DoBirthActivity extends AppCompatActivity implements
 
   @Override
   public boolean isReadyToBeSent() {
-    return dni.getText().length() > 0;
+    return dni.getText().length() == 8;
   }
 
   @SuppressWarnings("unused")

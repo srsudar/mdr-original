@@ -11,6 +11,8 @@ public class Constants {
 
   public static final int NUM_MONTH_IN_PREGNANCY = 9;
 
+  public static final int DEFAULT_BIRTH_YEAR = 2006;
+
   /** The version identifying the app. */
   public static final int VERSION = BuildConfig.VERSION_CODE;
 

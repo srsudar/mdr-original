@@ -52,6 +52,7 @@ public class DoPregnancyActivity extends AppCompatActivity implements
     setContentView(R.layout.activity_do_pregnancy);
     ButterKnife.bind(this);
     datePickerHelper = new DatePickerHelper();
+    datePickerHelper.setToBirthDateDefaults(birthDate);
 
     // the last period fields should only be enabled if it is known
     lastPeriodDateLabel.setEnabled(false);

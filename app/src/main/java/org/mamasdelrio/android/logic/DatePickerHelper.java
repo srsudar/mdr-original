@@ -2,6 +2,8 @@ package org.mamasdelrio.android.logic;
 
 import android.widget.DatePicker;
 
+import org.mamasdelrio.android.util.Constants;
+
 /**
  * Helps extract a user friendly String from a
  * {@link android.widget.DatePicker}.
@@ -18,6 +20,17 @@ public class DatePickerHelper {
         + DELIMITER
         + dayStr;
     return result;
+  }
+
+  /**
+   * Set the defaults for the birth date.
+   * @param datePicker
+   */
+  public void setToBirthDateDefaults(DatePicker datePicker) {
+    // Get the existing data before updating.
+    int month = datePicker.getMonth();
+    int day = datePicker.getDayOfMonth();
+    datePicker.updateDate(Constants.DEFAULT_BIRTH_YEAR, month, day);
   }
 
   private String padIfNecessary(int val) {

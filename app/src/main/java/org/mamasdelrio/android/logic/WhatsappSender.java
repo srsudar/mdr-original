@@ -48,6 +48,7 @@ public class WhatsappSender {
     String msg = gson.toJson(map);
 
     Intent intent = getShareIntent(msg);
-    activity.startActivity(intent);
+    activity.startActivityForResult(intent,
+        Constants.RequestCodes.SEND_TO_WHATSAPP);
   }
 }

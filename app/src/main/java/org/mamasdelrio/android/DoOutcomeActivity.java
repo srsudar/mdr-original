@@ -81,6 +81,8 @@ public class DoOutcomeActivity extends AppCompatActivity implements
         Intent data) {
     if (requestCode == Constants.RequestCodes.GET_LOCATION) {
       location.handleResultIntent(data.getExtras(), new BundleHelper());
+    } else if (requestCode == Constants.RequestCodes.SEND_TO_WHATSAPP) {
+      finish();
     } else {
       super.onActivityResult(requestCode, resultCode, data);
     }

@@ -18,5 +18,6 @@ public class Constants {
 
   public static class RequestCodes {
     public static final int GET_LOCATION = 100;
+    public static final int SEND_TO_WHATSAPP = 101;
   }
 }

@@ -21,6 +21,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <org.mamasdelrio.android.widget.SelectCommunityView
+        android:id="@+id/alarm_community"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

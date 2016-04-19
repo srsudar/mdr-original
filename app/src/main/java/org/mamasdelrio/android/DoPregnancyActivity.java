@@ -22,6 +22,7 @@ import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
+import org.mamasdelrio.android.widget.SelectCommunityView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
 import java.util.Map;
@@ -36,6 +37,7 @@ public class DoPregnancyActivity extends AppCompatActivity implements
   private static final int YES_POSITION = 0;
 
   @Bind(R.id.preg_dniorname) DniOrNameView dniOrName;
+  @Bind(R.id.preg_community) SelectCommunityView community;
   @Bind(R.id.birth_date) DatePicker birthDate;
   @Bind(R.id.preg_last_period) SelectOneView lastPeriodKnown;
   @Bind(R.id.preg_take_control) SelectOneView takeControl;
@@ -115,6 +117,7 @@ public class DoPregnancyActivity extends AppCompatActivity implements
 
     dniOrName.addValuesToMap(map, JsonKeys.Pregnancies.HAS_DNI,
         JsonKeys.Pregnancies.DNI, JsonKeys.Pregnancies.NAMES);
+    community.addValuesToMap(map, JsonKeys.Pregnancies.COMMUNITY);
     map.put(JsonKeys.Pregnancies.BIRTH_DATE,
         datePickerHelper.getFriendlyString(birthDate));
     lastPeriodKnown.addValuesToMap(map, JsonKeys.Pregnancies.PERIOD_KNOWN);

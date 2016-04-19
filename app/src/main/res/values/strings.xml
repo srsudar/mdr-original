@@ -35,6 +35,7 @@
   <string name="lng_label">Lng: </string>
   <string name="alt_label">Alt: </string>
   <string name="acc_label">Pre: </string>
+  <string name="community_name">Nombre de su comunidad</string>
 
   <!-- Pregnancies -->
   <string name="pregnancy">Embarazo</string>

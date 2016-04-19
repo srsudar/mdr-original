@@ -12,6 +12,7 @@ import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
+import org.mamasdelrio.android.widget.SelectCommunityView;
 import org.mamasdelrio.android.widget.SelectOneView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
@@ -51,6 +52,9 @@ public class DoAlarmActivityTest {
     assertThat(activity.dniOrName)
         .isVisible()
         .isEnabled();
+    assertThat(activity.community)
+        .isVisible()
+        .isEnabled();
     assertThat(activity.alarm)
         .isVisible()
         .isEnabled();
@@ -85,8 +89,10 @@ public class DoAlarmActivityTest {
     Map<String, Object> map = new HashMap<>();
     TimeStamper tsMock = mock(TimeStamper.class);
     DniOrNameView dniOrNameViewMock = mock(DniOrNameView.class);
+    SelectCommunityView communityMock = mock(SelectCommunityView.class);
     SelectOneView selectOneViewMock = mock(SelectOneView.class);
     activity.dniOrName = dniOrNameViewMock;
+    activity.community = communityMock;
     activity.alarm = selectOneViewMock;
     String targetTime = "target time";
     when(tsMock.getFriendlyDateTime()).thenReturn(targetTime);
@@ -100,8 +106,9 @@ public class DoAlarmActivityTest {
     // 2. add the timestamp
     // 3. add the version
     // 4. call values on dniOrName
-    // 5. call values on alarm
-    // 6. call values on location
+    // 5. call values on community
+    // 6. call values on alarm
+    // 7. call values on location
 
     // 1, 2, and 3
     assertThat(map).contains(
@@ -115,10 +122,14 @@ public class DoAlarmActivityTest {
         eq(JsonKeys.Alarms.NAME));
 
     // 5
+    verify(communityMock, times(1)).addValuesToMap(eq(map),
+        eq(JsonKeys.Alarms.COMMUNITY));
+
+    // 6
     verify(selectOneViewMock, times(1)).addValuesToMap(eq(map),
         eq(JsonKeys.Alarms.ALARM));
 
-    // 6
+    // 7
     AssertionHelper.assertAddValuesCalledOnLocationView(locationViewMock, map);
   }
 

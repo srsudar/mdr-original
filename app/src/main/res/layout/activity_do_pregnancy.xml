@@ -21,6 +21,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <org.mamasdelrio.android.widget.SelectCommunityView
+        android:id="@+id/preg_community"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <include layout="@layout/content_birth_date" />
 
     <TextView

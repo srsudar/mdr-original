@@ -82,6 +82,34 @@
     <item>18</item>
   </string-array>
 
+  <string-array name="community_labels">
+    <item>Bolivar</item>
+    <item>Leoncio Prado</item>
+    <item>Nueva Arica</item>
+    <item>Parinari</item>
+    <item>San Jose de Parinari</item>
+    <item>San Jose de Samiria</item>
+    <item>San Miguel</item>
+    <item>San Roque</item>
+    <item>Santa Clara</item>
+    <item>Santa Rosa de Lagarto</item>
+    <item>Shapajilla</item>
+  </string-array>
+
+  <string-array name="community_values">
+    <item>bolivar</item>
+    <item>leoncio_prado</item>
+    <item>nueva_arica</item>
+    <item>parinari</item>
+    <item>san_jose_de_parinari</item>
+    <item>san_jose_de_samiria</item>
+    <item>san_miguel</item>
+    <item>san_roque</item>
+    <item>santa_clara</item>
+    <item>santa_rosa_de_lagarto</item>
+    <item>shapajilla</item>
+  </string-array>
+
 
   <string-array name="complications_baby_labels">
     <item>@string/low_weight</item>

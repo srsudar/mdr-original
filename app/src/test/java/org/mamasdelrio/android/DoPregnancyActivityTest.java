@@ -14,6 +14,7 @@ import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
+import org.mamasdelrio.android.widget.SelectCommunityView;
 import org.mamasdelrio.android.widget.SelectOneView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
@@ -46,6 +47,9 @@ public class DoPregnancyActivityTest {
   @Test
   public void uiElementsVisible() {
     assertThat(activity.dniOrName)
+        .isVisible()
+        .isEnabled();
+    assertThat(activity.community)
         .isVisible()
         .isEnabled();
     assertThat(activity.birthDate)
@@ -126,6 +130,11 @@ public class DoPregnancyActivityTest {
     // Dni or name
     DniOrNameView dniOrNameMock = mock(DniOrNameView.class);
     activity.dniOrName = dniOrNameMock;
+
+    // Select Community
+    SelectCommunityView communityMock = mock(SelectCommunityView.class);
+    activity.community = communityMock;
+
     // birth date
     String targetBirthDate = "test birth date";
     when(dphMock.getFriendlyString(activity.birthDate)).thenReturn(
@@ -160,6 +169,8 @@ public class DoPregnancyActivityTest {
     verify(dniOrNameMock, times(1)).addValuesToMap(map,
         JsonKeys.Pregnancies.HAS_DNI, JsonKeys.Pregnancies.DNI,
         JsonKeys.Pregnancies.NAMES);
+    verify(communityMock, times(1)).addValuesToMap(map,
+        JsonKeys.Pregnancies.COMMUNITY);
     verify(lastPeriodMock, times(1)).addValuesToMap(map,
         JsonKeys.Pregnancies.PERIOD_KNOWN);
     verify(takeControlMock, times(1)).addValuesToMap(map,

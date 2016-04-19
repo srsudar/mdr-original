@@ -22,6 +22,7 @@ public class JsonKeys {
   public static class Births {
     public static final String DNI = "d";
     public static final String BIRTH_DATE = "by";
+    public static final String COMMUNITY = "com";
   }
 
   /** Keys for the Pregnancies forms. */
@@ -29,6 +30,7 @@ public class JsonKeys {
     public static final String HAS_DNI = "t";
     public static final String DNI = "d";
     public static final String NAMES = "n";
+    public static final String COMMUNITY = "com";
     public static final String BIRTH_DATE = "b";
     public static final String PERIOD_KNOWN = "p";
     public static final String PERIOD_DATE = "pd";
@@ -41,6 +43,7 @@ public class JsonKeys {
     public static final String HAS_DNI = "t";
     public static final String DNI = "d";
     public static final String NAME = "n";
+    public static final String COMMUNITY = "com";
     public static final String ALARM = "a";
   }
 

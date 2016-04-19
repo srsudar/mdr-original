@@ -11,6 +11,7 @@ import org.mamasdelrio.android.testutil.AssertionHelper;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.LocationView;
+import org.mamasdelrio.android.widget.SelectCommunityView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
@@ -22,6 +23,8 @@ import static org.assertj.android.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -40,6 +43,9 @@ public class DoBirthActivityTest {
   @Test
   public void editableElementsInitialized() {
     assertThat(activity.dni)
+        .isEnabled()
+        .isVisible();
+    assertThat(activity.community)
         .isEnabled()
         .isVisible();
     assertThat(activity.birthDate)
@@ -73,6 +79,8 @@ public class DoBirthActivityTest {
     DatePickerHelper dphMock = mock(DatePickerHelper.class);
     when(dphMock.getFriendlyString(activity.birthDate)).thenReturn(
         targetBirthDate);
+    SelectCommunityView communityMock = mock(SelectCommunityView.class);
+    activity.community = communityMock;
     activity.setDatePickerHelper(dphMock);
     activity.dni.setText(targetDni);
     LocationView locationViewMock = mock(LocationView.class);
@@ -82,6 +90,8 @@ public class DoBirthActivityTest {
     activity.addValuesToMap(map, timeStamperMock);
     AssertionHelper.assertCommonKeysPresent(map, targetDateTime,
         JsonValues.Forms.BIRTHS);
+    verify(communityMock, times(1)).addValuesToMap(map,
+        JsonKeys.Births.COMMUNITY);
     assertThat(map).contains(
         entry(JsonKeys.Births.DNI, targetDni),
         entry(JsonKeys.Births.BIRTH_DATE, targetBirthDate));

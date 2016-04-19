@@ -18,6 +18,7 @@ import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.LocationView;
+import org.mamasdelrio.android.widget.SelectCommunityView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +30,7 @@ import butterknife.OnTextChanged;
 
 public class DoBirthActivity extends AppCompatActivity implements
     IFormActivity {
+  @Bind(R.id.birth_community) SelectCommunityView community;
   @Bind(R.id.birth_enter_dni) EditText dni;
   @Bind(R.id.birth_send) Button send;
   @Bind(R.id.birth_date) DatePicker birthDate;
@@ -83,6 +85,8 @@ public class DoBirthActivity extends AppCompatActivity implements
     JsonHelper jsonHelper = new JsonHelper(timeStamper);
     jsonHelper.addCommonEntries(map, JsonValues.Forms.BIRTHS);
     jsonHelper.callAddValuesOnLocationView(map, location);
+
+    community.addValuesToMap(map, JsonKeys.Births.COMMUNITY);
 
     map.put(JsonKeys.Births.DNI, dni.getText().toString());
     map.put(JsonKeys.Births.BIRTH_DATE, datePickerHelper.getFriendlyString(

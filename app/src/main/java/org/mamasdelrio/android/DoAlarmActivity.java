@@ -18,6 +18,7 @@ import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
+import org.mamasdelrio.android.widget.SelectCommunityView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
 import java.util.HashMap;
@@ -31,6 +32,7 @@ import butterknife.OnTextChanged;
 public class DoAlarmActivity extends AppCompatActivity implements
     IFormActivity {
   @Bind(R.id.alarm_dniorname) DniOrNameView dniOrName;
+  @Bind(R.id.alarm_community) SelectCommunityView community;
   @Bind(R.id.alarm_alarm) SelectOneView alarm;
   @Bind(R.id.alarm_send) Button send;
   @Bind(R.id.alarm_location) LocationView location;
@@ -89,6 +91,7 @@ public class DoAlarmActivity extends AppCompatActivity implements
 
     dniOrName.addValuesToMap(map, JsonKeys.Alarms.HAS_DNI, JsonKeys.Alarms.DNI,
         JsonKeys.Alarms.NAME);
+    community.addValuesToMap(map, JsonKeys.Alarms.COMMUNITY);
     alarm.addValuesToMap(map, JsonKeys.Alarms.ALARM);
   }
 

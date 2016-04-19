@@ -16,6 +16,11 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
+    <org.mamasdelrio.android.widget.DniOrNameView
+        android:id="@+id/outcome_dniorname"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <include layout="@layout/content_outcome_choose_outcome" />
 
     <org.mamasdelrio.android.widget.LocationView

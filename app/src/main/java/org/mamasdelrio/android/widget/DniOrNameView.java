@@ -110,6 +110,22 @@ public class DniOrNameView extends LinearLayout {
     return false;
   }
 
+  public RadioButton getDniYes() {
+    return dniYes;
+  }
+
+  public RadioButton getDniNo() {
+    return dniNo;
+  }
+
+  public EditText getDniEditText() {
+    return dni;
+  }
+
+  public EditText getNameEditText() {
+    return name;
+  }
+
   /**
    * Set the label for asking if it has a DNI.
    */

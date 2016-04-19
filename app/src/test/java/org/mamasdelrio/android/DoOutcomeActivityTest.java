@@ -11,6 +11,7 @@ import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.AbortionView;
 import org.mamasdelrio.android.widget.ComplicationsView;
 import org.mamasdelrio.android.widget.DeathView;
+import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
@@ -55,6 +56,9 @@ public class DoOutcomeActivityTest {
     assertThat(activity.selectOutcome)
         .isVisible()
         .isEnabled();
+    assertThat(activity.dniOrName)
+        .isVisible()
+        .isEnabled();
     assertThat(activity.chooseComplications)
         .isVisible()
         .isEnabled();
@@ -84,6 +88,13 @@ public class DoOutcomeActivityTest {
 
   @Test
   public void viewsUpdateVisibility() {
+    // Start by completing the DNI or name view. The send button should remain
+    // gone.
+    activity.dniOrName.getDniNo().toggle();
+    activity.dniOrName.getNameEditText().setText("a test name");
+    assertThat(activity.send)
+        .isGone();
+
     // The fact that they all start gone must be checked elsewhere.
     activity.chooseComplications.toggle();
     assertOnlyThisViewVisible(OutcomeView.COMPLICATIONS);
@@ -103,12 +114,14 @@ public class DoOutcomeActivityTest {
     String targetDateTime = "test date time";
     TimeStamper timeStamperMock = mock(TimeStamper.class);
     when(timeStamperMock.getFriendlyDateTime()).thenReturn(targetDateTime);
+    DniOrNameView dniOrNameMock = mock(DniOrNameView.class);
     ComplicationsView compViewMock = mock(ComplicationsView.class);
     AbortionView abortionViewMock = mock(AbortionView.class);
     DeathView bDeathMock = mock(DeathView.class);
     DeathView mDeathMock = mock(DeathView.class);
     LocationView locationViewMock = mock(LocationView.class);
 
+    activity.dniOrName = dniOrNameMock;
     activity.complications = compViewMock;
     activity.abortion = abortionViewMock;
     activity.babyDeath = bDeathMock;
@@ -120,6 +133,9 @@ public class DoOutcomeActivityTest {
     AssertionHelper.assertCommonKeysPresent(map, targetDateTime,
         JsonValues.Forms.OUTCOMES);
 
+    verify(dniOrNameMock, times(1)).addValuesToMap(map,
+        JsonKeys.Outcomes.HAS_DNI, JsonKeys.Outcomes.DNI,
+        JsonKeys.Outcomes.NAME);
     verify(compViewMock, times(1)).addValuesToMap(eq(map),
         eq(JsonKeys.Outcomes.COMPLICATION_BABY_STATE),
         eq(JsonKeys.Outcomes.COMPLICATION_MOTHER_STATE));

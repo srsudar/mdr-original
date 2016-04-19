@@ -24,6 +24,7 @@ import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.AbortionView;
 import org.mamasdelrio.android.widget.ComplicationsView;
 import org.mamasdelrio.android.widget.DeathView;
+import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
@@ -32,10 +33,13 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 
 public class DoOutcomeActivity extends AppCompatActivity implements
     IFormActivity {
   private static final String TAG = DoOutcomeActivity.class.getSimpleName();
+
+  @Bind(R.id.outcome_dniorname) DniOrNameView dniOrName;
 
   // Choose outcome
   @Bind(R.id.outcome_select_outcome) RadioGroup selectOutcome;
@@ -131,12 +135,27 @@ public class DoOutcomeActivity extends AppCompatActivity implements
   }
 
   private void makeSendVisible() {
-    send.setVisibility(View.VISIBLE);
+    if (isReadyToBeSent()) {
+      send.setVisibility(View.VISIBLE);
+    }
   }
 
   @Override
   public boolean isReadyToBeSent() {
-    return false;
+    return dniOrName.isComplete();
+  }
+
+  @OnClick({ R.id.shared_nameordni_yesno_group, R.id.shared_nameordni_yesno_yes,
+      R.id.shared_nameordni_yesno_no })
+  public void onDniOrNameClicked(View view) {
+    send.setEnabled(isReadyToBeSent());
+  }
+
+  @SuppressWarnings("unused")
+  @OnTextChanged({ R.id.shared_nameordni_enter_dni,
+      R.id.shared_nameordni_enter_names })
+  public void onTextChanged(CharSequence text) {
+    send.setEnabled(isReadyToBeSent());
   }
 
   @Override
@@ -147,6 +166,9 @@ public class DoOutcomeActivity extends AppCompatActivity implements
     jsonHelper.callAddValuesOnLocationView(map, location);
     addOutcomeChoiceToMap(map);
     DatePickerHelper datePickerHelper = new DatePickerHelper();
+
+    dniOrName.addValuesToMap(map, JsonKeys.Outcomes.HAS_DNI,
+        JsonKeys.Outcomes.DNI, JsonKeys.Outcomes.NAME);
 
     complications.addValuesToMap(map, JsonKeys.Outcomes.COMPLICATION_BABY_STATE,
         JsonKeys.Outcomes.COMPLICATION_MOTHER_STATE);

@@ -52,6 +52,9 @@ public class JsonKeys {
   /** Keys for the Outcomes form. */
   public static class Outcomes {
     public static final String OUTCOME_TYPE = "t";
+    public static final String HAS_DNI = "hd";
+    public static final String DNI = "d";
+    public static final String NAME = "n";
     public static final String COMPLICATION_BABY_STATE = "c_b";
     public static final String COMPLICATION_MOTHER_STATE = "c_m";
     public static final String ABORTION_DNI = "a_d";

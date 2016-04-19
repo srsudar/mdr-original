@@ -150,11 +150,11 @@ public class DoOutcomeActivity extends AppCompatActivity implements
   @Override
   public String getUserFriendlyMessage() {
     int selectedId = selectOutcome.getCheckedRadioButtonId();
-    String outcomeKey = JsonKeys.Outcomes.OUTCOME_TYPE;
     switch (selectedId) {
       case R.id.outcome_outcome_complications:
         return getString(R.string.msg_outcome_complication,
-            "foo", complications.getMotherState().getLabelForSelected(),
+            community.getUserFriendlyCommunityName(),
+            complications.getMotherState().getLabelForSelected(),
             complications.getBabyState().getLabelForSelected());
       case R.id.outcome_outcome_abortion:
         return getString(R.string.msg_outcome_abortion,

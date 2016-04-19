@@ -81,8 +81,9 @@ public class DoRiskActivityTest {
   @Test
   public void getUserFriendlyMessageCorrect() {
     String actual = activity.getUserFriendlyMessage();
-    assertThat(actual).contains(
-        "Hola Doctores de Mamás del Río. Tenemos una gestante con");
+    assertThat(actual)
+        .contains("Hola Doctores de Mamás del Río. Tenemos una gestante con")
+        .doesNotContain("$");
   }
 
   @Test

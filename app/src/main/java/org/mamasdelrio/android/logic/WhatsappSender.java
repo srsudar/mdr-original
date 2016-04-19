@@ -2,9 +2,11 @@ package org.mamasdelrio.android.logic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import org.mamasdelrio.android.R;
 import org.mamasdelrio.android.util.Constants;
 
 import java.util.HashMap;
@@ -50,6 +52,11 @@ public class WhatsappSender {
     String msg = formActivity.getUserFriendlyMessage() +
         Constants.MSG_DELIMITER +
         jsonMessage;
+
+    if (recipient == MessageRecipient.DOCTORS) {
+      Toast.makeText(activity, R.string.do_not_send_to_group,
+          Toast.LENGTH_LONG).show();
+    }
 
     Intent intent = getShareIntent(msg);
     activity.startActivityForResult(intent,

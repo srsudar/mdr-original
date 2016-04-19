@@ -114,34 +114,40 @@ public class DoOutcomeActivityTest {
   public void getUserFriendlyMessageCorrectComplication() {
     activity.chooseComplications.toggle();
     String actual = activity.getUserFriendlyMessage();
-    assertThat(actual).contains(
-        "Hola Doctores de Mamás del Río. Tenemos una complicación en");
+    assertThat(actual)
+        .contains("Hola Doctores de Mamás del Río. Tenemos una " +
+            "complicación en")
+        .doesNotContain("$");
   }
 
   @Test
   public void getUserFriendlyMessageCorrectAbortion() {
     activity.chooseAbortion.toggle();
     String actual = activity.getUserFriendlyMessage();
-    assertThat(actual).contains(
-        "Hola Doctores de Mamás del Río. Estamos reportando un aborto en");
+    assertThat(actual)
+        .contains("Hola Doctores de Mamás del Río. Estamos reportando un " +
+            "aborto en")
+        .doesNotContain("$");
   }
 
   @Test
   public void getUserFriendlyMessageCorrectMotherDeath() {
     activity.chooseMotherDeath.toggle();
     String actual = activity.getUserFriendlyMessage();
-    assertThat(actual).contains(
-        "Hola Doctores de Mamás del Río. Estamos reportando una muerte " +
-            "materna en");
+    assertThat(actual)
+        .contains("Hola Doctores de Mamás del Río. Estamos reportando una " +
+            "muerte materna en")
+        .doesNotContain("$");
   }
 
   @Test
   public void getUserFriendlyMessageCorrectBabyDeath() {
     activity.chooseBabyDeath.toggle();
     String actual = activity.getUserFriendlyMessage();
-    assertThat(actual).contains(
-        "Hola Doctores de Mamás del Río. Estamos reportando la muerte de " +
-            "un recién nacido en");
+    assertThat(actual)
+        .contains("Hola Doctores de Mamás del Río. Estamos reportando la " +
+            "muerte de un recién nacido en")
+        .doesNotContain("$");
   }
 
   @Test

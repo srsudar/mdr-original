@@ -78,8 +78,9 @@ public class DoBirthActivityTest {
   @Test
   public void getUserFriendlyMessageCorrect() {
     String actual = activity.getUserFriendlyMessage();
-    assertThat(actual).contains(
-        "Hola Mamás del Río. Tenemos un recién nacido en");
+    assertThat(actual)
+        .contains("Hola Mamás del Río. Tenemos un recién nacido en")
+        .doesNotContain("$");
   }
 
   @Test

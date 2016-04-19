@@ -17,7 +17,7 @@ public class Constants {
    * The delimiter between the user friendly and JSON portions of the
    * message.
    */
-  public static final String MSG_DELIMITER = "\n\n No modificar:\n-----\n";
+  public static final String MSG_DELIMITER = "\n\nNo modificar:\n-----\n";
 
   /** The version identifying the app. */
   public static final int VERSION = BuildConfig.VERSION_CODE;

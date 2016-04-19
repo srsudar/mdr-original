@@ -71,7 +71,9 @@ public class DoAlarmActivityTest {
   @Test
   public void getUserFriendlyMessageCorrect() {
     String actual = activity.getUserFriendlyMessage();
-    assertThat(actual).contains("Hola Mamás del Río. Tenemos una gestante con");
+    assertThat(actual)
+        .contains("Hola Mamás del Río. Tenemos una gestante con")
+        .doesNotContain("$");
   }
 
   @Test

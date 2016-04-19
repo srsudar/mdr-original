@@ -19,7 +19,7 @@
     <org.mamasdelrio.android.widget.DniOrNameView
         android:id="@+id/outcome_dniorname"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 
     <org.mamasdelrio.android.widget.SelectCommunityView
         android:id="@+id/outcome_community"

@@ -86,6 +86,7 @@ public class DoAlarmActivity extends AppCompatActivity implements
   @Override
   public String getUserFriendlyMessage() {
     return getString(R.string.msg_alarm,
+        alarm.getLabelForSelected(),
         community.getUserFriendlyCommunityName());
   }
 

@@ -10,6 +10,7 @@ import org.mamasdelrio.android.logic.TimeStamper;
 import org.mamasdelrio.android.testutil.AssertionHelper;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
+import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
 import org.mamasdelrio.android.widget.SelectCommunityView;
 import org.robolectric.Robolectric;
@@ -42,7 +43,7 @@ public class DoBirthActivityTest {
 
   @Test
   public void editableElementsInitialized() {
-    assertThat(activity.dni)
+    assertThat(activity.dniOrName)
         .isEnabled()
         .isVisible();
     assertThat(activity.community)
@@ -60,18 +61,22 @@ public class DoBirthActivityTest {
 
   @Test
   public void buttonEnablesDisablesAsAppropriate() {
-    // The button should be disabled when the DNI and year fields are empty.
+    // We're going to swap this out
+    DniOrNameView dniOrNameView = mock(DniOrNameView.class);
+    when(dniOrNameView.isComplete()).thenReturn(false);
+    activity.dniOrName = dniOrNameView;
+    activity.onDniOrNameClicked(null);
+    // Should start out disabled.
     assertSendButtonIsDisabled();
-    activity.dni.setText("182849191");
+
+    when(dniOrNameView.isComplete()).thenReturn(true);
+    activity.dniOrName = dniOrNameView;
+    activity.onDniOrNameClicked(null);
     assertSendButtonIsEnabled();
-    // Now remove some text and make sure it re-disables.
-    activity.dni.setText("");
-    assertSendButtonIsDisabled();
   }
 
   @Test
   public void addValuesToMapCorrect() {
-    String targetDni = "8173613";
     String targetDateTime = "test datetime";
     String targetBirthDate = "happy birthdate";
     TimeStamper timeStamperMock = mock(TimeStamper.class);
@@ -79,10 +84,11 @@ public class DoBirthActivityTest {
     DatePickerHelper dphMock = mock(DatePickerHelper.class);
     when(dphMock.getFriendlyString(activity.birthDate)).thenReturn(
         targetBirthDate);
+    DniOrNameView dniOrNameMock = mock(DniOrNameView.class);
+    activity.dniOrName = dniOrNameMock;
     SelectCommunityView communityMock = mock(SelectCommunityView.class);
     activity.community = communityMock;
     activity.setDatePickerHelper(dphMock);
-    activity.dni.setText(targetDni);
     LocationView locationViewMock = mock(LocationView.class);
     activity.location = locationViewMock;
 
@@ -90,10 +96,11 @@ public class DoBirthActivityTest {
     activity.addValuesToMap(map, timeStamperMock);
     AssertionHelper.assertCommonKeysPresent(map, targetDateTime,
         JsonValues.Forms.BIRTHS);
+    verify(dniOrNameMock, times(1)).addValuesToMap(map,
+        JsonKeys.Births.HAS_DNI, JsonKeys.Births.DNI, JsonKeys.Births.NAME);
     verify(communityMock, times(1)).addValuesToMap(map,
         JsonKeys.Births.COMMUNITY);
     assertThat(map).contains(
-        entry(JsonKeys.Births.DNI, targetDni),
         entry(JsonKeys.Births.BIRTH_DATE, targetBirthDate));
     AssertionHelper.assertAddValuesCalledOnLocationView(locationViewMock, map);
   }

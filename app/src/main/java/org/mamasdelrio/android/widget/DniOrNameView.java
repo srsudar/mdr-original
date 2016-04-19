@@ -33,6 +33,7 @@ public class DniOrNameView extends LinearLayout {
   private static final int UNCHECKED_RADIO_ID = -1;
 
   @Bind(R.id.shared_nameordni_yesno_group) RadioGroup dniGroup;
+  @Bind(R.id.shared_nameordni_hasdni) TextView hasDniLabel;
   @Bind(R.id.shared_nameordni_yesno_yes) RadioButton dniYes;
   @Bind(R.id.shared_nameordni_yesno_no) RadioButton dniNo;
   @Bind(R.id.shared_nameordni_dnilabel) TextView dniLabel;
@@ -107,6 +108,13 @@ public class DniOrNameView extends LinearLayout {
       return name.getText().length() > 0;
     }
     return false;
+  }
+
+  /**
+   * Set the label for asking if it has a DNI.
+   */
+  public void setLabelText(String text) {
+    hasDniLabel.setText(text);
   }
 
   /**

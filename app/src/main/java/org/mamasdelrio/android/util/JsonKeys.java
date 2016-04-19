@@ -20,6 +20,8 @@ public class JsonKeys {
 
   /** Keys for the Births forms. */
   public static class Births {
+    public static final String HAS_DNI = "t";
+    public static final String NAME = "n";
     public static final String DNI = "d";
     public static final String BIRTH_DATE = "by";
     public static final String COMMUNITY = "com";

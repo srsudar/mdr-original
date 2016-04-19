@@ -17,6 +17,7 @@ import org.mamasdelrio.android.logic.WhatsappSender;
 import org.mamasdelrio.android.util.Constants;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
+import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
 import org.mamasdelrio.android.widget.SelectCommunityView;
 
@@ -31,7 +32,7 @@ import butterknife.OnTextChanged;
 public class DoBirthActivity extends AppCompatActivity implements
     IFormActivity {
   @Bind(R.id.birth_community) SelectCommunityView community;
-  @Bind(R.id.birth_enter_dni) EditText dni;
+  @Bind(R.id.birth_dniorname) DniOrNameView dniOrName;
   @Bind(R.id.birth_send) Button send;
   @Bind(R.id.birth_date) DatePicker birthDate;
   @Bind(R.id.birth_location) LocationView location;
@@ -45,6 +46,14 @@ public class DoBirthActivity extends AppCompatActivity implements
     datePickerHelper = new DatePickerHelper();
 
     send.setEnabled(isReadyToBeSent());
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    // override the default text for the name or dni view
+    String labelText = getString(R.string.mother_has_dni);
+    dniOrName.setLabelText(labelText);
   }
 
   @Override
@@ -69,15 +78,23 @@ public class DoBirthActivity extends AppCompatActivity implements
     this.datePickerHelper = datePickerHelper;
   }
 
-  @Override
-  public boolean isReadyToBeSent() {
-    return dni.getText().length() == 8;
+
+  @OnClick({ R.id.shared_nameordni_yesno_group, R.id.shared_nameordni_yesno_yes,
+      R.id.shared_nameordni_yesno_no })
+  public void onDniOrNameClicked(View view) {
+    send.setEnabled(isReadyToBeSent());
   }
 
   @SuppressWarnings("unused")
-  @OnTextChanged(R.id.birth_enter_dni)
+  @OnTextChanged({ R.id.shared_nameordni_enter_dni,
+      R.id.shared_nameordni_enter_names })
   public void onTextChanged(CharSequence text) {
     send.setEnabled(isReadyToBeSent());
+  }
+
+  @Override
+  public boolean isReadyToBeSent() {
+    return dniOrName.isComplete();
   }
 
   @Override
@@ -86,9 +103,10 @@ public class DoBirthActivity extends AppCompatActivity implements
     jsonHelper.addCommonEntries(map, JsonValues.Forms.BIRTHS);
     jsonHelper.callAddValuesOnLocationView(map, location);
 
+    dniOrName.addValuesToMap(map, JsonKeys.Births.HAS_DNI, JsonKeys.Births.DNI,
+        JsonKeys.Births.NAME);
     community.addValuesToMap(map, JsonKeys.Births.COMMUNITY);
 
-    map.put(JsonKeys.Births.DNI, dni.getText().toString());
     map.put(JsonKeys.Births.BIRTH_DATE, datePickerHelper.getFriendlyString(
         birthDate));
   }

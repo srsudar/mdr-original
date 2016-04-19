@@ -68,6 +68,7 @@
   <string name="birth">Nacimiento</string>
   <string name="births">Nacimientos</string>
   <string name="enter_dni_of_mother">Escribir DNI de la madre</string>
+  <string name="mother_has_dni">¿La mamá tiene DNI?</string>
   <string name="birth_date">Fecha de nacimiento</string>
   <!-- NOT provided by UPCH, but relevant for births -->
   <string name="year">Año</string>

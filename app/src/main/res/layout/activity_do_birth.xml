@@ -16,17 +16,10 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
-    <TextView
+    <org.mamasdelrio.android.widget.DniOrNameView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/enter_dni_of_mother"/>
-
-    <EditText
-        android:id="@+id/birth_enter_dni"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLength="8"
-        android:hint="@string/dni"/>
+        android:id="@+id/birth_dniorname"/>
 
     <org.mamasdelrio.android.widget.SelectCommunityView
         android:id="@+id/birth_community"

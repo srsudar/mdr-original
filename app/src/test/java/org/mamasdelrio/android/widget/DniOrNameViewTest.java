@@ -132,7 +132,7 @@ public class DniOrNameViewTest {
 
   @Test
   public void addValuesToMapWorks() {
-    String targetDni = "target dni";
+    String targetDni = "98765541";
     String targetName = "target name";
     String dniKey = "dni";
     String nameKey = "name";

@@ -14,7 +14,7 @@
   <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="@string/state_of_baby"/>
+      android:text="@string/baby_complications"/>
 
   <org.mamasdelrio.android.widget.SelectOneView
       android:id="@+id/outcome_complication_baby_state"
@@ -22,7 +22,7 @@
       android:layout_height="wrap_content"/>
 
   <TextView
-      android:text="@string/state_of_mother"
+      android:text="@string/mother_complications"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
 

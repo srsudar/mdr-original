@@ -104,14 +104,32 @@
   <string name="abortion">Aborto</string>
   <string name="maternal_death">Muerte Materna</string>
   <string name="neonatal_death">Muerte neonatal</string>
+  <string name="fine">Está bien</string>
 
   <string name="pregnancy_complications">Complicaciones del parto</string>
-  <string name="state_of_baby">Estado del bebé</string>
+  <string name="baby_complications">Complicaciones del recién nacido</string>
+  <string name="mother_complications">Complicaciones de la mamá</string>
   <string name="low_weight">Bajo peso al nacer</string>
-  <string name="malformed">Malformacion congenita</string>
-  <string name="state_of_mother">Estado de la mama</string>
+  <string name="malformed">Malformacion congénita</string>
+  <string name="lesions">Lesiones en el parto</string>
+  <string name="yellow_color">Coloración amarilla</string>
+  <string name="rapid_breathing">Respiración muy rápida</string>
+  <string name="stress">Mucho restraso en el llanto al nacer</string>
+  <string name="infected_cord">Cordón umbilical infectado</string>
+  <string name="premature">Prematuridad</string>
+  <string name="other">Otro</string>
+
+
+
   <string name="excessive_bleeding">Hemorragia excesiva</string>
   <string name="tearing">Desgarro</string>
+  <string name="high_fever">Fiebre alta</string>
+  <string name="intense_pain">Dolor intenso en el vientre</string>
+  <string name="secretions">Secreciones malolientes</string>
+  <string name="intense_pain_pant">Dolor intenso en pantorrilas</string>
+  <string name="endur">Endurecimiento de las mamas</string>
+  <string name="sadness">Mucha tristeza</string>
+
 
   <string name="date_of_abortion">Fecha del aborto</string>
 

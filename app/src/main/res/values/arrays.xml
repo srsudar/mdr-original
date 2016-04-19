@@ -112,23 +112,55 @@
 
 
   <string-array name="complications_baby_labels">
+    <item>@string/fine</item>
     <item>@string/low_weight</item>
     <item>@string/malformed</item>
+    <item>@string/lesions</item>
+    <item>@string/yellow_color</item>
+    <item>@string/rapid_breathing</item>
+    <item>@string/stress</item>
+    <item>@string/infected_cord</item>
+    <item>@string/premature</item>
+    <item>@string/other</item>
   </string-array>
 
   <string-array name="complications_baby_values">
-    <item>1</item>
-    <item>2</item>
+    <item>bien</item>
+    <item>bajo_peso</item>
+    <item>malform</item>
+    <item>lesiones</item>
+    <item>amarillo</item>
+    <item>rapida</item>
+    <item>restraso</item>
+    <item>cordon</item>
+    <item>prematur</item>
+    <item>otro</item>
   </string-array>
 
   <string-array name="complications_mother_labels">
+    <item>@string/fine</item>
     <item>@string/excessive_bleeding</item>
     <item>@string/tearing</item>
+    <item>@string/high_fever</item>
+    <item>@string/intense_pain</item>
+    <item>@string/secretions</item>
+    <item>@string/intense_pain_pant</item>
+    <item>@string/endur</item>
+    <item>@string/sadness</item>
+    <item>@string/other</item>
   </string-array>
 
   <string-array name="complications_mother_values">
-    <item>1</item>
-    <item>2</item>
+    <item>bien</item>
+    <item>hemorragia</item>
+    <item>desgarro</item>
+    <item>fiebre</item>
+    <item>vientre</item>
+    <item>secreciones</item>
+    <item>pantorr</item>
+    <item>endur</item>
+    <item>trist</item>
+    <item>otro</item>
   </string-array>
 
 

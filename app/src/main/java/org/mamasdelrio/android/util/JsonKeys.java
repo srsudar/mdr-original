@@ -52,6 +52,7 @@ public class JsonKeys {
   /** Keys for the Outcomes form. */
   public static class Outcomes {
     public static final String OUTCOME_TYPE = "t";
+    public static final String COMMUNITY = "com";
     public static final String HAS_DNI = "hd";
     public static final String DNI = "d";
     public static final String NAME = "n";
@@ -72,5 +73,6 @@ public class JsonKeys {
     public static final String DNI = "d";
     public static final String NAMES = "n";
     public static final String RISK = "r";
+    public static final String COMMUNITY = "com";
   }
 }

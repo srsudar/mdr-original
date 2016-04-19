@@ -21,6 +21,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <org.mamasdelrio.android.widget.SelectCommunityView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/risk_community"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

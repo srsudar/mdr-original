@@ -21,6 +21,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <org.mamasdelrio.android.widget.SelectCommunityView
+        android:id="@+id/outcome_community"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <include layout="@layout/content_outcome_choose_outcome" />
 
     <org.mamasdelrio.android.widget.LocationView

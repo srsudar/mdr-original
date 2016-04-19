@@ -69,6 +69,12 @@ public class DoAlarmActivityTest {
   }
 
   @Test
+  public void getUserFriendlyMessageCorrect() {
+    String actual = activity.getUserFriendlyMessage();
+    assertThat(actual).contains("Hola Mamás del Río. Tenemos una gestante con");
+  }
+
+  @Test
   public void isReadyToBeSentCorrect() {
     // We're going to swap this out
     DniOrNameView dniOrNameView = mock(DniOrNameView.class);

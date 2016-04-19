@@ -26,6 +26,7 @@ import org.mamasdelrio.android.widget.ComplicationsView;
 import org.mamasdelrio.android.widget.DeathView;
 import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
+import org.mamasdelrio.android.widget.SelectCommunityView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
 import java.util.Map;
@@ -40,6 +41,7 @@ public class DoOutcomeActivity extends AppCompatActivity implements
   private static final String TAG = DoOutcomeActivity.class.getSimpleName();
 
   @Bind(R.id.outcome_dniorname) DniOrNameView dniOrName;
+  @Bind(R.id.outcome_community) SelectCommunityView community;
 
   // Choose outcome
   @Bind(R.id.outcome_select_outcome) RadioGroup selectOutcome;
@@ -145,6 +147,32 @@ public class DoOutcomeActivity extends AppCompatActivity implements
     return dniOrName.isComplete();
   }
 
+  @Override
+  public String getUserFriendlyMessage() {
+    int selectedId = selectOutcome.getCheckedRadioButtonId();
+    String outcomeKey = JsonKeys.Outcomes.OUTCOME_TYPE;
+    switch (selectedId) {
+      case R.id.outcome_outcome_complications:
+        return getString(R.string.msg_outcome_complication,
+            "foo", complications.getMotherState().getLabelForSelected(),
+            complications.getBabyState().getLabelForSelected());
+      case R.id.outcome_outcome_abortion:
+        return getString(R.string.msg_outcome_abortion,
+            community.getUserFriendlyCommunityName());
+      case R.id.outcome_outcome_babydeath:
+        return getString(R.string.msg_outcome_bdeath,
+            community.getUserFriendlyCommunityName());
+      case R.id.outcome_outcome_motherdeath:
+        return getString(R.string.msg_outcome_mdeath,
+            community.getUserFriendlyCommunityName());
+      default:
+        if (BuildConfig.DEBUG) {
+          Log.d(TAG, "unrecognized radio button id: " + selectedId);
+        }
+        return "";
+    }
+  }
+
   @OnClick({ R.id.shared_nameordni_yesno_group, R.id.shared_nameordni_yesno_yes,
       R.id.shared_nameordni_yesno_no })
   public void onDniOrNameClicked(View view) {
@@ -169,6 +197,8 @@ public class DoOutcomeActivity extends AppCompatActivity implements
 
     dniOrName.addValuesToMap(map, JsonKeys.Outcomes.HAS_DNI,
         JsonKeys.Outcomes.DNI, JsonKeys.Outcomes.NAME);
+
+    community.addValuesToMap(map, JsonKeys.Outcomes.COMMUNITY);
 
     complications.addValuesToMap(map, JsonKeys.Outcomes.COMPLICATION_BABY_STATE,
         JsonKeys.Outcomes.COMPLICATION_MOTHER_STATE);

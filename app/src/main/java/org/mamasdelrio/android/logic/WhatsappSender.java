@@ -45,7 +45,11 @@ public class WhatsappSender {
     Map<String, Object> map = new HashMap<>();
     formActivity.addValuesToMap(map, new TimeStamper());
     Gson gson = new Gson();
-    String msg = gson.toJson(map);
+    String jsonMessage = gson.toJson(map);
+
+    String msg = formActivity.getUserFriendlyMessage() +
+        Constants.MSG_DELIMITER +
+        jsonMessage;
 
     Intent intent = getShareIntent(msg);
     activity.startActivityForResult(intent,

@@ -13,6 +13,7 @@ import org.mamasdelrio.android.widget.ComplicationsView;
 import org.mamasdelrio.android.widget.DeathView;
 import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
+import org.mamasdelrio.android.widget.SelectCommunityView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
@@ -110,11 +111,46 @@ public class DoOutcomeActivityTest {
   }
 
   @Test
+  public void getUserFriendlyMessageCorrectComplication() {
+    activity.chooseComplications.toggle();
+    String actual = activity.getUserFriendlyMessage();
+    assertThat(actual).contains(
+        "Hola Doctores de Mamás del Río. Tenemos una complicación en");
+  }
+
+  @Test
+  public void getUserFriendlyMessageCorrectAbortion() {
+    activity.chooseAbortion.toggle();
+    String actual = activity.getUserFriendlyMessage();
+    assertThat(actual).contains(
+        "Hola Doctores de Mamás del Río. Estamos reportando un aborto en");
+  }
+
+  @Test
+  public void getUserFriendlyMessageCorrectMotherDeath() {
+    activity.chooseMotherDeath.toggle();
+    String actual = activity.getUserFriendlyMessage();
+    assertThat(actual).contains(
+        "Hola Doctores de Mamás del Río. Estamos reportando una muerte " +
+            "materna en");
+  }
+
+  @Test
+  public void getUserFriendlyMessageCorrectBabyDeath() {
+    activity.chooseBabyDeath.toggle();
+    String actual = activity.getUserFriendlyMessage();
+    assertThat(actual).contains(
+        "Hola Doctores de Mamás del Río. Estamos reportando la muerte de " +
+            "un recién nacido en");
+  }
+
+  @Test
   public void addValuesToMapCorrect() {
     String targetDateTime = "test date time";
     TimeStamper timeStamperMock = mock(TimeStamper.class);
     when(timeStamperMock.getFriendlyDateTime()).thenReturn(targetDateTime);
     DniOrNameView dniOrNameMock = mock(DniOrNameView.class);
+    SelectCommunityView communityMock = mock(SelectCommunityView.class);
     ComplicationsView compViewMock = mock(ComplicationsView.class);
     AbortionView abortionViewMock = mock(AbortionView.class);
     DeathView bDeathMock = mock(DeathView.class);
@@ -122,6 +158,7 @@ public class DoOutcomeActivityTest {
     LocationView locationViewMock = mock(LocationView.class);
 
     activity.dniOrName = dniOrNameMock;
+    activity.community = communityMock;
     activity.complications = compViewMock;
     activity.abortion = abortionViewMock;
     activity.babyDeath = bDeathMock;
@@ -136,6 +173,8 @@ public class DoOutcomeActivityTest {
     verify(dniOrNameMock, times(1)).addValuesToMap(map,
         JsonKeys.Outcomes.HAS_DNI, JsonKeys.Outcomes.DNI,
         JsonKeys.Outcomes.NAME);
+    verify(communityMock, times(1)).addValuesToMap(map,
+        JsonKeys.Outcomes.COMMUNITY);
     verify(compViewMock, times(1)).addValuesToMap(eq(map),
         eq(JsonKeys.Outcomes.COMPLICATION_BABY_STATE),
         eq(JsonKeys.Outcomes.COMPLICATION_MOTHER_STATE));

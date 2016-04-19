@@ -78,6 +78,14 @@ public class SelectOneView extends LinearLayout {
     return values[selectedPosition];
   }
 
+  public String getLabelForSelected() {
+    if (!isInitialized()) {
+      throw new IllegalStateException("view has not been initialized");
+    }
+    int selectedPosition = spinner.getSelectedItemPosition();
+    return labels[selectedPosition];
+  }
+
   private boolean isInitialized() {
     return labels != null && values != null;
   }

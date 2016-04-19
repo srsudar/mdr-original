@@ -98,6 +98,12 @@ public class DoBirthActivity extends AppCompatActivity implements
   }
 
   @Override
+  public String getUserFriendlyMessage() {
+    return getString(R.string.msg_birth,
+        community.getUserFriendlyCommunityName());
+  }
+
+  @Override
   public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
     JsonHelper jsonHelper = new JsonHelper(timeStamper);
     jsonHelper.addCommonEntries(map, JsonValues.Forms.BIRTHS);

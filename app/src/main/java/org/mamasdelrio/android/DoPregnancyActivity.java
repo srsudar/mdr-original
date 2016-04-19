@@ -154,6 +154,12 @@ public class DoPregnancyActivity extends AppCompatActivity implements
     return dniOrName.isComplete();
   }
 
+  @Override
+  public String getUserFriendlyMessage() {
+    return getString(R.string.msg_pregnancy,
+        community.getUserFriendlyCommunityName());
+  }
+
   public void setDatePickerHelper(DatePickerHelper datePickerHelper) {
     this.datePickerHelper = datePickerHelper;
   }

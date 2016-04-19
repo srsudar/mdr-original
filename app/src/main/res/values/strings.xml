@@ -145,4 +145,22 @@
   <string name="cancel_location">Cancel</string>
   <string name="location_provider_accuracy">Location Provider Accuracy</string>
   <string name="location_accuracy">Location Accuracy</string>
+
+  <!-- messages for whatsapp -->
+  <!-- takes community -->
+  <string name="msg_pregnancy">Hola Mamás del Río. Tenemos una gestante nueva en 1$s.</string>
+  <!-- takes alarm, community -->
+  <string name="msg_alarm">Hola Mamás del Río. Tenemos una gestante con 1$s en 2$s.</string>
+  <!-- takes community -->
+  <string name="msg_birth">Hola Mamás del Río. Tenemos un recién nacido en 1$s.</string>
+  <!-- takes risk, community -->
+  <string name="msg_risk">Hola Doctores de Mamás del Río. Tenemos una gestante con 1$s en 2$s</string>
+  <!-- takes community, mother complication, baby complication -->
+  <string name="msg_outcome_complication">Hola Doctores de Mamás del Río. Tenemos una complicación en $1s. Madre: $2s. Recién nacido: $3s.</string>
+  <!-- takes community -->
+  <string name="msg_outcome_abortion">Hola Doctores de Mamás del Río. Estamos reportando un aborto en 1$s</string>
+  <!-- takes community -->
+  <string name="msg_outcome_mdeath">Hola Doctores de Mamás del Río. Estamos reportando una muerte materna en 1$s</string>
+  <!-- takes community -->
+  <string name="msg_outcome_bdeath">Hola Doctores de Mamás del Río. Estamos reportando la muerte de un recién nacido en 1$s</string>
 </resources>

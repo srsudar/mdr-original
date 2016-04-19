@@ -16,6 +16,7 @@ import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
+import org.mamasdelrio.android.widget.SelectCommunityView;
 import org.mamasdelrio.android.widget.SelectOneView;
 
 import java.util.Map;
@@ -27,6 +28,7 @@ import butterknife.OnTextChanged;
 
 public class DoRiskActivity extends AppCompatActivity implements IFormActivity {
   @Bind(R.id.risk_dniorname) DniOrNameView dniOrName;
+  @Bind(R.id.risk_community) SelectCommunityView community;
   @Bind(R.id.risk_risk) SelectOneView risk;
   @Bind(R.id.risk_send) Button send;
   @Bind(R.id.risk_location) LocationView location;
@@ -66,6 +68,12 @@ public class DoRiskActivity extends AppCompatActivity implements IFormActivity {
   }
 
   @Override
+  public String getUserFriendlyMessage() {
+    return getString(R.string.msg_risk,
+        risk.getLabelForSelected(), community.getUserFriendlyCommunityName());
+  }
+
+  @Override
   public void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper) {
     JsonHelper jsonHelper = new JsonHelper(timeStamper);
     jsonHelper.addCommonEntries(map, JsonValues.Forms.RISKS);
@@ -73,6 +81,7 @@ public class DoRiskActivity extends AppCompatActivity implements IFormActivity {
 
     dniOrName.addValuesToMap(map, JsonKeys.Risks.HAS_DNI, JsonKeys.Risks.DNI,
         JsonKeys.Risks.NAMES);
+    community.addValuesToMap(map, JsonKeys.Risks.COMMUNITY);
     risk.addValuesToMap(map, JsonKeys.Risks.RISK);
   }
 

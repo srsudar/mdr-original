@@ -13,6 +13,12 @@ public class Constants {
 
   public static final int DEFAULT_BIRTH_YEAR = 2006;
 
+  /**
+   * The delimiter between the user friendly and JSON portions of the
+   * message.
+   */
+  public static final String MSG_DELIMITER = "\n\n No modificar:\n-----\n";
+
   /** The version identifying the app. */
   public static final int VERSION = BuildConfig.VERSION_CODE;
 

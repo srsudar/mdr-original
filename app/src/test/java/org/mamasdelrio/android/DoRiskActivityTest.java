@@ -12,6 +12,7 @@ import org.mamasdelrio.android.util.JsonKeys;
 import org.mamasdelrio.android.util.JsonValues;
 import org.mamasdelrio.android.widget.DniOrNameView;
 import org.mamasdelrio.android.widget.LocationView;
+import org.mamasdelrio.android.widget.SelectCommunityView;
 import org.mamasdelrio.android.widget.SelectOneView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
@@ -55,6 +56,7 @@ public class DoRiskActivityTest {
         .isDisabled();
     assertThat(activity.location).isVisible();
   }
+
   @Test
   public void riskSelectOneCorrectSize() {
     assertThat(activity.risk.getSpinner()).hasCount(riskValues.length);
@@ -77,9 +79,18 @@ public class DoRiskActivityTest {
   }
 
   @Test
+  public void getUserFriendlyMessageCorrect() {
+    String actual = activity.getUserFriendlyMessage();
+    assertThat(actual).contains(
+        "Hola Doctores de Mamás del Río. Tenemos una gestante con");
+  }
+
+  @Test
   public void addValuesToMapCorrect() {
     DniOrNameView dniOrNameMock = mock(DniOrNameView.class);
     activity.dniOrName = dniOrNameMock;
+    SelectCommunityView communityMock = mock(SelectCommunityView.class);
+    activity.community = communityMock;
     SelectOneView riskMock = mock(SelectOneView.class);
     activity.risk = riskMock;
     String targetDateTime = "test stamp";
@@ -95,6 +106,8 @@ public class DoRiskActivityTest {
         JsonValues.Forms.RISKS);
     verify(dniOrNameMock, times(1)).addValuesToMap(map, JsonKeys.Risks.HAS_DNI,
         JsonKeys.Risks.DNI, JsonKeys.Risks.NAMES);
+    verify(communityMock, times(1)).addValuesToMap(map,
+        JsonKeys.Risks.COMMUNITY);
     verify(riskMock, times(1)).addValuesToMap(map, JsonKeys.Risks.RISK);
     AssertionHelper.assertAddValuesCalledOnLocationView(locationViewMock, map);
   }

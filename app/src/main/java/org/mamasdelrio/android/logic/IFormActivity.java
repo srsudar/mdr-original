@@ -18,4 +18,9 @@ public interface IFormActivity {
    * @param timeStamper the object to generate date times
    */
   void addValuesToMap(Map<String, Object> map, TimeStamper timeStamper);
+
+  /**
+   * Return a user friendly string to display about the filled out form.
+   */
+  String getUserFriendlyMessage();
 }

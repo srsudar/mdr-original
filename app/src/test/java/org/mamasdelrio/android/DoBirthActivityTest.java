@@ -76,6 +76,13 @@ public class DoBirthActivityTest {
   }
 
   @Test
+  public void getUserFriendlyMessageCorrect() {
+    String actual = activity.getUserFriendlyMessage();
+    assertThat(actual).contains(
+        "Hola Mamás del Río. Tenemos un recién nacido en");
+  }
+
+  @Test
   public void addValuesToMapCorrect() {
     String targetDateTime = "test datetime";
     String targetBirthDate = "happy birthdate";

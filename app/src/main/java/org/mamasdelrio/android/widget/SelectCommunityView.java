@@ -46,4 +46,11 @@ public class SelectCommunityView extends LinearLayout {
   public void addValuesToMap(Map<String, Object> map, String communityKey) {
     map.put(communityKey, community.getValueForSelected());
   }
+
+  /**
+   * Return the user-friendly name of the selected community.
+   */
+  public String getUserFriendlyCommunityName() {
+    return community.getLabelForSelected();
+  }
 }

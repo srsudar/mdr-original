@@ -62,6 +62,16 @@ public class SelectOneViewTest {
   }
 
   @Test
+  public void getLabelForSelectedCorrectConstructor() {
+    helperGetLabelForSelectedCorrect(view);
+  }
+
+  @Test
+  public void getLabelForSelectedCorrectInflated() {
+    helperGetLabelForSelectedCorrect(inflatedView);
+  }
+
+  @Test
   public void addValuesToMapCorrect() {
     String[] values = RuntimeEnvironment.application.getResources()
         .getStringArray(VALUE_RES_ID);
@@ -94,5 +104,22 @@ public class SelectOneViewTest {
 
     view.spinner.setSelection(0);
     assertThat(view.getValueForSelected()).isEqualTo("1");
+  }
+
+  private void helperGetLabelForSelectedCorrect(SelectOneView view) {
+    // The value array is a, b, c, d, as strings.
+    assertThat(view.getLabelForSelected()).isEqualTo("a");
+
+    view.spinner.setSelection(1);
+    assertThat(view.getLabelForSelected()).isEqualTo("b");
+
+    view.spinner.setSelection(2);
+    assertThat(view.getLabelForSelected()).isEqualTo("c");
+
+    view.spinner.setSelection(3);
+    assertThat(view.getLabelForSelected()).isEqualTo("d");
+
+    view.spinner.setSelection(0);
+    assertThat(view.getLabelForSelected()).isEqualTo("a");
   }
 }

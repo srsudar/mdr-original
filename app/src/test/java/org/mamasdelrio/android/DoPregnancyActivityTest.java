@@ -118,6 +118,13 @@ public class DoPregnancyActivityTest {
   }
 
   @Test
+  public void getUserFriendlyMessageCorrect() {
+    String actual = activity.getUserFriendlyMessage();
+    assertThat(actual).contains(
+        "Hola Mamás del Río. Tenemos una gestante nueva en");
+  }
+
+  @Test
   public void addValuesToMapCorrect() {
     String targetDateTime = "pregnancy time, behbeh";
     TimeStamper timeStamperMock = mock(TimeStamper.class);

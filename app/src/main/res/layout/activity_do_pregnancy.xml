@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"/>
 
     <org.mamasdelrio.android.widget.SelectCommunityView
+        style="@style/spacers"
         android:id="@+id/preg_community"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -34,6 +35,7 @@
         android:text="@string/last_period_known"/>
 
     <org.mamasdelrio.android.widget.SelectOneView
+        style="@style/spacers"
         android:id="@+id/preg_last_period"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -62,6 +64,7 @@
         android:layout_height="wrap_content"/>
 
     <TextView
+        style="@style/spacers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/month_begin_control"/>
@@ -72,11 +75,13 @@
         android:layout_height="wrap_content"/>
 
     <org.mamasdelrio.android.widget.LocationView
+        style="@style/spacers"
         android:id="@+id/preg_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
+        style="@style/spacers"
         android:id="@+id/preg_send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

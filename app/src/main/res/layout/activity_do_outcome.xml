@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"/>
 
     <org.mamasdelrio.android.widget.SelectCommunityView
+        style="@style/spacers"
         android:id="@+id/outcome_community"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -29,31 +30,37 @@
     <include layout="@layout/content_outcome_choose_outcome" />
 
     <org.mamasdelrio.android.widget.LocationView
+        style="@style/spacers"
         android:id="@+id/outcome_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <org.mamasdelrio.android.widget.ComplicationsView
+        style="@style/spacers"
         android:id="@+id/outcome_complications"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <org.mamasdelrio.android.widget.AbortionView
+        style="@style/spacers"
         android:id="@+id/outcome_abortion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <org.mamasdelrio.android.widget.DeathView
+        style="@style/spacers"
         android:id="@+id/outcome_babydeath"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <org.mamasdelrio.android.widget.DeathView
+        style="@style/spacers"
         android:id="@+id/outcome_motherdeath"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
+        style="@style/spacers"
         android:id="@+id/outcome_send"
         android:text="@string/send_to_whatsapp_doctor"
         android:layout_width="match_parent"

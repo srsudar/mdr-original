@@ -70,6 +70,7 @@
   </LinearLayout>
 
   <Button
+      style="@style/spacers"
       android:id="@+id/location_acquire"
       android:text="@string/enter_location"
       android:layout_width="match_parent"

@@ -22,11 +22,13 @@
         android:layout_height="wrap_content"/>
 
     <org.mamasdelrio.android.widget.SelectCommunityView
+        style="@style/spacers"
         android:id="@+id/alarm_community"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <TextView
+        style="@style/spacers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/enter_alarm"/>
@@ -37,11 +39,13 @@
         android:layout_height="wrap_content"/>
 
     <org.mamasdelrio.android.widget.LocationView
+        style="@style/spacers"
         android:id="@+id/alarm_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
+        style="@style/spacers"
         android:id="@+id/alarm_send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

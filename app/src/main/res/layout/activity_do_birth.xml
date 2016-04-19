@@ -22,12 +22,14 @@
         android:id="@+id/birth_dniorname"/>
 
     <org.mamasdelrio.android.widget.SelectCommunityView
+        style="@style/spacers"
         android:id="@+id/birth_community"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
 
     <TextView
+        style="@style/spacers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/birth_date"/>
@@ -48,6 +50,7 @@
 
 
     <Button
+        style="@style/spacers"
         android:id="@+id/birth_send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

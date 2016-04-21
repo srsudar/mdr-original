@@ -58,7 +58,7 @@
   <string name="alarm_fever">Fiebre</string>
   <string name="alarm_contractions">Contracciones antes de tiempo</string>
   <string name="alarm_liquid">Pérdida de líquido</string>
-  <string name="alarm_baby_move">El bebé no se mueve</string>
+  <string name="alarm_baby_move">El bebé sin movimientos</string>
   <string name="alarm_tingling">Hinchazon de pies, manos o cara</string>
   <string name="alarm_blood">Sangrado o manchas de sangre</string>
   <string name="alarm_headache">Dolor de cabeza</string>
@@ -82,7 +82,7 @@
   <string name="risk_pregnant_before_18">Embarazo antes de los 18 años</string>
   <string name="risk_pregnant_after_35">Embarazo despues de los 35 años</string>
   <string name="risk_high_bp_previously">Presión alta en anteriores embarazos</string>
-  <string name="risk_cs_previously">Cesareada anterior</string>
+  <string name="risk_cs_previously">Cesarea anterior</string>
   <string name="risk_first_pregnancy">Primer embarazo</string>
   <string name="risk_domestic_violence">Violencia doméstica</string>
   <string name="risk_abandoned">Abandono Social</string>
@@ -104,7 +104,7 @@
   <string name="complications">Complicaciones</string>
   <string name="abortion">Aborto</string>
   <string name="maternal_death">Muerte Materna</string>
-  <string name="neonatal_death">Muerte neonatal</string>
+  <string name="neonatal_death">Muerte Neonatal</string>
   <string name="fine">Está bien</string>
 
   <string name="pregnancy_complications">Complicaciones del parto</string>

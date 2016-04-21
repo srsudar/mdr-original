@@ -9,16 +9,6 @@
   <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="@string/enter_dni_of_mother"/>
-
-  <EditText
-      android:id="@+id/outcome_abortion_motherdni"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"/>
-
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:text="@string/date_of_abortion"/>
   <DatePicker
       android:id="@+id/outcome_abortion_date"

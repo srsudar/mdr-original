@@ -186,7 +186,6 @@ public class DoOutcomeActivityTest {
         eq(JsonKeys.Outcomes.COMPLICATION_MOTHER_STATE));
     verify(abortionViewMock, times(1)).addValuesToMap(eq(map),
         any(DatePickerHelper.class),
-        eq(JsonKeys.Outcomes.ABORTION_DNI),
         eq(JsonKeys.Outcomes.ABORTION_DATE));
     verify(bDeathMock, times(1)).addValuesToMap(eq(map),
         any(DatePickerHelper.class),

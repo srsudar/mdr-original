@@ -19,7 +19,6 @@ import butterknife.ButterKnife;
  * Created by sudars on 3/17/16.
  */
 public class AbortionView extends LinearLayout {
-  @Bind(R.id.outcome_abortion_motherdni) EditText motherDni;
   @Bind(R.id.outcome_abortion_date) DatePicker date;
 
   public AbortionView(Context context) {
@@ -46,14 +45,8 @@ public class AbortionView extends LinearLayout {
   /** Add mother dni and date to map with the provided keys. */
   public void addValuesToMap(Map<String, Object> map,
       DatePickerHelper datePickerHelper,
-      String motherDniKey,
       String dateKey) {
-    map.put(motherDniKey, motherDni.getText().toString());
     map.put(dateKey, datePickerHelper.getFriendlyString(date));
-  }
-
-  public EditText getMotherDni() {
-    return motherDni;
   }
 
   public DatePicker getDate() {

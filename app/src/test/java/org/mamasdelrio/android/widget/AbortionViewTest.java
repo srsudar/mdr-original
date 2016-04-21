@@ -41,9 +41,6 @@ public class AbortionViewTest {
 
   @Test
   public void uiElementsInitialized() {
-    assertThat(view.motherDni)
-        .isVisible()
-        .isEnabled();
     assertThat(view.date)
         .isVisible()
         .isEnabled();
@@ -52,18 +49,14 @@ public class AbortionViewTest {
   @Test
   public void addValuesToMapCorrect() {
     String targetDate = "2014-02-27";
-    String targetDni = "some dni";
-    view.motherDni.setText(targetDni);
     DatePickerHelper dphMock = mock(DatePickerHelper.class);
     when(dphMock.getFriendlyString(any(DatePicker.class)))
         .thenReturn(targetDate);
-    String dniKey = "dni";
     String dateKey = "date";
     Map<String, Object> map = new HashMap<>();
 
-    view.addValuesToMap(map, dphMock, dniKey, dateKey);
+    view.addValuesToMap(map, dphMock, dateKey);
     assertThat(map).contains(
-        entry(dniKey, targetDni),
         entry(dateKey, targetDate));
   }
 }

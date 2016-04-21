@@ -58,7 +58,6 @@ public class JsonKeys {
     public static final String NAME = "n";
     public static final String COMPLICATION_BABY_STATE = "c_b";
     public static final String COMPLICATION_MOTHER_STATE = "c_m";
-    public static final String ABORTION_DNI = "a_d";
     public static final String ABORTION_DATE = "a_f";
     public static final String BDEATH_CAUSE = "bd_c";
     public static final String BDEATH_DNI = "bd_d";

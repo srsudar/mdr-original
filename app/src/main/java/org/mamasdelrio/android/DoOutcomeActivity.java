@@ -203,7 +203,7 @@ public class DoOutcomeActivity extends AppCompatActivity implements
     complications.addValuesToMap(map, JsonKeys.Outcomes.COMPLICATION_BABY_STATE,
         JsonKeys.Outcomes.COMPLICATION_MOTHER_STATE);
     abortion.addValuesToMap(map, datePickerHelper,
-        JsonKeys.Outcomes.ABORTION_DNI, JsonKeys.Outcomes.ABORTION_DATE);
+        JsonKeys.Outcomes.ABORTION_DATE);
     babyDeath.addValuesToMap(map, datePickerHelper,
         JsonKeys.Outcomes.BDEATH_CAUSE, JsonKeys.Outcomes.BDEATH_DNI,
         JsonKeys.Outcomes.BDEATH_DATE);

@@ -163,6 +163,38 @@
     <item>otro</item>
   </string-array>
 
+  <string-array name="mdeath_cause_labels">
+    <item>@string/mdeath_cause_bleeding</item>
+    <item>@string/mdeath_cause_infection</item>
+    <item>@string/mdeath_cause_pressure</item>
+    <item>@string/mdeath_cause_complication</item>
+    <item>@string/mdeath_cause_abortion</item>
+    <item>@string/other</item>
+  </string-array>
+
+  <string-array name="mdeath_cause_values">
+    <item>hem</item>
+    <item>inf</item>
+    <item>pres</item>
+    <item>com</item>
+    <item>pel</item>
+    <item>otr</item>
+  </string-array>
+
+  <string-array name="bdeath_cause_labels">
+    <item>@string/bdeath_cause_premature</item>
+    <item>@string/bdeath_cause_suffocate</item>
+    <item>@string/bdeath_cause_infection</item>
+    <item>@string/other</item>
+  </string-array>
+
+  <string-array name="bdeath_cause_values">
+    <item>prem</item>
+    <item>asf</item>
+    <item>inf</item>
+    <item>otr</item>
+  </string-array>
+
 
 
   <!-- For use in testing. These should be in their own res directory, but it

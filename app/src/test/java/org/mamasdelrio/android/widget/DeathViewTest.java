@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.mamasdelrio.android.BuildConfig;
 import org.mamasdelrio.android.DoAlarmActivity;
 import org.mamasdelrio.android.logic.DatePickerHelper;
+import org.mamasdelrio.android.util.JsonKeys;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
@@ -20,6 +21,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -50,15 +53,17 @@ public class DeathViewTest {
     String probableCauseKey = "probableCause";
     String dateKey = "date";
     String targetDate = "2015-02-14";
-    String targetCause = "something bad";
-    view.probableCause.setText(targetCause);
+    SelectOneView probableCauseMock = mock(SelectOneView.class);
+    view.probableCause = probableCauseMock;
+
     DatePickerHelper dphMock = mock(DatePickerHelper.class);
     when(dphMock.getFriendlyString(any(DatePicker.class)))
         .thenReturn(targetDate);
     Map<String, Object> map = new HashMap<>();
     view.addValuesToMap(map, dphMock, probableCauseKey, dateKey);
-    assertThat(map).contains(
-        entry(probableCauseKey, targetCause),
-        entry(dateKey, targetDate));
+
+    verify(probableCauseMock, times(1)).addValuesToMap(map, probableCauseKey);
+
+    assertThat(map).contains(entry(dateKey, targetDate));
   }
 }

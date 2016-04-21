@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  */
 public class DeathView extends LinearLayout {
   @Bind(R.id.outcome_death_date) DatePicker deathDate;
-  @Bind(R.id.outcome_death_probablecause) EditText probableCause;
+  @Bind(R.id.outcome_death_probablecause) SelectOneView probableCause;
 
   public DeathView(Context context) {
     super(context);
@@ -45,8 +45,12 @@ public class DeathView extends LinearLayout {
       DatePickerHelper datePickerHelper,
       String probableCauseKey,
       String dateKey) {
-    map.put(probableCauseKey, probableCause.getText().toString());
+    probableCause.addValuesToMap(map, probableCauseKey);
     map.put(dateKey, datePickerHelper.getFriendlyString(deathDate));
+  }
+
+  public SelectOneView getProbableCause() {
+    return probableCause;
   }
 
   private void init() {

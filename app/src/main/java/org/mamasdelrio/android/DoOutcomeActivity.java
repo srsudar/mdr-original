@@ -64,6 +64,11 @@ public class DoOutcomeActivity extends AppCompatActivity implements
     setContentView(R.layout.activity_do_outcome);
     ButterKnife.bind(this);
 
+    babyDeath.getProbableCause().initializeView(R.array.bdeath_cause_labels,
+        R.array.bdeath_cause_values);
+    motherDeath.getProbableCause().initializeView(R.array.mdeath_cause_labels,
+        R.array.mdeath_cause_values);
+
     complications.setVisibility(View.GONE);
     abortion.setVisibility(View.GONE);
     babyDeath.setVisibility(View.GONE);

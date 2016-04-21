@@ -21,7 +21,8 @@
       android:text="@string/probable_cause"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
-  <EditText
+
+  <org.mamasdelrio.android.widget.SelectOneView
       android:id="@+id/outcome_death_probablecause"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>

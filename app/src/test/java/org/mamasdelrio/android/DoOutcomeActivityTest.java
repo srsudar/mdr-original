@@ -80,6 +80,14 @@ public class DoOutcomeActivityTest {
     assertThat(activity.abortion).isGone();
     assertThat(activity.babyDeath).isGone();
     assertThat(activity.motherDeath).isGone();
+
+    // make sure both select one views have been initialized
+    // 6 options in R.array.mdeath_cause_*
+    assertThat(activity.motherDeath.getProbableCause().getSpinner())
+        .hasCount(6);
+    // 4 options in R.array.bdeath_cause_*
+    assertThat(activity.babyDeath.getProbableCause().getSpinner())
+        .hasCount(4);
   }
 
   @Test

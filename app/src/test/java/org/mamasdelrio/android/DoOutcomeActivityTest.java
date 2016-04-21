@@ -76,11 +76,6 @@ public class DoOutcomeActivityTest {
         .isGone()
         .isEnabled();
 
-    assertThat(activity.motherDeath.getDniLabel())
-        .hasText(R.string.enter_dni);
-    assertThat(activity.babyDeath.getDniLabel())
-        .hasText(R.string.enter_dni_of_mother);
-
     assertThat(activity.complications).isGone();
     assertThat(activity.abortion).isGone();
     assertThat(activity.babyDeath).isGone();
@@ -190,12 +185,10 @@ public class DoOutcomeActivityTest {
     verify(bDeathMock, times(1)).addValuesToMap(eq(map),
         any(DatePickerHelper.class),
         eq(JsonKeys.Outcomes.BDEATH_CAUSE),
-        eq(JsonKeys.Outcomes.BDEATH_DNI),
         eq(JsonKeys.Outcomes.BDEATH_DATE));
     verify(mDeathMock, times(1)).addValuesToMap(eq(map),
         any(DatePickerHelper.class),
         eq(JsonKeys.Outcomes.MDEATH_CAUSE),
-        eq(JsonKeys.Outcomes.MDEATH_DNI),
         eq(JsonKeys.Outcomes.MDEATH_DATE));
     AssertionHelper.assertAddValuesCalledOnLocationView(locationViewMock, map);
   }

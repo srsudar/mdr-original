@@ -70,9 +70,6 @@ public class DoOutcomeActivity extends AppCompatActivity implements
     motherDeath.setVisibility(View.GONE);
     send.setVisibility(View.GONE);
 
-    babyDeath.getDniLabel().setText(R.string.enter_dni_of_mother);
-    motherDeath.getDniLabel().setText(R.string.enter_dni);
-
     initRadioGroupListener();
   }
 
@@ -205,11 +202,9 @@ public class DoOutcomeActivity extends AppCompatActivity implements
     abortion.addValuesToMap(map, datePickerHelper,
         JsonKeys.Outcomes.ABORTION_DATE);
     babyDeath.addValuesToMap(map, datePickerHelper,
-        JsonKeys.Outcomes.BDEATH_CAUSE, JsonKeys.Outcomes.BDEATH_DNI,
-        JsonKeys.Outcomes.BDEATH_DATE);
+        JsonKeys.Outcomes.BDEATH_CAUSE, JsonKeys.Outcomes.BDEATH_DATE);
     motherDeath.addValuesToMap(map, datePickerHelper,
-        JsonKeys.Outcomes.MDEATH_CAUSE, JsonKeys.Outcomes.MDEATH_DNI,
-        JsonKeys.Outcomes.MDEATH_DATE);
+        JsonKeys.Outcomes.MDEATH_CAUSE, JsonKeys.Outcomes.MDEATH_DATE);
   }
 
   private void addOutcomeChoiceToMap(Map<String, Object> map) {

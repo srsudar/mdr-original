@@ -43,29 +43,22 @@ public class DeathViewTest {
     assertThat(view.probableCause)
         .isEnabled()
         .isVisible();
-    assertThat(view.dni)
-        .isEnabled()
-        .isVisible();
   }
 
   @Test
   public void addValuesToMapCorrect() {
     String probableCauseKey = "probableCause";
-    String dniKey = "dni";
     String dateKey = "date";
     String targetDate = "2015-02-14";
     String targetCause = "something bad";
-    String targetDni = "my dni";
     view.probableCause.setText(targetCause);
-    view.dni.setText(targetDni);
     DatePickerHelper dphMock = mock(DatePickerHelper.class);
     when(dphMock.getFriendlyString(any(DatePicker.class)))
         .thenReturn(targetDate);
     Map<String, Object> map = new HashMap<>();
-    view.addValuesToMap(map, dphMock, probableCauseKey, dniKey, dateKey);
+    view.addValuesToMap(map, dphMock, probableCauseKey, dateKey);
     assertThat(map).contains(
         entry(probableCauseKey, targetCause),
-        entry(dniKey, targetDni),
         entry(dateKey, targetDate));
   }
 }

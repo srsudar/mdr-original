@@ -26,14 +26,4 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
 
-  <TextView
-      android:id="@+id/outcome_dni_label"
-      android:text="@string/enter_dni"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"/>
-  <EditText
-      android:id="@+id/outcome_death_dni"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"/>
-
 </LinearLayout>

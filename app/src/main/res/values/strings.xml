@@ -135,7 +135,7 @@
   <string name="date_of_abortion">Fecha del aborto</string>
 
   <string name="date_of_death">Fecha de la muerte</string>
-  <string name="probable_cause">Probable causa</string>
+  <string name="probable_cause">Causa probable</string>
 
   <!-- for geopoints -->
   <string name="get_location">Get Location</string>
@@ -168,8 +168,8 @@
   <!-- mother death probable causes -->
   <string name="mdeath_cause_bleeding">Hemorragia grave</string>
   <string name="mdeath_cause_infection">Infección</string>
-  <string name="mdeath_cause_pressure">Presion alta</string>
-  <string name="mdeath_cause_complication">Complicacion en el parto</string>
+  <string name="mdeath_cause_pressure">Presión alta</string>
+  <string name="mdeath_cause_complication">Complicación en el parto</string>
   <string name="mdeath_cause_abortion">Aborto peligroso</string>
 
   <!-- baby death probable causes -->

@@ -65,6 +65,7 @@
 
     <TextView
         style="@style/spacers"
+        android:id="@+id/preg_control_month_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/month_begin_control"/>

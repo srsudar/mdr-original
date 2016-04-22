@@ -126,6 +126,25 @@ public class DoPregnancyActivityTest {
   }
 
   @Test
+  public void updateControlMonthVisibilityCorrect() {
+    // should be visible only when "yes" is selected for do you take controls
+    int yesIndex = 0;
+    activity.takeControl.getSpinner().setSelection(yesIndex);
+    assertControlMonthEnabled();
+
+    // 4 total options
+    activity.takeControl.getSpinner().setSelection(yesIndex + 1);
+    assertControlMonthDisabled();
+    activity.takeControl.getSpinner().setSelection(yesIndex + 2);
+    assertControlMonthDisabled();
+    activity.takeControl.getSpinner().setSelection(yesIndex + 3);
+    assertControlMonthDisabled();
+
+    activity.takeControl.getSpinner().setSelection(yesIndex);
+    assertControlMonthEnabled();
+  }
+
+  @Test
   public void addValuesToMapCorrect() {
     String targetDateTime = "pregnancy time, behbeh";
     TimeStamper timeStamperMock = mock(TimeStamper.class);
@@ -212,5 +231,15 @@ public class DoPregnancyActivityTest {
   private void assertNotReadyToBeSent() {
     assertThat(activity.isReadyToBeSent()).isFalse();
     assertThat(activity.send).isDisabled();
+  }
+
+  private void assertControlMonthDisabled() {
+    assertThat(activity.controlMonthLabel).isDisabled();
+    assertThat(activity.controlMonth).isDisabled();
+  }
+
+  private void assertControlMonthEnabled() {
+    assertThat(activity.controlMonthLabel).isEnabled();
+    assertThat(activity.controlMonth).isEnabled();
   }
 }

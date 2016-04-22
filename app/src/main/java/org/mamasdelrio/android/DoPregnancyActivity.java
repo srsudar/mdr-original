@@ -40,6 +40,7 @@ public class DoPregnancyActivity extends AppCompatActivity implements
   @Bind(R.id.preg_community) SelectCommunityView community;
   @Bind(R.id.birth_date) DatePicker birthDate;
   @Bind(R.id.preg_last_period) SelectOneView lastPeriodKnown;
+  @Bind(R.id.preg_control_month_label) TextView controlMonthLabel;
   @Bind(R.id.preg_take_control) SelectOneView takeControl;
   @Bind(R.id.preg_control_month) Spinner controlMonth;
   @Bind(R.id.preg_last_period_date_label) TextView lastPeriodDateLabel;
@@ -74,21 +75,40 @@ public class DoPregnancyActivity extends AppCompatActivity implements
 
     lastPeriodKnown.getSpinner().setOnItemSelectedListener(
         new AdapterView.OnItemSelectedListener() {
-      @Override
-      public void onItemSelected(AdapterView<?> parent, View view, int position,
-          long id) {
-        if (position == YES_POSITION) {
-          lastPeriodDate.setEnabled(true);
-        } else {
-          lastPeriodDate.setEnabled(false);
-        }
-      }
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view,
+              int position, long id) {
+            if (position == YES_POSITION) {
+              lastPeriodDate.setEnabled(true);
+            } else {
+              lastPeriodDate.setEnabled(false);
+            }
+          }
 
-      @Override
-      public void onNothingSelected(AdapterView<?> parent) {
-        // no op
-      }
-    });
+          @Override
+          public void onNothingSelected(AdapterView<?> parent) {
+            // no op
+          }
+        });
+
+    takeControl.getSpinner().setOnItemSelectedListener(
+        new AdapterView.OnItemSelectedListener() {
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view,
+                int position, long id) {
+            if (position == YES_POSITION) {
+              controlMonthLabel.setEnabled(true);
+              controlMonth.setEnabled(true);
+            } else {
+              controlMonthLabel.setEnabled(false);
+              controlMonth.setEnabled(false);            }
+          }
+
+          @Override
+          public void onNothingSelected(AdapterView<?> parent) {
+            // no op
+          }
+        });
   }
 
   @Override

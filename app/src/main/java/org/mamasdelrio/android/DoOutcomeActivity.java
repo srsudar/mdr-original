@@ -141,12 +141,17 @@ public class DoOutcomeActivity extends AppCompatActivity implements
   private void makeSendVisible() {
     if (isReadyToBeSent()) {
       send.setVisibility(View.VISIBLE);
+      send.setEnabled(true);
+    } else {
+      send.setVisibility(View.GONE);
+      send.setEnabled(false);
     }
   }
 
   @Override
   public boolean isReadyToBeSent() {
-    return dniOrName.isComplete();
+    boolean itemIsChecked = selectOutcome.getCheckedRadioButtonId() != -1;
+    return dniOrName.isComplete() && itemIsChecked;
   }
 
   @Override
@@ -178,14 +183,14 @@ public class DoOutcomeActivity extends AppCompatActivity implements
   @OnClick({ R.id.shared_nameordni_yesno_group, R.id.shared_nameordni_yesno_yes,
       R.id.shared_nameordni_yesno_no })
   public void onDniOrNameClicked(View view) {
-    send.setEnabled(isReadyToBeSent());
+    makeSendVisible();
   }
 
   @SuppressWarnings("unused")
   @OnTextChanged({ R.id.shared_nameordni_enter_dni,
       R.id.shared_nameordni_enter_names })
   public void onTextChanged(CharSequence text) {
-    send.setEnabled(isReadyToBeSent());
+    makeSendVisible();
   }
 
   @Override

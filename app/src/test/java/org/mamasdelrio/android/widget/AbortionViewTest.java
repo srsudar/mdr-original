@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.mamasdelrio.android.BuildConfig;
 import org.mamasdelrio.android.logic.DatePickerHelper;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
@@ -29,7 +30,7 @@ import static org.mockito.Mockito.when;
 /**
  * Tests for {@link AbortionView}.
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class AbortionViewTest {
   AbortionView view;

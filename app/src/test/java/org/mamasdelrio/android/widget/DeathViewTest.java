@@ -10,6 +10,7 @@ import org.mamasdelrio.android.DoAlarmActivity;
 import org.mamasdelrio.android.logic.DatePickerHelper;
 import org.mamasdelrio.android.util.JsonKeys;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
@@ -28,7 +29,7 @@ import static org.mockito.Mockito.when;
 /**
  * Tests for {@link DeathView}.
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class DeathViewTest {
   DeathView view;

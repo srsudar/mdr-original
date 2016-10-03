@@ -18,6 +18,7 @@ import org.mamasdelrio.android.widget.SelectCommunityView;
 import org.mamasdelrio.android.widget.SelectOneView;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.HashMap;
@@ -34,7 +35,7 @@ import static org.mockito.Mockito.when;
 /**
  * Tests for {@link DoPregnancyActivity}.
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class DoPregnancyActivityTest {
   private DoPregnancyActivity activity;

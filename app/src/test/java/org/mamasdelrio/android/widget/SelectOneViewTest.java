@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.mamasdelrio.android.BuildConfig;
 import org.mamasdelrio.android.R;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
@@ -22,7 +23,7 @@ import static org.assertj.core.api.Assertions.entry;
 /**
  * Tests for {@link SelectOneViewTest}.
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class SelectOneViewTest {
   private static final int LABEL_RES_ID = R.array.abcd;

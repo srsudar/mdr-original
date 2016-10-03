@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.mamasdelrio.android.BuildConfig;
 import org.mamasdelrio.android.widget.AbortionView;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
@@ -19,7 +20,7 @@ import static org.mockito.Mockito.when;
 /**
  * Tests for {@link DatePickerHelper}.
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class DatePickerHelperTest {
   DatePickerHelper helper;

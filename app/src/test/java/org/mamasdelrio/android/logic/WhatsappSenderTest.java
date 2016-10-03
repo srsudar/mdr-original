@@ -10,6 +10,7 @@ import org.mamasdelrio.android.BuildConfig;
 import org.mamasdelrio.android.util.Constants;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ import static org.mockito.Mockito.verify;
 /**
  * Tests for {@link WhatsappSender}.
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class WhatsappSenderTest {
   WhatsappSender sender;

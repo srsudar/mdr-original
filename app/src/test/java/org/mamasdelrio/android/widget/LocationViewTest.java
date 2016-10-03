@@ -14,6 +14,7 @@ import org.mamasdelrio.android.logic.BundleHelper;
 import org.mamasdelrio.android.util.LocationStruct;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
@@ -33,7 +34,7 @@ import static org.mockito.Mockito.when;
 /**
  * Tests for {@link LocationView}.
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class LocationViewTest {
   LocationView view;

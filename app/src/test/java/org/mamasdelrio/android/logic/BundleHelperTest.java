@@ -10,6 +10,7 @@ import org.mamasdelrio.android.DoAlarmActivity;
 import org.mamasdelrio.android.util.BundleKeys;
 import org.mamasdelrio.android.util.LocationStruct;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import static org.assertj.android.api.Assertions.assertThat;
@@ -18,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Tests for {@link BundleHelper}.
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class BundleHelperTest {
   BundleHelper bundleHelper;

@@ -1,7 +1,12 @@
-# Mamás del Río
+# MDR Original
 
-> The Android component of Mamás del Río
+> Old, deprecated version of the code.
 
+## DEPRECATED
+
+This is the older, deprecated version of the code supporting the MDR project.
+For the current version, please [see
+here](https://github.com/srsudar/MamasDelRioAndroid/).
 
 ## Overview
 

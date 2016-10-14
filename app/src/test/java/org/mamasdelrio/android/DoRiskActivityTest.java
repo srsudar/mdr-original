@@ -37,11 +37,13 @@ import static org.mockito.Mockito.when;
 public class DoRiskActivityTest {
   DoRiskActivity activity;
   String[] riskValues;
+  String[] riskLabels;
 
   @Before
   public void before() {
     activity = Robolectric.setupActivity(DoRiskActivity.class);
     riskValues = activity.getResources().getStringArray(R.array.risks_values);
+    riskLabels = activity.getResources().getStringArray(R.array.risks_labels);
   }
 
   @Test
@@ -59,8 +61,14 @@ public class DoRiskActivityTest {
   }
 
   @Test
-  public void riskSelectOneCorrectSize() {
+  public void riskSelectOneCorrectLabels() {
     assertThat(activity.risk.getSpinner()).hasCount(riskValues.length);
+    String[] spinnerValues = new String[riskLabels.length];
+    for (int i = 0; i < riskLabels.length; i++) {
+      spinnerValues[i] = (String) activity.risk.getSpinner().getAdapter()
+          .getItem(i);
+    }
+    assertThat(spinnerValues).isEqualTo(riskLabels);
   }
 
   @Test

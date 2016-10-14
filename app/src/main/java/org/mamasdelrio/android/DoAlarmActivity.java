@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -36,6 +37,7 @@ public class DoAlarmActivity extends AppCompatActivity implements
   @Bind(R.id.alarm_alarm) SelectOneView alarm;
   @Bind(R.id.alarm_send) Button send;
   @Bind(R.id.alarm_location) LocationView location;
+  @Bind(R.id.alarm_label) TextView alarmLabel;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

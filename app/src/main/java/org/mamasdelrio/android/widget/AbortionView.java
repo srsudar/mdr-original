@@ -3,6 +3,7 @@ package org.mamasdelrio.android.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -40,6 +41,7 @@ public class AbortionView extends LinearLayout {
     LayoutInflater.from(getContext()).inflate(R.layout.widget_abortion, this,
         true);
     ButterKnife.bind(this);
+    date.setVisibility(View.GONE);
   }
 
   /** Add mother dni and date to map with the provided keys. */

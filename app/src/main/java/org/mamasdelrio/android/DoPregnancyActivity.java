@@ -52,7 +52,6 @@ public class DoPregnancyActivity extends AppCompatActivity implements
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_do_pregnancy);
     ButterKnife.bind(this);
     datePickerHelper = new DatePickerHelper();
     datePickerHelper.setToBirthDateDefaults(birthDate);

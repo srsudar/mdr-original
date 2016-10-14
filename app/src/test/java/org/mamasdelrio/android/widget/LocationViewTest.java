@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mamasdelrio.android.BuildConfig;
 import org.mamasdelrio.android.LocationFetcherActivity;
+import org.mamasdelrio.android.R;
 import org.mamasdelrio.android.logic.BundleHelper;
 import org.mamasdelrio.android.util.LocationStruct;
 import org.robolectric.Robolectric;
@@ -51,6 +52,8 @@ public class LocationViewTest {
     assertThat(view.altitude).isVisible();
     assertThat(view.accuracy).isVisible();
     assertThat(view.acquire).isVisible();
+    assertThat(view.acquire).hasText(R.string.enter_location)
+        .doesNotContainText("foo");
   }
 
   @Test

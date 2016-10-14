@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -31,9 +32,7 @@ public class FormPickerActivity extends AppCompatActivity {
   @SuppressWarnings("unused")
   @OnClick(R.id.do_pregnancy)
   protected void doPregnancy() {
-    Intent intent = new Intent();
-    intent.setClass(this, DoPregnancyActivity.class);
-    startActivity(intent);
+    Log.d("FormPickerActivity", "pressed doPregnancy");
   }
 
   @SuppressWarnings("unused")
@@ -48,7 +47,7 @@ public class FormPickerActivity extends AppCompatActivity {
   @OnClick(R.id.do_birth)
   protected void doBirth() {
     Intent intent = new Intent();
-    intent.setClass(this, DoBirthActivity.class);
+    intent.setClass(this, DoRiskActivity.class);
     startActivity(intent);
   }
 

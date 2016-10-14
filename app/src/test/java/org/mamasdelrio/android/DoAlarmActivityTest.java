@@ -65,6 +65,16 @@ public class DoAlarmActivityTest {
   }
 
   @Test
+  public void sendButtonHasCorrectText() {
+    assertThat(activity.send).hasText(R.string.send_to_whatsapp_group);
+  }
+
+  @Test
+  public void alarmLabelInRightState() {
+    assertThat(activity.alarmLabel).isEnabled().isNotFocusable();
+  }
+
+  @Test
   public void alarmSelectOneCorrectSize() {
     assertThat(activity.alarm.getSpinner()).hasCount(alarmsValues.length);
   }

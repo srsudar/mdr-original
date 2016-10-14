@@ -12,6 +12,7 @@
       android:text="@string/date_of_abortion"/>
   <DatePicker
       android:id="@+id/outcome_abortion_date"
+      android:visibility="gone"
       android:layout_gravity="center_horizontal"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"

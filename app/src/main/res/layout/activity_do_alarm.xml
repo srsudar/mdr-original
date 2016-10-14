@@ -29,6 +29,9 @@
 
     <TextView
         style="@style/spacers"
+        android:id="@+id/alarm_label"
+        android:enabled="false"
+        android:focusable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/enter_alarm"/>
@@ -49,7 +52,7 @@
         android:id="@+id/alarm_send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/send_to_whatsapp_group"/>
+        android:text="@string/send_to_whatsapp_doctor"/>
 
 
   </LinearLayout>

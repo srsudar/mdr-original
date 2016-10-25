@@ -41,7 +41,6 @@ public class AbortionView extends LinearLayout {
     LayoutInflater.from(getContext()).inflate(R.layout.widget_abortion, this,
         true);
     ButterKnife.bind(this);
-    date.setVisibility(View.GONE);
   }
 
   /** Add mother dni and date to map with the provided keys. */

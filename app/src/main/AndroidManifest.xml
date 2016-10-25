@@ -25,7 +25,9 @@
     <activity
         android:name=".DoPregnancyActivity"
         android:windowSoftInputMode="adjustResize">
-    </activity>ick
+    </activity>
+    <activity android:name=".DoAlarmActivity">
+    </activity>
     <activity android:name=".DoBirthActivity">
     </activity>
     <activity android:name=".DoRiskActivity">

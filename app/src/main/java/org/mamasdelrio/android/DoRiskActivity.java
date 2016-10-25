@@ -32,7 +32,7 @@ public class DoRiskActivity extends AppCompatActivity implements IFormActivity {
   @Bind(R.id.risk_dniorname) DniOrNameView dniOrName;
   @Bind(R.id.risk_community) SelectCommunityView community;
   @Bind(R.id.risk_risk) SelectOneView risk;
-  @Bind(R.id.risk_send) LinearLayout send;
+  @Bind(R.id.risk_send) Button send;
   @Bind(R.id.risk_location) LocationView location;
 
   @Override
@@ -41,7 +41,7 @@ public class DoRiskActivity extends AppCompatActivity implements IFormActivity {
     setContentView(R.layout.activity_do_risk);
     ButterKnife.bind(this);
 
-    risk.initializeView(R.array.risks_values, R.array.risks_values);
+    risk.initializeView(R.array.risks_labels, R.array.risks_values);
 
     send.setEnabled(isReadyToBeSent());
   }

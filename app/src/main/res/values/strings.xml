@@ -26,7 +26,7 @@
   <string name="have_dni">¿Tiene DNI?</string>
   <string name="es_yes">Sí</string>
   <string name="es_no">No</string>
-  <string name="enter_location">Ingresar foo localización (GPS)</string>
+  <string name="enter_location">Ingresar localización (GPS)</string>
   <string name="register_location">Registrar localización</string>
   <string name="send_to_whatsapp_group">Enviar al Grupo de Whastapp de Mamás del Río</string>
   <string name="send_to_whatsapp_doctor">Enviar al Teléfono de Mamás del Río</string>
